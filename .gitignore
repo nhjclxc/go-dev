@@ -23,3 +23,38 @@ go.work.sum
 
 # env file
 .env
+
+
+
+
+######################################################################
+# Build Tools
+
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+.target
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Compiled class file
+*.class
+
+# Package Files #
+*.war
+*.ear
+*.jar
+*.log
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+######################################################################
+# IDE
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
