@@ -1,5 +1,7 @@
 package main
 
+import "os"
+
 /*
 5. 函数
 */
@@ -15,14 +17,26 @@ func main() {
 
 	//test05Function05()
 
-	test05Function06()
+	test05Function07()
+	//test05Function08()
 
 }
 
 // 5.8 作用域
-func test05Function06() {
+func test05Function08() {
 	//5.8.3 不同作用域同名变量
 	//在不同作用域可以声明同名的变量，其访问原则为：在同一个作用域内，就近原则访问最近的变量，如果此作用域没有此变量声明，则访问全局变量，如果全局变量也没有，则报错。
+
+}
+
+// 5.7 获取命令行参数
+func test05Function07() {
+	// 导包： import "os"
+	args := os.Args //获取用户输入的所有参数
+
+	for i, arg := range args {
+		println(i, arg)
+	}
 
 }
 
