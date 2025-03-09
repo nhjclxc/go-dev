@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	//为了使用utils.go文件的变量或者函数，我们需要先引入该model包
-	"go_code/chapter03/demo04/model"
+	"test4_atguigu/chapter03/demo04/model"
 )
 
-//变量使用的注意事项
+// 变量使用的注意事项
 func main() {
 
 	//该区域的数据值可以在同一类型范围内不断变化
