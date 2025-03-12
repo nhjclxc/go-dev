@@ -24,6 +24,10 @@ func main() {
 
 	test2252()
 
+	var name []int = nil
+
+	println(name)
+
 }
 
 // 定义学生结构体
