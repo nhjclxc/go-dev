@@ -6,7 +6,7 @@ https://www.yuque.com/aceld/mo95lb/dsk886#uF2gj
 
 
 Go语言官网(需要翻墙)：https://golang.org/、https://tour.go-zh.org/welcome/1、https://pkg.go.dev/、https://pkg.go.dev/std、、
-go中文社区：https://studygolang.com、https://studygolang.com/pkgdoc
+go中文社区：https://studygolang.com、https://studygolang.com/pkgdoc 、https://learnku.com/go/wikis/38122 、
 go中文在线文档：https://studygolang.com/pkgdoc
 
 
