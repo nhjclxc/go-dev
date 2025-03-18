@@ -14,4 +14,7 @@ func main() {
 	user1.Name = "张三"
 	fmt.Println(user1)
 
+	// GO的每一个文件都是一个包
+	// 函数名或变量名必须是大写才能跨包调用
+
 }
