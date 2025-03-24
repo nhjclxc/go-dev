@@ -66,7 +66,7 @@ func (self HeroSlice) Swap(i, j int) {
 	self[j] = temp
 }
 
-func main() {
+func main5() {
 
 	// 首先了解一下 sort.Sort(data Interface) 方法
 	var arr []int = []int{10, 2, 5, 8, 6, 9}
