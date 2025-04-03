@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // golang接口类型断言
-func main() {
+func main0() {
 	/*
 		在 Golang 中，接口类型断言（Type Assertion）用于将一个接口类型的值转换为其具体类型。类型断言的语法如下：
 				value, ok := interfaceValue.(TargetType)
