@@ -1,3 +1,8 @@
+/*
+在 package model 上面定义这个model包的包文档
+
+	用于解释说明该包的作用
+*/
 package model
 
 import "fmt"
