@@ -18,7 +18,7 @@ type AInterface interface {
 	test03()
 }
 
-//如果需要实现AInterface,就需要将BInterface CInterface的方法都实现
+// 如果需要实现AInterface,就需要将BInterface CInterface的方法都实现
 type Stu struct {
 }
 

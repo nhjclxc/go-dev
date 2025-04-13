@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//演示golang中指针类型
+// 演示golang中指针类型
 func main() {
 
 	//基本数据类型在内存布局

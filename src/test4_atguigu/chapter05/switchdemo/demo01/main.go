@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//写一个非常简单的函数
+// 写一个非常简单的函数
 func test(char byte) byte {
 	return char + 1
 }

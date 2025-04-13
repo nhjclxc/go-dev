@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-//自己编写一个函数，接收两个文件路径 srcFileName dstFileName
+// 自己编写一个函数，接收两个文件路径 srcFileName dstFileName
 func CopyFile(dstFileName string, srcFileName string) (written int64, err error) {
 
 	srcFile, err := os.Open(srcFileName)

@@ -9,7 +9,7 @@ import (
 	"net"
 )
 
-//client.go 相当于一个控制器
+// client.go 相当于一个控制器
 type ClientProcessor struct {
 	conn net.Conn
 	buf  [8192]byte

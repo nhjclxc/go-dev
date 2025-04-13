@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//演示golang中string类型使用
+// 演示golang中string类型使用
 func main() {
 	//string的基本使用
 	var address string = "北京长城 110 hello world!"

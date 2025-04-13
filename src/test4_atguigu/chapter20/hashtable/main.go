@@ -5,26 +5,26 @@ import (
 	"os"
 )
 
-//定义emp
+// 定义emp
 type Emp struct {
 	Id   int
 	Name string
 	Next *Emp
 }
 
-//方法待定..
+// 方法待定..
 func (this *Emp) ShowMe() {
 	fmt.Printf("链表%d 找到该雇员 %d\n", this.Id%7, this.Id)
 }
 
-//定义EmpLink
-//我们这里的EmpLink 不带表头,即第一个结点就存放雇员
+// 定义EmpLink
+// 我们这里的EmpLink 不带表头,即第一个结点就存放雇员
 type EmpLink struct {
 	Head *Emp
 }
 
-//方法待定..
-//1. 添加员工的方法, 保证添加时，编号从小到大
+// 方法待定..
+// 1. 添加员工的方法, 保证添加时，编号从小到大
 func (this *EmpLink) Insert(emp *Emp) {
 
 	cur := this.Head   // 这是辅助指针
@@ -55,7 +55,7 @@ func (this *EmpLink) Insert(emp *Emp) {
 
 }
 
-//显示链表的信息
+// 显示链表的信息
 func (this *EmpLink) ShowLink(no int) {
 	if this.Head == nil {
 		fmt.Printf("链表%d 为空\n", no)
@@ -75,7 +75,7 @@ func (this *EmpLink) ShowLink(no int) {
 	fmt.Println() //换行处理
 }
 
-//根据id查找对应的雇员，如果没有就返回nil
+// 根据id查找对应的雇员，如果没有就返回nil
 func (this *EmpLink) FindById(id int) *Emp {
 	cur := this.Head
 	for {
@@ -89,12 +89,12 @@ func (this *EmpLink) FindById(id int) *Emp {
 	return nil
 }
 
-//定义hashtable ,含有一个链表数组
+// 定义hashtable ,含有一个链表数组
 type HashTable struct {
 	LinkArr [7]EmpLink
 }
 
-//给HashTable 编写Insert 雇员的方法.
+// 给HashTable 编写Insert 雇员的方法.
 func (this *HashTable) Insert(emp *Emp) {
 	//使用散列函数，确定将该雇员添加到哪个链表
 	linkNo := this.HashFun(emp.Id)
@@ -102,19 +102,19 @@ func (this *HashTable) Insert(emp *Emp) {
 	this.LinkArr[linkNo].Insert(emp) //
 }
 
-//编写方法，显示hashtable的所有雇员
+// 编写方法，显示hashtable的所有雇员
 func (this *HashTable) ShowAll() {
 	for i := 0; i < len(this.LinkArr); i++ {
 		this.LinkArr[i].ShowLink(i)
 	}
 }
 
-//编写一个散列方法
+// 编写一个散列方法
 func (this *HashTable) HashFun(id int) int {
 	return id % 7 //得到一个值，就是对于的链表的下标
 }
 
-//编写一个方法，完成查找
+// 编写一个方法，完成查找
 func (this *HashTable) FindById(id int) *Emp {
 	//使用散列函数，确定将该雇员应该在哪个链表
 	linkNo := this.HashFun(id)

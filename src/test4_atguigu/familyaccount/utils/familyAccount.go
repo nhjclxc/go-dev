@@ -24,7 +24,7 @@ type FamilyAccount struct {
 	details string
 }
 
-//编写要给工厂模式的构造方法，返回一个*FamilyAccount实例
+// 编写要给工厂模式的构造方法，返回一个*FamilyAccount实例
 func NewFamilyAccount() *FamilyAccount {
 
 	return &FamilyAccount{
@@ -39,7 +39,7 @@ func NewFamilyAccount() *FamilyAccount {
 
 }
 
-//将显示明细写成一个方法
+// 将显示明细写成一个方法
 func (this *FamilyAccount) showDetails() {
 	fmt.Println("-----------------当前收支明细记录-----------------")
 	if this.flag {
@@ -49,7 +49,7 @@ func (this *FamilyAccount) showDetails() {
 	}
 }
 
-//将登记收入写成一个方法，和*FamilyAccount绑定
+// 将登记收入写成一个方法，和*FamilyAccount绑定
 func (this *FamilyAccount) income() {
 
 	fmt.Println("本次收入金额:")
@@ -63,7 +63,7 @@ func (this *FamilyAccount) income() {
 	this.flag = true
 }
 
-//将登记支出写成一个方法，和*FamilyAccount绑定
+// 将登记支出写成一个方法，和*FamilyAccount绑定
 func (this *FamilyAccount) pay() {
 	fmt.Println("本次支出金额:")
 	fmt.Scanln(&this.money)
@@ -79,7 +79,7 @@ func (this *FamilyAccount) pay() {
 	this.flag = true
 }
 
-//将退出系统写成一个方法,和*FamilyAccount绑定
+// 将退出系统写成一个方法,和*FamilyAccount绑定
 func (this *FamilyAccount) exit() {
 
 	fmt.Println("你确定要退出吗? y/n")
@@ -98,8 +98,8 @@ func (this *FamilyAccount) exit() {
 	}
 }
 
-//给该结构体绑定相应的方法
-//显示主菜单
+// 给该结构体绑定相应的方法
+// 显示主菜单
 func (this *FamilyAccount) MainMenu() {
 
 	for {

@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-//使用一个结构体管理环形队列
+// 使用一个结构体管理环形队列
 type CircleQueue struct {
 	maxSize int    // 4
 	array   [5]int // 数组
@@ -14,8 +14,8 @@ type CircleQueue struct {
 	tail    int    //指向队尾 0
 }
 
-//如队列 AddQueue(push)  GetQueue(pop)
-//入队列
+// 如队列 AddQueue(push)  GetQueue(pop)
+// 入队列
 func (this *CircleQueue) Push(val int) (err error) {
 	if this.IsFull() {
 		return errors.New("queue full")
@@ -26,7 +26,7 @@ func (this *CircleQueue) Push(val int) (err error) {
 	return
 }
 
-//出队列
+// 出队列
 func (this *CircleQueue) Pop() (val int, err error) {
 
 	if this.IsEmpty() {
@@ -38,7 +38,7 @@ func (this *CircleQueue) Pop() (val int, err error) {
 	return
 }
 
-//显示队列
+// 显示队列
 func (this *CircleQueue) ListQueue() {
 
 	fmt.Println("环形队列情况如下：")
@@ -57,17 +57,17 @@ func (this *CircleQueue) ListQueue() {
 	fmt.Println()
 }
 
-//判断环形队列为满
+// 判断环形队列为满
 func (this *CircleQueue) IsFull() bool {
 	return (this.tail+1)%this.maxSize == this.head
 }
 
-//判断环形队列是空
+// 判断环形队列是空
 func (this *CircleQueue) IsEmpty() bool {
 	return this.tail == this.head
 }
 
-//取出环形队列有多少个元素
+// 取出环形队列有多少个元素
 func (this *CircleQueue) Size() int {
 	//这是一个关键的算法.
 	return (this.tail + this.maxSize - this.head) % this.maxSize

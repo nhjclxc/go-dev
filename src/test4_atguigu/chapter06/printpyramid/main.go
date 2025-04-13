@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//将打印金字塔的代码封装到函数中
+// 将打印金字塔的代码封装到函数中
 func printPyramid(totalLevel int) {
 
 	//i 表示层数

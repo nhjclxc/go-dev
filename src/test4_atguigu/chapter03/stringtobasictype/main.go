@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-//演示golang中string转成基本数据类型
+// 演示golang中string转成基本数据类型
 func main() {
 
 	var str string = "true"

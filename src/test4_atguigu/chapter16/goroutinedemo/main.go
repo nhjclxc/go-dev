@@ -10,7 +10,7 @@ import (
 // 在主线程中也每隔一秒输出"hello,golang", 输出10次后，退出程序
 // 要求主线程和goroutine同时执行
 
-//编写一个函数，每隔1秒输出 "hello,world"
+// 编写一个函数，每隔1秒输出 "hello,world"
 func test() {
 	for i := 1; i <= 10; i++ {
 		fmt.Println("tesst () hello,world " + strconv.Itoa(i))

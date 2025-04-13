@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-//定义两个变量，一个表示用户id, 一个表示用户密码
+// 定义两个变量，一个表示用户id, 一个表示用户密码
 var userId int
 var userPwd string
 var userName string

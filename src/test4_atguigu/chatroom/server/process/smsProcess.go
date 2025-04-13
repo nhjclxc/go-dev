@@ -13,7 +13,7 @@ type SmsProcess struct {
 	//..[暂时不需字段]
 }
 
-//写方法转发消息
+// 写方法转发消息
 func (this *SmsProcess) SendGroupMes(mes *message.Message) {
 
 	//遍历服务器端的onlineUsers map[int]*UserProcess,

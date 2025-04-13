@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-//定义一个全局的pool
+// 定义一个全局的pool
 var pool *redis.Pool
 
 func initPool(address string, maxIdle, maxActive int, idleTimeout time.Duration) {

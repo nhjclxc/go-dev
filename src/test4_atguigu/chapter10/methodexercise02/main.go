@@ -8,7 +8,7 @@ type MethodUtils struct {
 	//字段...
 }
 
-//给MethodUtils编写方法
+// 给MethodUtils编写方法
 func (mu MethodUtils) Print() {
 	for i := 1; i <= 10; i++ {
 		for j := 1; j <= 8; j++ {
@@ -18,7 +18,7 @@ func (mu MethodUtils) Print() {
 	}
 }
 
-//2)编写一个方法，提供m和n两个参数，方法中打印一个m*n的矩形
+// 2)编写一个方法，提供m和n两个参数，方法中打印一个m*n的矩形
 func (mu MethodUtils) Print2(m int, n int) {
 	for i := 1; i <= m; i++ {
 		for j := 1; j <= n; j++ {

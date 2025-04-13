@@ -9,13 +9,13 @@ import (
 	"net"
 )
 
-//这个结构体，完成对客户端发送和接收消息包的读取
+// 这个结构体，完成对客户端发送和接收消息包的读取
 type Transfer struct {
 	Conn net.Conn
 	Buf  [8192]byte
 }
 
-//读取客户端发送的消息包，并封装到Message
+// 读取客户端发送的消息包，并封装到Message
 func (transfer *Transfer) ServerReadPackage() (msg common.Message, err error) {
 
 	n, err := transfer.Conn.Read(transfer.Buf[0:4])
@@ -44,7 +44,7 @@ func (transfer *Transfer) ServerReadPackage() (msg common.Message, err error) {
 	return
 }
 
-//发送的消息包给客户端
+// 发送的消息包给客户端
 func (transfer *Transfer) ServerWritePackage(data []byte) (err error) {
 
 	packLen := uint32(len(data))

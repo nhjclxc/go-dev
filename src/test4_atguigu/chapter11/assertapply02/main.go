@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-//定义Student类型
+// 定义Student类型
 type Student struct {
 }
 
-//编写一个函数，可以判断输入的参数是什么类型
+// 编写一个函数，可以判断输入的参数是什么类型
 func TypeJudge(items ...interface{}) {
 	for index, x := range items {
 		switch x.(type) {

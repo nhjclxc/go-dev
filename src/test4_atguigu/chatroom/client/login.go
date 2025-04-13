@@ -8,7 +8,7 @@ import (
 	"net"
 )
 
-//写一个函数，完成登录
+// 写一个函数，完成登录
 func login(userId int, userPwd string) (err error) {
 
 	//下一个就要开始定协议..

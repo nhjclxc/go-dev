@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//演示golang中字符类型使用
+// 演示golang中字符类型使用
 func main() {
 
 	var c1 byte = 'a'

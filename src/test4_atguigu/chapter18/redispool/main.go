@@ -5,10 +5,10 @@ import (
 	"github.com/garyburd/redigo/redis"
 )
 
-//定义一个全局的pool
+// 定义一个全局的pool
 var pool *redis.Pool
 
-//当启动程序时，就初始化连接池
+// 当启动程序时，就初始化连接池
 func init() {
 
 	pool = &redis.Pool{

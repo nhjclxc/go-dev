@@ -2,18 +2,18 @@ package main
 
 import "fmt"
 
-//结构体
+// 结构体
 type Point struct {
 	x int
 	y int
 }
 
-//结构体
+// 结构体
 type Rect struct {
 	leftUp, rightDown Point
 }
 
-//结构体
+// 结构体
 type Rect2 struct {
 	leftUp, rightDown *Point
 }

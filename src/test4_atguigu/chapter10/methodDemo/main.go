@@ -8,7 +8,7 @@ type Person struct {
 	Name string
 }
 
-//给Person结构体添加speak 方法,输出  xxx是一个好人
+// 给Person结构体添加speak 方法,输出  xxx是一个好人
 func (p Person) speak() {
 	fmt.Println(p.Name, "是一个goodman~")
 }
@@ -24,7 +24,7 @@ func (p Person) jisuan() {
 	fmt.Println(p.Name, "计算的结果是=", res)
 }
 
-//给Person结构体jisuan2 方法,该方法可以接收一个参数n，计算从 1+..+n 的结果
+// 给Person结构体jisuan2 方法,该方法可以接收一个参数n，计算从 1+..+n 的结果
 func (p Person) jisuan2(n int) {
 	res := 0
 	for i := 1; i <= n; i++ {
@@ -33,12 +33,12 @@ func (p Person) jisuan2(n int) {
 	fmt.Println(p.Name, "计算的结果是=", res)
 }
 
-//给Person结构体添加getSum方法,可以计算两个数的和，并返回结果
+// 给Person结构体添加getSum方法,可以计算两个数的和，并返回结果
 func (p Person) getSum(n1 int, n2 int) int {
 	return n1 + n2
 }
 
-//给Person类型绑定一方法
+// 给Person类型绑定一方法
 func (person Person) test() {
 	person.Name = "jack"
 	fmt.Println("test() name=", person.Name) // 输出jack

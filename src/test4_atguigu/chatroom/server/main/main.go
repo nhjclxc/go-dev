@@ -124,7 +124,7 @@ import (
 // 	 return
 // }
 
-//处理和客户端的通讯
+// 处理和客户端的通讯
 func process(conn net.Conn) {
 	//这里需要延时关闭conn
 	defer conn.Close()
@@ -146,7 +146,7 @@ func init() {
 	initUserDao()
 }
 
-//这里我们编写一个函数，完成对UserDao的初始化任务
+// 这里我们编写一个函数，完成对UserDao的初始化任务
 func initUserDao() {
 	//这里的pool 本身就是一个全局的变量
 	//这里需要注意一个初始化顺序问题

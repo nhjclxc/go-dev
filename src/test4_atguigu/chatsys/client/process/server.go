@@ -45,7 +45,7 @@ func ProcessServerMessage(conn net.Conn) {
 
 }
 
-//显示用户登录成功的可以使用的菜单
+// 显示用户登录成功的可以使用的菜单
 func ShowMenu(conn net.Conn) {
 	fmt.Println("1. 显示在线用户列表")
 	fmt.Println("2. 发送信息")

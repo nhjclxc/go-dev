@@ -13,7 +13,7 @@ type Customer struct {
 	Email  string
 }
 
-//获取一个Customer
+// 获取一个Customer
 func NewCustomer(id int, name string, gender string, age int,
 	phone string, email string) *Customer {
 	return &Customer{
@@ -26,7 +26,7 @@ func NewCustomer(id int, name string, gender string, age int,
 	}
 }
 
-//获取一个Customer, 不提供id
+// 获取一个Customer, 不提供id
 func NewCustomer2(name string, gender string, age int,
 	phone string, email string) *Customer {
 	return &Customer{
@@ -38,7 +38,7 @@ func NewCustomer2(name string, gender string, age int,
 	}
 }
 
-//返回Customer的信息
+// 返回Customer的信息
 func (this *Customer) GetInfo() string {
 
 	info := fmt.Sprintf("%v\t%v\t%v\t%v\t%v\t%v", this.Id, this.Name, this.Gender,

@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-//UserProcessor.go 相当于一个控制器,装用于处理与用户相关的
+// UserProcessor.go 相当于一个控制器,装用于处理与用户相关的
 type UserProcessor struct {
 	//Conn   net.Conn
 	//Buf    [8192]byte

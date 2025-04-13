@@ -8,14 +8,14 @@ type person struct {
 	sal  float64
 }
 
-//写一个工厂模式的函数，相当于构造函数
+// 写一个工厂模式的函数，相当于构造函数
 func NewPerson(name string) *person {
 	return &person{
 		Name: name,
 	}
 }
 
-//为了访问age 和 sal 我们编写一对SetXxx的方法和GetXxx的方法
+// 为了访问age 和 sal 我们编写一对SetXxx的方法和GetXxx的方法
 func (p *person) SetAge(age int) {
 	if age > 0 && age < 150 {
 		p.age = age

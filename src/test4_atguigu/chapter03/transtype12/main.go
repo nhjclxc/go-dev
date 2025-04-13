@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//演示golang中基本数据类型的转换
+// 演示golang中基本数据类型的转换
 func main() {
 
 	var i int32 = 100

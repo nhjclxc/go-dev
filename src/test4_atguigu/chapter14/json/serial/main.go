@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-//定义一个结构体
+// 定义一个结构体
 type Monster struct {
 	Name     string `json:"monster_name"` //反射机制
 	Age      int    `json:"monster_age"`
@@ -34,7 +34,7 @@ func testStruct() {
 
 }
 
-//将map进行序列化
+// 将map进行序列化
 func testMap() {
 	//定义一个map
 	var a map[string]interface{}
@@ -55,7 +55,7 @@ func testMap() {
 
 }
 
-//演示对切片进行序列化, 我们这个切片 []map[string]interface{}
+// 演示对切片进行序列化, 我们这个切片 []map[string]interface{}
 func testSlice() {
 	var slice []map[string]interface{}
 	var m1 map[string]interface{}
@@ -84,7 +84,7 @@ func testSlice() {
 
 }
 
-//对基本数据类型序列化，对基本数据类型进行序列化意义不大
+// 对基本数据类型序列化，对基本数据类型进行序列化意义不大
 func testFloat64() {
 	var num1 float64 = 2345.67
 

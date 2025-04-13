@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//演示golang中标识符的使用
+// 演示golang中标识符的使用
 func main() {
 
 	//Golang中严格区分大小写

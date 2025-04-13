@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//小孩的结构体
+// 小孩的结构体
 type Boy struct {
 	No   int  // 编号
 	Next *Boy // 指向下一个小孩的指针[默认值是nil]
@@ -44,7 +44,7 @@ func AddBoy(num int) *Boy {
 
 }
 
-//显示单向的环形链表[遍历]
+// 显示单向的环形链表[遍历]
 func ShowBoy(first *Boy) {
 
 	//处理一下如果环形链表为空
@@ -72,9 +72,9 @@ func ShowBoy(first *Boy) {
 数到m的那个人又出列，依次类推，直到所有人出列为止，由此产生一个出队编号的序列
 */
 
-//分析思路
-//1. 编写一个函数，PlayGame(first *Boy, startNo int, countNum int)
-//2. 最后我们使用一个算法，按照要求，在环形链表中留下最后一个人
+// 分析思路
+// 1. 编写一个函数，PlayGame(first *Boy, startNo int, countNum int)
+// 2. 最后我们使用一个算法，按照要求，在环形链表中留下最后一个人
 func PlayGame(first *Boy, startNo int, countNum int) {
 
 	//1. 空的链表我们单独的处理

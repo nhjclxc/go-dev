@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-//向 intChan放入 1-8000个数
+// 向 intChan放入 1-8000个数
 func putNum(intChan chan int) {
 
 	for i := 1; i <= 80000; i++ {
@@ -17,7 +17,8 @@ func putNum(intChan chan int) {
 }
 
 // 从 intChan取出数据，并判断是否为素数,如果是，就
-// 	//放入到primeChan
+//
+//	//放入到primeChan
 func primeNum(intChan chan int, primeChan chan int, exitChan chan bool) {
 
 	//使用for 循环

@@ -83,8 +83,8 @@ func (this *UserProcess) Register(userId int,
 	return
 }
 
-//给关联一个用户登录的方法
-//写一个函数，完成登录
+// 给关联一个用户登录的方法
+// 写一个函数，完成登录
 func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 
 	//下一个就要开始定协议..

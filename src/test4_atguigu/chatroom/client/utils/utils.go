@@ -8,7 +8,7 @@ import (
 	"net"
 )
 
-//这里将这些方法关联到结构体中
+// 这里将这些方法关联到结构体中
 type Transfer struct {
 	//分析它应该有哪些字段
 	Conn net.Conn

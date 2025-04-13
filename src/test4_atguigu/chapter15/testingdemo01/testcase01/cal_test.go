@@ -5,7 +5,7 @@ import (
 	"testing" //引入go 的testing框架包
 )
 
-//编写要给测试用例，去测试addUpper是否正确
+// 编写要给测试用例，去测试addUpper是否正确
 func TestAddUpper(t *testing.T) {
 
 	//调用

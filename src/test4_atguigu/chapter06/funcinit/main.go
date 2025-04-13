@@ -8,13 +8,13 @@ import (
 
 var age = test()
 
-//为了看到全局变量是先被初始化的，我们这里先写函数
+// 为了看到全局变量是先被初始化的，我们这里先写函数
 func test() int {
 	fmt.Println("test()") //1
 	return 90
 }
 
-//init函数,通常可以在init函数中完成初始化工作
+// init函数,通常可以在init函数中完成初始化工作
 func init() {
 	fmt.Println("init()...") //2
 }

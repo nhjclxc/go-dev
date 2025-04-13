@@ -14,7 +14,7 @@ func (c Circle) area() float64 {
 	return 3.14 * c.radius * c.radius
 }
 
-//为了提高效率，通常我们方法和结构体的指针类型绑定
+// 为了提高效率，通常我们方法和结构体的指针类型绑定
 func (c *Circle) area2() float64 {
 	//因为 c是指针，因此我们标准的访问其字段的方式是 (*c).radius
 	//return 3.14 * (*c).radius * (*c).radius

@@ -22,8 +22,8 @@ func test() {
 	fmt.Println("res=", res)
 }
 
-//函数去读取以配置文件init.conf的信息
-//如果文件名传入不正确，我们就返回一个自定义的错误
+// 函数去读取以配置文件init.conf的信息
+// 如果文件名传入不正确，我们就返回一个自定义的错误
 func readConf(name string) (err error) {
 	if name == "config.ini" {
 		//读取...

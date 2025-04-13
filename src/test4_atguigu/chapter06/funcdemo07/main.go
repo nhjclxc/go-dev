@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//累加器
+// 累加器
 func AddUpper() func(int) int {
 	var n int = 10
 	var str = "hello"

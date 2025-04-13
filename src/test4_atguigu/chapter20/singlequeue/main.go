@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-//使用一个结构体管理队列
+// 使用一个结构体管理队列
 type Queue struct {
 	maxSize int
 	array   [5]int // 数组=>模拟队列
@@ -14,7 +14,7 @@ type Queue struct {
 	rear    int    // 表示指向队列的尾部
 }
 
-//添加数据到队列
+// 添加数据到队列
 func (this *Queue) AddQueue(val int) (err error) {
 
 	//先判断队列是否已满
@@ -27,7 +27,7 @@ func (this *Queue) AddQueue(val int) (err error) {
 	return
 }
 
-//从队列中取出数据
+// 从队列中取出数据
 func (this *Queue) GetQueue() (val int, err error) {
 	//先判断队列是否为空
 	if this.rear == this.front { //队空
@@ -38,8 +38,7 @@ func (this *Queue) GetQueue() (val int, err error) {
 	return val, err
 }
 
-//显示队列, 找到队首，然后到遍历到队尾
-//
+// 显示队列, 找到队首，然后到遍历到队尾
 func (this *Queue) ShowQueue() {
 	fmt.Println("队列当前的情况是:")
 	//this.front 不包含队首的元素
@@ -49,7 +48,7 @@ func (this *Queue) ShowQueue() {
 	fmt.Println()
 }
 
-//编写一个主函数测试，测试
+// 编写一个主函数测试，测试
 func main() {
 
 	//先创建一个队列

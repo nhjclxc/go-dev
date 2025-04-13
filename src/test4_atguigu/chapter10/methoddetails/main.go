@@ -15,7 +15,7 @@ func (i integer) print() {
 	fmt.Println("i=", i)
 }
 
-//编写一个方法，可以改变i的值
+// 编写一个方法，可以改变i的值
 func (i *integer) change() {
 	*i = *i + 1
 }
@@ -25,7 +25,7 @@ type Student struct {
 	Age  int
 }
 
-//给*Student实现方法String()
+// 给*Student实现方法String()
 func (stu *Student) String() string {
 	str := fmt.Sprintf("Name=[%v] Age=[%v]", stu.Name, stu.Age)
 	return str

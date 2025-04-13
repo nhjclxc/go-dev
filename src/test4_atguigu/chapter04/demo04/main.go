@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//声明一个函数(测试)
+// 声明一个函数(测试)
 func test() bool {
 	fmt.Println("test....")
 	return true

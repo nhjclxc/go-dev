@@ -6,7 +6,7 @@ import (
 	_ "unsafe"
 )
 
-//演示golang中基本数据练习转成string使用
+// 演示golang中基本数据练习转成string使用
 func main() {
 
 	var num1 int = 99

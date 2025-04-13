@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//编写一个函数调用九九乘法表
+// 编写一个函数调用九九乘法表
 func printMulti(num int) {
 
 	//打印出九九乘法表

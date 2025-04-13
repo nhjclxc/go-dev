@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//请编写一个函数 swap(n1 *int, n2 *int) 可以交换 n1 和 n2的值
+// 请编写一个函数 swap(n1 *int, n2 *int) 可以交换 n1 和 n2的值
 func swap(n1 *int, n2 *int) {
 	//定义一个临时变量
 	t := *n1

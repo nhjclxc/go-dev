@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-//演示golang中bool类型使用
+// 演示golang中bool类型使用
 func main() {
 	var b = false
 	fmt.Println("b=", b)

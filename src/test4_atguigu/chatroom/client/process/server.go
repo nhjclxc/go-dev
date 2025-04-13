@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-//显示登录成功后的界面..
+// 显示登录成功后的界面..
 func ShowMenu() {
 
 	fmt.Println("-------恭喜xxx登录成功---------")
@@ -43,7 +43,7 @@ func ShowMenu() {
 
 }
 
-//和服务器保持通讯
+// 和服务器保持通讯
 func serverProcessMes(conn net.Conn) {
 	//创建一个transfer实例, 不停的读取服务器发送的消息
 	tf := &utils.Transfer{

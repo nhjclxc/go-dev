@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//定义猫的结构体结点
+// 定义猫的结构体结点
 type CatNode struct {
 	no   int //猫猫的编号
 	name string
@@ -36,7 +36,7 @@ func InsertCatNode(head *CatNode, newCatNode *CatNode) {
 
 }
 
-//输出这个环形的链表
+// 输出这个环形的链表
 func ListCircleLink(head *CatNode) {
 	fmt.Println("环形链表的情况如下：")
 	temp := head
@@ -53,7 +53,7 @@ func ListCircleLink(head *CatNode) {
 	}
 }
 
-//删除一只猫
+// 删除一只猫
 func DelCatNode(head *CatNode, id int) *CatNode {
 
 	temp := head

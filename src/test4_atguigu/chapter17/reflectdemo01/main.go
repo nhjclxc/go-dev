@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-//专门演示反射
+// 专门演示反射
 func reflectTest01(b interface{}) {
 
 	//通过反射获取的传入的变量的 type , kind, 值
@@ -31,7 +31,7 @@ func reflectTest01(b interface{}) {
 
 }
 
-//专门演示反射[对结构体的反射]
+// 专门演示反射[对结构体的反射]
 func reflectTest02(b interface{}) {
 
 	//通过反射获取的传入的变量的 type , kind, 值

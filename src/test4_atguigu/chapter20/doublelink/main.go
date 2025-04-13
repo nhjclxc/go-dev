@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//定义一个HeroNode
+// 定义一个HeroNode
 type HeroNode struct {
 	no       int
 	name     string
@@ -13,8 +13,8 @@ type HeroNode struct {
 	next     *HeroNode //这个表示指向下一个结点
 }
 
-//给双向链表插入一个结点
-//编写第一种插入方法，在单链表的最后加入.[简单]
+// 给双向链表插入一个结点
+// 编写第一种插入方法，在单链表的最后加入.[简单]
 func InsertHeroNode(head *HeroNode, newHeroNode *HeroNode) {
 	//思路
 	//1. 先找到该链表的最后这个结点
@@ -32,8 +32,8 @@ func InsertHeroNode(head *HeroNode, newHeroNode *HeroNode) {
 	newHeroNode.pre = temp
 }
 
-//给双向链表插入一个结点
-//编写第2种插入方法，根据no 的编号从小到大插入..【实用】
+// 给双向链表插入一个结点
+// 编写第2种插入方法，根据no 的编号从小到大插入..【实用】
 func InsertHeroNode2(head *HeroNode, newHeroNode *HeroNode) {
 	//思路
 	//1. 找到适当的结点
@@ -69,7 +69,7 @@ func InsertHeroNode2(head *HeroNode, newHeroNode *HeroNode) {
 
 }
 
-//删除一个结点[双向链表删除一个结点]
+// 删除一个结点[双向链表删除一个结点]
 func DelHerNode(head *HeroNode, id int) {
 	temp := head
 	flag := false
@@ -94,8 +94,8 @@ func DelHerNode(head *HeroNode, id int) {
 	}
 }
 
-//显示链表的所有结点信息
-//这里仍然使用单向的链表显示方式
+// 显示链表的所有结点信息
+// 这里仍然使用单向的链表显示方式
 func ListHeroNode(head *HeroNode) {
 
 	//1. 创建一个辅助结点[跑龙套, 帮忙]

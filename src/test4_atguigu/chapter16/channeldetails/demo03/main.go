@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-//函数
+// 函数
 func sayHello() {
 	for i := 0; i < 10; i++ {
 		time.Sleep(time.Second)
@@ -13,7 +13,7 @@ func sayHello() {
 	}
 }
 
-//函数
+// 函数
 func test() {
 	//这里我们可以使用defer + recover
 	defer func() {

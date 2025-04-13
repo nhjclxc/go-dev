@@ -6,11 +6,11 @@ import (
 	"go_code/chatroom/common/message"
 )
 
-//客户端要维护的map
+// 客户端要维护的map
 var onlineUsers map[int]*message.User = make(map[int]*message.User, 10)
 var CurUser model.CurUser //我们在用户登录成功后，完成对CurUser初始化
 
-//在客户端显示当前在线的用户
+// 在客户端显示当前在线的用户
 func outputOnlineUser() {
 	//遍历一把 onlineUsers
 	fmt.Println("当前在线用户列表:")
@@ -20,7 +20,7 @@ func outputOnlineUser() {
 	}
 }
 
-//编写一个方法，处理返回的NotifyUserStatusMes
+// 编写一个方法，处理返回的NotifyUserStatusMes
 func updateUserStatus(notifyUserStatusMes *message.NotifyUserStatusMes) {
 
 	//适当优化

@@ -16,8 +16,8 @@ type UserProcess struct {
 	UserId int
 }
 
-//这里我们编写通知所有在线的用户的方法
-//userId 要通知其它的在线用户，我上线
+// 这里我们编写通知所有在线的用户的方法
+// userId 要通知其它的在线用户，我上线
 func (this *UserProcess) NotifyOthersOnlineUser(userId int) {
 
 	//遍历 onlineUsers, 然后一个一个的发送 NotifyUserStatusMes
@@ -125,7 +125,7 @@ func (this *UserProcess) ServerProcessRegister(mes *message.Message) (err error)
 
 }
 
-//编写一个函数serverProcessLogin函数， 专门处理登录请求
+// 编写一个函数serverProcessLogin函数， 专门处理登录请求
 func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 	//核心代码...
 	//1. 先从mes 中取出 mes.Data ，并直接反序列化成LoginMes

@@ -15,7 +15,7 @@ type customerView struct {
 	customerService *service.CustomerService
 }
 
-//显示所有的客户信息
+// 显示所有的客户信息
 func (this *customerView) list() {
 
 	//首先，获取到当前所有的客户信息(在切片中)
@@ -30,7 +30,7 @@ func (this *customerView) list() {
 	fmt.Printf("\n-------------------------客户列表完成-------------------------\n\n")
 }
 
-//得到用户的输入，信息构建新的客户，并完成添加
+// 得到用户的输入，信息构建新的客户，并完成添加
 func (this *customerView) add() {
 	fmt.Println("---------------------添加客户---------------------")
 	fmt.Println("姓名:")
@@ -59,7 +59,7 @@ func (this *customerView) add() {
 	}
 }
 
-//得到用户的输入id，删除该id对应的客户
+// 得到用户的输入id，删除该id对应的客户
 func (this *customerView) delete() {
 	fmt.Println("---------------------删除客户---------------------")
 	fmt.Println("请选择待删除客户编号(-1退出)：")
@@ -82,7 +82,7 @@ func (this *customerView) delete() {
 	}
 }
 
-//退出软件
+// 退出软件
 func (this *customerView) exit() {
 
 	fmt.Println("确认是否退出(Y/N)：")
@@ -101,7 +101,7 @@ func (this *customerView) exit() {
 
 }
 
-//显示主菜单
+// 显示主菜单
 func (this *customerView) mainMenu() {
 
 	for {

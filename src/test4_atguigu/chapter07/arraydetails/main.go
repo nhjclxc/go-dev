@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-//函数
+// 函数
 func test01(arr [3]int) {
 	arr[0] = 88
 }
 
-//函数
+// 函数
 func test02(arr *[3]int) {
 	fmt.Printf("arr指针的地址=%p", &arr)
 	(*arr)[0] = 88 //!!

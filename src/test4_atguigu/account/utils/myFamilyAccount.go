@@ -67,7 +67,7 @@ func (this *MyFamilyAccount) MainMenu() {
 	fmt.Println("你退出了软件的使用。。。。")
 }
 
-//显示收支明细的方法
+// 显示收支明细的方法
 func (this *MyFamilyAccount) showDetails() {
 
 	// 增加我代码。。
@@ -79,7 +79,7 @@ func (this *MyFamilyAccount) showDetails() {
 	}
 }
 
-//登记收入
+// 登记收入
 func (this *MyFamilyAccount) income() {
 
 	fmt.Print("本次收入金额:")

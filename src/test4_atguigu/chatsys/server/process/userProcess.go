@@ -11,9 +11,9 @@ import (
 	"net"
 )
 
-//UserProcessor.go 相当于一个控制器,装用于处理与用户相关的
-//同时每登录一个用户，就对应一个UserProcessor的实例,
-//因此也可以看做是登录的用户
+// UserProcessor.go 相当于一个控制器,装用于处理与用户相关的
+// 同时每登录一个用户，就对应一个UserProcessor的实例,
+// 因此也可以看做是登录的用户
 type UserProcessor struct {
 	Conn   net.Conn
 	userId int //用户的id
@@ -165,7 +165,7 @@ func (up *UserProcessor) ServerProcessLogin(msg *common.Message) (err error) {
 	return
 }
 
-//处理用户注册嘻嘻
+// 处理用户注册嘻嘻
 func (up *UserProcessor) ServerProcessRegister(msg *common.Message) (err error) {
 
 	//对msg.Data进行反序列化，得到用户名和密码

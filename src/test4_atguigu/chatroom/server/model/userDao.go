@@ -7,8 +7,8 @@ import (
 	"go_code/chatroom/common/message"
 )
 
-//我们在服务器启动后，就初始化一个userDao实例，
-//把它做成全局的变量，在需要和redis操作时，就直接使用即可
+// 我们在服务器启动后，就初始化一个userDao实例，
+// 把它做成全局的变量，在需要和redis操作时，就直接使用即可
 var (
 	MyUserDao *UserDao
 )
@@ -20,7 +20,7 @@ type UserDao struct {
 	pool *redis.Pool
 }
 
-//使用工厂模式，创建一个UserDao实例
+// 使用工厂模式，创建一个UserDao实例
 func NewUserDao(pool *redis.Pool) (userDao *UserDao) {
 
 	userDao = &UserDao{
@@ -29,8 +29,8 @@ func NewUserDao(pool *redis.Pool) (userDao *UserDao) {
 	return
 }
 
-//思考一下在UserDao 应该提供哪些方法给我们
-//1. 根据用户id 返回 一个User实例+err
+// 思考一下在UserDao 应该提供哪些方法给我们
+// 1. 根据用户id 返回 一个User实例+err
 func (this *UserDao) getUserById(conn redis.Conn, id int) (user *User, err error) {
 
 	//通过给定id 去 redis查询这个用户
@@ -52,10 +52,10 @@ func (this *UserDao) getUserById(conn redis.Conn, id int) (user *User, err error
 	return
 }
 
-//完成登录的校验 Login
-//1. Login 完成对用户的验证
-//2. 如果用户的id和pwd都正确，则返回一个user实例
-//3. 如果用户的id或pwd有错误，则返回对应的错误信息
+// 完成登录的校验 Login
+// 1. Login 完成对用户的验证
+// 2. 如果用户的id和pwd都正确，则返回一个user实例
+// 3. 如果用户的id或pwd有错误，则返回对应的错误信息
 func (this *UserDao) Login(userId int, userPwd string) (user *User, err error) {
 
 	//先从UserDao 的连接池中取出一根连接

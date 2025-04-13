@@ -7,7 +7,7 @@ import (
 	"unsafe"
 )
 
-//演示golang中整数类型使用
+// 演示golang中整数类型使用
 func main() {
 
 	var i int = 1

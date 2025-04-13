@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-//这个结构体，完成对服务器端发送和接收消息包的读取
+// 这个结构体，完成对服务器端发送和接收消息包的读取
 type Transfer struct {
 	Conn net.Conn
 	Buf  [8192]byte

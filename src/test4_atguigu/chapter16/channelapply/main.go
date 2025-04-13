@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-//write Data
+// write Data
 func writeData(intChan chan int) {
 	for i := 1; i <= 50; i++ {
 		//放入数据
@@ -16,7 +16,7 @@ func writeData(intChan chan int) {
 	close(intChan) //关闭
 }
 
-//read data
+// read data
 func readData(intChan chan int, exitChan chan bool) {
 
 	for {

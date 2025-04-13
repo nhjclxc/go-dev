@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-//演示golang中小数类型使用
+// 演示golang中小数类型使用
 func main() {
 
 	var price float32 = 89.12

@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-//定义一个结构体，用于保存统计结果
+// 定义一个结构体，用于保存统计结果
 type CharCount struct {
 	ChCount    int // 记录英文个数
 	NumCount   int // 记录数字的个数

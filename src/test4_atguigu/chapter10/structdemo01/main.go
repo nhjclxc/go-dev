@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//定义一个Cat结构体，将Cat的各个字段/属性信息，放入到Cat结构体进行管理
+// 定义一个Cat结构体，将Cat的各个字段/属性信息，放入到Cat结构体进行管理
 type Cat struct {
 	Name   string
 	Age    int

@@ -12,8 +12,8 @@ type CustomerService struct {
 	customerNum int
 }
 
-//先创建一个Customer对象,放到 CustomerService的Customers切片中
-//作为测试数据
+// 先创建一个Customer对象,放到 CustomerService的Customers切片中
+// 作为测试数据
 func NewCustomerService() *CustomerService {
 
 	customerService := &CustomerService{}
@@ -33,7 +33,7 @@ func (this *CustomerService) List() []*model.Customer {
 	return this.customers
 }
 
-//完成添加客户的功能
+// 完成添加客户的功能
 func (this *CustomerService) Add(customer *model.Customer) bool {
 
 	this.customerNum++
@@ -45,7 +45,7 @@ func (this *CustomerService) Add(customer *model.Customer) bool {
 
 }
 
-//删除一个客户
+// 删除一个客户
 func (this *CustomerService) Delete(id int) bool {
 
 	//先根据id去得到该id的客户对应元素下标
@@ -62,8 +62,8 @@ func (this *CustomerService) Delete(id int) bool {
 
 }
 
-//先根据id去得到该id的客户对应元素下标
-//如果找到就返回对应的下标，如果找不到，我们返回-1
+// 先根据id去得到该id的客户对应元素下标
+// 如果找到就返回对应的下标，如果找不到，我们返回-1
 func (this *CustomerService) FindById(id int) int {
 	index := -1
 	for i := 0; i < this.customerNum; i++ {

@@ -4,15 +4,15 @@ import (
 	"fmt"
 )
 
-//定义一个结构体Account
+// 定义一个结构体Account
 type Account struct {
 	AccountNo string
 	Pwd       string
 	Balance   float64
 }
 
-//方法
-//1. 存款
+// 方法
+// 1. 存款
 func (account *Account) Deposite(money float64, pwd string) {
 
 	//看下输入的密码是否正确
@@ -32,7 +32,7 @@ func (account *Account) Deposite(money float64, pwd string) {
 
 }
 
-//取款
+// 取款
 func (account *Account) WithDraw(money float64, pwd string) {
 
 	//看下输入的密码是否正确
@@ -52,7 +52,7 @@ func (account *Account) WithDraw(money float64, pwd string) {
 
 }
 
-//查询余额
+// 查询余额
 func (account *Account) Query(pwd string) {
 
 	//看下输入的密码是否正确

@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//声明/定义一个接口
+// 声明/定义一个接口
 type Usb interface {
 	//声明了两个没有实现的方法
 	Start()
@@ -15,7 +15,7 @@ type Phone struct {
 	name string
 }
 
-//让Phone 实现 Usb接口的方法
+// 让Phone 实现 Usb接口的方法
 func (p Phone) Start() {
 	fmt.Println("手机开始工作。。。")
 }
@@ -31,7 +31,7 @@ type Camera struct {
 	name string
 }
 
-//让Camera 实现   Usb接口的方法
+// 让Camera 实现   Usb接口的方法
 func (c Camera) Start() {
 	fmt.Println("相机开始工作。。。")
 }

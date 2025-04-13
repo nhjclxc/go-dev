@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//演示golang中+的使用
+// 演示golang中+的使用
 func main() {
 
 	var i = 1

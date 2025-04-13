@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-//定义了一个Monster结构体
+// 定义了一个Monster结构体
 type Monster struct {
 	Name  string  `json:"name"`
 	Age   int     `json:"monster_age"`
@@ -13,12 +13,12 @@ type Monster struct {
 	Sex   string
 }
 
-//方法，返回两个数的和
+// 方法，返回两个数的和
 func (s Monster) GetSum(n1, n2 int) int {
 	return n1 + n2
 }
 
-//方法， 接收四个值，给s赋值
+// 方法， 接收四个值，给s赋值
 func (s Monster) Set(name string, age int, score float32, sex string) {
 	s.Name = name
 	s.Age = age
@@ -26,7 +26,7 @@ func (s Monster) Set(name string, age int, score float32, sex string) {
 	s.Sex = sex
 }
 
-//方法，显示s的值
+// 方法，显示s的值
 func (s Monster) Print() {
 	fmt.Println("---start~----")
 	fmt.Println(s)

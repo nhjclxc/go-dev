@@ -4,14 +4,14 @@ import (
 	"fmt"
 )
 
-//定义一个结构体account
+// 定义一个结构体account
 type account struct {
 	accountNo string
 	pwd       string
 	balance   float64
 }
 
-//工厂模式的函数-构造函数
+// 工厂模式的函数-构造函数
 func NewAccount(accountNo string, pwd string, balance float64) *account {
 
 	if len(accountNo) < 6 || len(accountNo) > 10 {
@@ -37,8 +37,8 @@ func NewAccount(accountNo string, pwd string, balance float64) *account {
 
 }
 
-//方法
-//1. 存款
+// 方法
+// 1. 存款
 func (account *account) Deposite(money float64, pwd string) {
 
 	//看下输入的密码是否正确
@@ -58,7 +58,7 @@ func (account *account) Deposite(money float64, pwd string) {
 
 }
 
-//取款
+// 取款
 func (account *account) WithDraw(money float64, pwd string) {
 
 	//看下输入的密码是否正确
@@ -78,7 +78,7 @@ func (account *account) WithDraw(money float64, pwd string) {
 
 }
 
-//查询余额
+// 查询余额
 func (account *account) Query(pwd string) {
 
 	//看下输入的密码是否正确

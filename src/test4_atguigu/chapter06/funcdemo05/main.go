@@ -11,29 +11,29 @@ func getSum(n1 int, n2 int) int {
 	return n1 + n2
 }
 
-//函数既然是一种数据类型，因此在Go中，函数可以作为形参，并且调用
+// 函数既然是一种数据类型，因此在Go中，函数可以作为形参，并且调用
 func myFun(funvar func(int, int) int, num1 int, num2 int) int {
 	return funvar(num1, num2)
 }
 
-//再加一个案例
-//这时 myFun 就是 func(int, int) int类型
+// 再加一个案例
+// 这时 myFun 就是 func(int, int) int类型
 type myFunType func(int, int) int
 
-//函数既然是一种数据类型，因此在Go中，函数可以作为形参，并且调用
+// 函数既然是一种数据类型，因此在Go中，函数可以作为形参，并且调用
 func myFun2(funvar myFunType, num1 int, num2 int) int {
 	return funvar(num1, num2)
 }
 
-//支持对函数返回值命名
+// 支持对函数返回值命名
 func getSumAndSub(n1 int, n2 int) (sum int, sub int) {
 	sub = n1 - n2
 	sum = n1 + n2
 	return
 }
 
-//案例演示： 编写一个函数sum ,可以求出  1到多个int的和
-//可以参数的使用
+// 案例演示： 编写一个函数sum ,可以求出  1到多个int的和
+// 可以参数的使用
 func sum(n1 int, args ...int) int {
 	sum := n1
 	//遍历args

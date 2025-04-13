@@ -8,8 +8,8 @@ import (
 	_ "time"
 )
 
-//完成一些初始化工作，比如 MyUserDao, 这个后面需要
-//操作Redis的时候，会使用到
+// 完成一些初始化工作，比如 MyUserDao, 这个后面需要
+// 操作Redis的时候，会使用到
 var (
 	MyUserDao *UserDao
 )
@@ -18,7 +18,7 @@ type UserDao struct {
 	pool *redis.Pool
 }
 
-//一个工厂模式，获取到一个UserDao 变量(实例)
+// 一个工厂模式，获取到一个UserDao 变量(实例)
 func NewUserMgr(pool *redis.Pool) (userDao *UserDao) {
 
 	userDao = &UserDao{
@@ -52,9 +52,9 @@ func (ud *UserDao) getUser(conn redis.Conn, id int) (user *common.User, err erro
 	return
 }
 
-//完成登录操作，到Redis验证
-//1.如果登录的用户信息有效，则返回一个User实例
-//2.如果登录的用户信息无效，则返回一个nil 和 对应的自定义错误信息
+// 完成登录操作，到Redis验证
+// 1.如果登录的用户信息有效，则返回一个User实例
+// 2.如果登录的用户信息无效，则返回一个nil 和 对应的自定义错误信息
 func (ud *UserDao) Login(id int, passwd string) (user *common.User, err error) {
 
 	//得到一个链接
@@ -82,7 +82,7 @@ func (ud *UserDao) Login(id int, passwd string) (user *common.User, err error) {
 	return
 }
 
-//在服务器端完成注册
+// 在服务器端完成注册
 func (ud *UserDao) Register(user *common.User) (err error) {
 
 	//得到一个链接

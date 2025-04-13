@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-//快速排序
-//说明
-//1. left 表示 数组左边的下标
-//2. right 表示数组右边的下标
-//3  array 表示要排序的数组
+// 快速排序
+// 说明
+// 1. left 表示 数组左边的下标
+// 2. right 表示数组右边的下标
+// 3  array 表示要排序的数组
 func QuickSort(left int, right int, array *[8000000]int) {
 	l := left
 	r := right

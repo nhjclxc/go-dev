@@ -6,14 +6,14 @@ import (
 	"strconv"
 )
 
-//使用数组来模拟一个栈的使用
+// 使用数组来模拟一个栈的使用
 type Stack struct {
 	MaxTop int     // 表示我们栈最大可以存放数个数
 	Top    int     // 表示栈顶, 因为栈顶固定，因此我们直接使用Top
 	arr    [20]int // 数组模拟栈
 }
 
-//入栈
+// 入栈
 func (this *Stack) Push(val int) (err error) {
 
 	//先判断栈是否满了
@@ -27,7 +27,7 @@ func (this *Stack) Push(val int) (err error) {
 	return
 }
 
-//出栈
+// 出栈
 func (this *Stack) Pop() (val int, err error) {
 	//判断栈是否空
 	if this.Top == -1 {
@@ -42,7 +42,7 @@ func (this *Stack) Pop() (val int, err error) {
 
 }
 
-//遍历栈，注意需要从栈顶开始遍历
+// 遍历栈，注意需要从栈顶开始遍历
 func (this *Stack) List() {
 	//先判断栈是否为空
 	if this.Top == -1 {
@@ -56,7 +56,7 @@ func (this *Stack) List() {
 
 }
 
-//判断一个字符是不是一个运算符[+, - , * , /]
+// 判断一个字符是不是一个运算符[+, - , * , /]
 func (this *Stack) IsOper(val int) bool {
 
 	if val == 42 || val == 43 || val == 45 || val == 47 {
@@ -66,7 +66,7 @@ func (this *Stack) IsOper(val int) bool {
 	}
 }
 
-//运算的方法
+// 运算的方法
 func (this *Stack) Cal(num1 int, num2 int, oper int) int {
 	res := 0
 	switch oper {
@@ -84,8 +84,8 @@ func (this *Stack) Cal(num1 int, num2 int, oper int) int {
 	return res
 }
 
-//编写一个方法，返回某个运算符的优先级[程序员定义]
-//[* / => 1 + - => 0]
+// 编写一个方法，返回某个运算符的优先级[程序员定义]
+// [* / => 1 + - => 0]
 func (this *Stack) Priority(oper int) int {
 	res := 0
 	if oper == 42 || oper == 47 {

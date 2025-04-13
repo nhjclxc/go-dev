@@ -4,15 +4,14 @@ import (
 	"fmt"
 )
 
-//一个函数 test
+// 一个函数 test
 func test(n1 int) {
 
 	n1 = n1 + 1
 	fmt.Println("test() n1=", n1) //?输出结果= ?
 }
 
-//一个函数 getSum
-//
+// 一个函数 getSum
 func getSum(n1 int, n2 int) int {
 	sum := n1 + n2
 	fmt.Println("getSum sum = ", sum) // 30
@@ -21,7 +20,7 @@ func getSum(n1 int, n2 int) int {
 	return sum
 }
 
-//请编写要给函数，可以计算两个数的和和差，并返回结果
+// 请编写要给函数，可以计算两个数的和和差，并返回结果
 func getSumAndSub(n1 int, n2 int) (int, int) {
 	sum := n1 + n2
 	sub := n1 - n2

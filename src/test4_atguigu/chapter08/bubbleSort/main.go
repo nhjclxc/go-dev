@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//冒泡排序
+// 冒泡排序
 func BubbleSort(arr *[5]int) {
 
 	fmt.Println("排序前arr=", (*arr))

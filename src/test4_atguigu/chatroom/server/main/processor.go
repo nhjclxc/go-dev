@@ -9,13 +9,13 @@ import (
 	"net"
 )
 
-//先创建一个Processor 的结构体体
+// 先创建一个Processor 的结构体体
 type Processor struct {
 	Conn net.Conn
 }
 
-//编写一个ServerProcessMes 函数
-//功能：根据客户端发送消息种类不同，决定调用哪个函数来处理
+// 编写一个ServerProcessMes 函数
+// 功能：根据客户端发送消息种类不同，决定调用哪个函数来处理
 func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
 
 	//看看是否能接收到客户端发送的群发的消息

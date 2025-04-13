@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-//测试用例,测试 Store 方法
+// 测试用例,测试 Store 方法
 func TestStore(t *testing.T) {
 
 	//先创建一个Monster 实例

@@ -10,7 +10,7 @@ import (
 type SmsProcess struct {
 }
 
-//发送群聊的消息
+// 发送群聊的消息
 func (this *SmsProcess) SendGroupMes(content string) (err error) {
 
 	//1 创建一个Mes

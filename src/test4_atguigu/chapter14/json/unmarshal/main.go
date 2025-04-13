@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-//定义一个结构体
+// 定义一个结构体
 type Monster struct {
 	Name     string
 	Age      int
@@ -14,7 +14,7 @@ type Monster struct {
 	Skill    string
 }
 
-//演示将json字符串，反序列化成struct
+// 演示将json字符串，反序列化成struct
 func unmarshalStruct() {
 	//说明str 在项目开发中，是通过网络传输获取到.. 或者是读取文件获取到
 	str := "{\"Name\":\"牛魔王~~~\",\"Age\":500,\"Birthday\":\"2011-11-11\",\"Sal\":8000,\"Skill\":\"牛魔拳\"}"
@@ -30,7 +30,7 @@ func unmarshalStruct() {
 
 }
 
-//将map进行序列化
+// 将map进行序列化
 func testMap() string {
 	//定义一个map
 	var a map[string]interface{}
@@ -52,7 +52,7 @@ func testMap() string {
 
 }
 
-//演示将json字符串，反序列化成map
+// 演示将json字符串，反序列化成map
 func unmarshalMap() {
 	//str := "{\"address\":\"洪崖洞\",\"age\":30,\"name\":\"红孩儿\"}"
 	str := testMap()
@@ -69,7 +69,7 @@ func unmarshalMap() {
 
 }
 
-//演示将json字符串，反序列化成切片
+// 演示将json字符串，反序列化成切片
 func unmarshalSlice() {
 	str := "[{\"address\":\"北京\",\"age\":\"7\",\"name\":\"jack\"}," +
 		"{\"address\":[\"墨西哥\",\"夏威夷\"],\"age\":\"20\",\"name\":\"tom\"}]"
