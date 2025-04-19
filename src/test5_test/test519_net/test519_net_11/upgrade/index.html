@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket 聊天</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    #log { height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+    input, button { margin: 5px 0; padding: 5px; }
+  </style>
+</head>
+<body>
+
+<h2>WebSocket 聊天测试</h2>
+
+<div>
+  <label>用户名：</label>
+  <input id="username" placeholder="请输入用户名" />
+  <button onclick="register()">注册</button>
+</div>
+
+<div>
+  <label>消息内容：</label><br>
+  <input id="message" placeholder="输入消息..." style="width: 300px;" />
+</div>
+
+<div>
+  <button onclick="sendBroadcast()">发送广播</button>
+  <input id="target" placeholder="私聊对象用户名" />
+  <button onclick="sendPrivate()">发送私聊</button>
+  <input id="kick" placeholder="剔除对象用户名" style="display: none;" />
+  <button onclick="sendKickUser()" style="display: none;">剔除用户</button>
+
+</div>
+
+<h3>消息日志</h3>
+<div id="log"></div>
+
+<script>
+  let ws;
+
+  function log(msg) {
+    const logEl = document.getElementById('log');
+    logEl.innerHTML += msg + '<br>';
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function connect() {
+    ws = new WebSocket("ws://localhost:8080/ws");
+
+    ws.onopen = () => log("✅ 连接成功");
+    ws.onclose = () => log("❌ 连接断开");
+    ws.onerror = e => log("⚠️ 连接错误");
+
+    ws.onmessage = e => {
+      const data = JSON.parse(e.data);
+      // 判断是不是 admin 用户
+      if (data.type === "role") {
+        // 服务器响应的权限信息
+        isAdmin = data.isAdmin;
+        if (isAdmin) {
+          document.getElementById("kick").style.display = "inline-block";
+          document.querySelector("button[onclick='sendKickUser()']").style.display = "inline-block";
+        }
+        return
+      }
+
+      log(`📩 [${data.type}] ${data.content}`);
+    };
+  }
+
+  function register() {
+    const username = document.getElementById('username').value;
+    if (!username) {
+      alert("请输入用户名");
+      return;
+    }
+    if (!ws || ws.readyState !== WebSocket.OPEN) connect();
+
+    setTimeout(() => {
+      ws.send(JSON.stringify({
+        type: "register",
+        content: username
+      }));
+    }, 500); // 等待连接建立
+  }
+
+  function sendBroadcast() {
+    const msg = document.getElementById('message').value;
+    if (!msg) return;
+    ws.send(JSON.stringify({
+      type: "broadcast",
+      content: msg
+    }));
+  }
+
+  function sendPrivate() {
+    const msg = document.getElementById('message').value;
+    const target = document.getElementById('target').value;
+    if (!msg || !target) return;
+    ws.send(JSON.stringify({
+      type: "private",
+      target: target,
+      content: msg
+    }));
+  }
+
+  function sendKickUser() {
+    console.log("kick")
+    const msg = document.getElementById('message').value;
+    const kick = document.getElementById('kick').value;
+    if (!kick) return;
+    console.log("ccc")
+    ws.send(JSON.stringify({
+      type: "kick",
+      target: kick,
+      content: msg
+    }));
+  }
+
+  // 自动连接
+  connect();
+</script>
+
+</body>
+</html>
+
+<!--
+
+当然可以！下面我给你写一个简单 HTML 前端，可以连接你的 WebSocket 服务并支持：
+
+✅ 注册用户名
+✅ 发送广播消息
+✅ 发送私聊消息
+✅ 显示接收到的消息
+
+-->

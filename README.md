@@ -48,6 +48,36 @@ https://word.topgoer.com/
 
 
 
+# Go包管理和检索网站
+
+# pkg.go.dev（Go 官方包搜索网站）
+ - 链接：[pkg.go.dev](https://pkg.go.dev/) 或使用 [godoc](http://godoc.org)
+ - 搜索第三方库
+ - 浏览其文档（类似 Javadoc）
+ - 查看示例和源码
+ - 直接复制 go get 命令。注意：在命令行使用go get 命令时Go 会自动从 [pkg.go.dev](https://pkg.go.dev/) 下载源代码并加入你的 go.mod。
+ - 如搜索websocket：[websocket (github.com/gorilla/websocket)](https://pkg.go.dev/github.com/gorilla/websocket)
+
+
+# GoSearch（第三方索引，适合快速模糊查找）
+GoSearch 是一个第三方 Go 模块搜索引擎，它会定期爬取 GitHub、GitLab 等代码仓库，收录并索引其中的 Go 模块/包。
+ - 链接：[GoSearch](https://github.com/clearcodecn/gosearch)
+ - 安装GoSearch：`go get github.com/clearcodecn/gosearch`
+ - 如搜索websocket：在命令行输入：gosearch websocket
+ - 注意：GoSearch也是通过 `go get` 命令下载的一个包，这个包提供了包下载的功能
+
+
+# GitHub
+ - 链接：[GitHub-Go](https://github.com/trending/go)
+ - 直接复制 go get 命令
+ - 如搜索websocket：https://github.com/search?q=websocket
+
+
+# 
+# 
+
+
+
 # 框架学习
 ## 单体 web框架
 ### gin 

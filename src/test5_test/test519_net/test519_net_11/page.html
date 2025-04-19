@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+<input type="text" id="msg" placeholder="输入消息">
+<button onclick="send()">发送</button>
+<pre id="log"></pre>
+
+<script>
+    const log = document.getElementById('log');
+    const ws = new WebSocket('ws://localhost:8080/ws');
+
+    ws.onmessage = e => log.textContent += "收到：" + e.data + "\n";
+    ws.onopen = () => log.textContent += "连接成功\n";
+
+    function send() {
+        const msg = document.getElementById('msg').value;
+        ws.send(msg);
+    }
+</script>
+</body>
+</html>
