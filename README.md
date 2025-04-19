@@ -13,6 +13,8 @@ go中文社区：https://studygolang.com、https://studygolang.com/pkgdoc 、htt
 
 https://word.topgoer.com/
 
+https://www.bookstack.cn/read/golang_development_notes/zh-preface.md
+https://github.com/guyan0319/golang_development_notes/blob/master/zh/preface.md
 
 # 学习资源
 
