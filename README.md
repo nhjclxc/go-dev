@@ -83,19 +83,8 @@ GoSearch 是一个第三方 Go 模块搜索引擎，它会定期爬取 GitHub、
 # 框架学习
 ## 单体 web框架
 ### gin 
-用途: 高性能HTTP Web框架
-特点: 轻量、快速，适合构建RESTful API和Web应用。
-[官网](https://gin-gonic.com/)
-[github开源](https://github.com/gin-gonic/gin)
-[Golang Gin框架 EP1 #Golang #Gin](https://www.youtube.com/watch?v=-IvZBkLh_Lo&list=PLKDLBB0AVnh66JwQA9nWLwoncG96vkE2N)
-[Go-Gin框架实战](https://www.youtube.com/watch?v=ZyEFfqivEj4&list=PLo0iJFLQIBEb5eXGQbdiKKmVocfwcZC4J)
-[gin开发进阶实战](https://www.youtube.com/watch?v=HlSlEJ7zvT8&list=PLYDTPK_uLC3v-YKHQ14blxnEOCZZfr0ei)
-[]()
-
 
 ### Echo
-[GitHub](https://github.com/labstack/echo)
-[]()
 
 : 
 
