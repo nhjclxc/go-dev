@@ -1,0 +1,8 @@
+☁️ 服务治理 / 微服务中间件
+etcd：服务注册与发现
+
+Consul：服务注册与配置中心
+
+grpc-go：支持 Interceptor（相当于中间件）
+
+go-micro / kratos / kit：支持链路追踪、服务发现、熔断等中间件机制

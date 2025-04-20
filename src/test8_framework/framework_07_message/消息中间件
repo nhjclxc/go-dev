@@ -1,0 +1,9 @@
+📬 消息队列中间件
+Kafka 客户端：confluent-kafka-go、segmentio/kafka-go
+
+RabbitMQ：github.com/streadway/amqp
+
+NATS：轻量级消息系统
+
+RocketMQ Go Client
+

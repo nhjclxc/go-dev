@@ -118,7 +118,7 @@ func main() {
 
 	// Go 是如何防止 SQL 注入的？
 	// 🔥 只要你使用 ? 占位符 + 参数绑定的方式（而不是字符串拼接），Go 的 database/sql 包天然就可以防止 SQL 注入。
-	_ := db.QueryRow("SELECT * FROM userinfo WHERE username = ?", username)
+	_ = db.QueryRow("SELECT * FROM userinfo WHERE username = ?", username)
 
 }
 

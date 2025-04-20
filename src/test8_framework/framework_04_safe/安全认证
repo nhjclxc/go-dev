@@ -1,0 +1,6 @@
+🔐 安全与认证中间件
+JWT：github.com/dgrijalva/jwt-go、github.com/golang-jwt/jwt
+
+OAuth2：golang.org/x/oauth2
+
+Casbin：权限控制中间件，支持 RBAC/ABAC
