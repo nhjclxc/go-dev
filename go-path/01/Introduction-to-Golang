@@ -1,0 +1,10 @@
+https://github.com/0voice/Introduction-to-Golang
+
+
+
+大厂开源的Golang项目列举一些大厂使用的微服务框架，基本上都有工具链，生成代码、docker、k8s部署文件等：字节跳动：kitex，开源滴滴：有自己的一套微服务框架，未开源腾讯：TarsGo，开源，并且是Linux基金会项目B站：kratos，开源斗鱼：Jupiter，开源好未来：go-zero，开源阿里：dubbo-go，开源华为：Go Chassis，开源知乎：内部改用go重构后端
+
+作者：Github资料整理员
+链接：https://www.zhihu.com/question/479048362/answer/2168813462
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

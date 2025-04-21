@@ -25,9 +25,13 @@ https://github.com/guyan0319/golang_development_notes/blob/master/zh/preface.md
 
 [golang全栈指南 - - - - - 牛逼的网站](https://golangguide.top/)
 
+https://www.itying.com/category-90-b0.html
+
 
 ## github.com
+[Introduction-to-Golang](https://github.com/0voice/Introduction-to-Golang)
 [build-your-own-x](https://github.com/codecrafters-io/build-your-own-x)
+https://github.com/BaiZe1998/go-learning
 
 ## bilibili.com
 
@@ -162,6 +166,27 @@ GoSearch 是一个第三方 Go 模块搜索引擎，它会定期爬取 GitHub、
 []()
 []()
 
+
+
+## 开源项目
+大厂开源的Golang项目列举一些大厂使用的微服务框架，基本上都有工具链，生成代码、docker、k8s部署文件等： 
+ - 字节跳动：kitex，
+ - 腾讯：TarsGo，开源，并且是Linux基金会项目
+ - B站：kratos，开源斗鱼：Jupiter，开源
+ - 好未来：go-zero，
+ - 开源阿里：dubbo-go，
+ - 开源华为：Go Chassis，
+ - 开源知乎：内部改用go重构后端
+ - dubbo-go	Apache Dubbo Go 语言实现，架起 Java 和 Golang 之间的桥梁，与 gRPC/Spring Cloud 生态互联互通，带领 Java 生态享受云原生时代的技术红利
+ - NSQ	实时分布式消息平台
+ - NATS	云原生消息中间件
+ - sarama	Kafka 客户端
+ - InfluxDB	时间序列数据库
+ - Thanos	支持 Prometheus 简化部署、高可用、分布式存储
+ - CockroachDB	分布式 SQL 数据库
+ - RadonDB	基于 MySQL 研发的新一代分布式关系型数据库
+ - TiDB	分布式关系型数据库，兼容 MySQL 协议
+ - AresDB	Uber 开源的 GPU 驱动的实时分析存储&查询引擎leveldb	LevelDB 的 Go 实现GCache	golang的内存缓存库。支持多种驱逐政策:LRU、LFU、ARCgo-cache	Go的内存键:值存储/缓存(类似于Memcached)库，适用于单机应用程序。groupcache	分布式缓存cachego	支持 Redis、Bolt 等缓存接口go-tagexpr	字节跳动开源的结构体标签表达式解释器goav	FFmpeg 视频处理rosedb	基于 bitcask 的 k-v 存储模型，高效、快速、简洁
 
 
 ## 面试题

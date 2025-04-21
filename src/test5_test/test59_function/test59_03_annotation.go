@@ -2,6 +2,22 @@ package main
 
 import "fmt"
 
+// Package mymath provides basic math functions.
+//
+// # Features
+//
+// - Add and Subtract
+// - Works with float64
+//
+// # Example
+//
+// ```go
+// result := mymath.Add(2, 3)
+//
+// fmt.Println(result) // Output: 5
+// ```
+//
+// [你好](https://www.baidu.com)
 func main() {
 	/*
 	   	在 Go 语言中，函数的注释通常遵循 Go 文档规范，主要有以下原则：
