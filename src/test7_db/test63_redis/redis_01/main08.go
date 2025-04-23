@@ -6,7 +6,7 @@ import (
 )
 
 // 使用 ZSet（有序集合） 做排行榜（排名）
-func main() {
+func main08() {
 
 	// 创建redis客户端
 	redisClient := redis.NewClient(&redis.Options{

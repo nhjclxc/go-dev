@@ -1,0 +1,14 @@
+https://topgoer.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/go%E6%93%8D%E4%BD%9CRabbitMQ/RabbitMQ%E4%BB%8B%E7%BB%8D.html
+
+
+RabbitMQ安装命令：go get github.com/streadway/amqp
+RabbitMQ安装命令：go get github.com/rabbitmq/amqp091-go
+
+
+
+
+
+https://www.bookstack.cn/read/topgoer/95df784ed17facc4.md
+
+
+https://www.topgoer.cn/docs/golang/chapter10-6-1

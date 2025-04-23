@@ -5,7 +5,7 @@
 ### gin
 用途: 高性能HTTP Web框架
 特点: 轻量、快速，适合构建RESTful API和Web应用。
-[官网](https://gin-gonic.com/)
+[官网](https://gin-gonic.com/)，[中文版](https://gin-gonic.com/zh-cn/docs/)
 [github开源](https://github.com/gin-gonic/gin)
 [Golang Gin框架 EP1 #Golang #Gin](https://www.youtube.com/watch?v=-IvZBkLh_Lo&list=PLKDLBB0AVnh66JwQA9nWLwoncG96vkE2N)
 [Go-Gin框架实战](https://www.youtube.com/watch?v=ZyEFfqivEj4&list=PLo0iJFLQIBEb5eXGQbdiKKmVocfwcZC4J)
@@ -17,6 +17,11 @@
 [【狂神说】Gin框架一小时上手 | 快速转型GoWeb开发 | Go语言零基础教程](https://www.bilibili.com/video/BV1Rd4y1C7A1)
 [Gin](https://www.bilibili.com/video/BV17Q4y1P7n9?p=182)
 
+
+
+
+### 下载 gin
+`go get -u github.com/gin-gonic/gin`
 
 ### Echo
 [GitHub](https://github.com/labstack/echo)

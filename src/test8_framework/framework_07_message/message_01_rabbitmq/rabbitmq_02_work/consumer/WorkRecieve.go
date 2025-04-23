@@ -1,0 +1,10 @@
+package main
+
+import (
+	"go-dev/src/test8_framework/framework_07_message/message_01_rabbitmq/rabbitmq"
+)
+
+func main() {
+	rabbitmq := rabbitmq.NewRabbitMQSimple("" + "go-work")
+	rabbitmq.ConsumeSimple()
+}
