@@ -166,6 +166,7 @@ type User struct {
 
 	// json:... 是为了接收json数据的映射
 	// form:... 是为了接收get请求的请求参数的数据的映射， Gin 中 GET 请求读取 URL 查询参数，需要用 form 或 query tag
+	// Pssword string `form:"password" json:"password" uri:"password" xml:"password" binding:"required"`
 
 	Id   int    `json:"id" form:"id"`
 	Name string `json:"name" form:"name"`
