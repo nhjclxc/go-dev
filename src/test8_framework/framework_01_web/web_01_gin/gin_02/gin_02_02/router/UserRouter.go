@@ -1,10 +1,10 @@
 package router
 
 import (
+	middleware2 "gin_02_02/middleware"
 	"github.com/gin-gonic/gin"
 
 	"gin_02_02/controller"
-	"gin_02_02/utils/middleware"
 )
 
 func UserRouterInit(router *gin.Engine) {
@@ -14,9 +14,11 @@ func UserRouterInit(router *gin.Engine) {
 
 	// 注册路由分组中间件，方式二
 	userGroup := router.Group("/user")
-	userGroup.Use(middleware.UserMiddleware)
+	userGroup.Use(middleware2.UserMiddleware)
 	{
 		userController := controller.UserController{}
+
+		// Gin 中的中间件必须是一个gin.HandlerFunc类型，配置路由的时候可以传递多个func回调函数，最后一个func回调函数前面触发的方法都可以称为中间件。
 
 		// func (group *RouterGroup) POST(relativePath string, handlers ...HandlerFunc) IRoutes {
 		// func (group *RouterGroup) GET(relativePath string, handlers ...HandlerFunc) IRoutes {
@@ -29,10 +31,10 @@ func UserRouterInit(router *gin.Engine) {
 		// 会在执行 context.Abort() 方法的位置终止该请求
 		userGroup.POST("/login", userController.Login)
 		userGroup.GET("/getById",
-			middleware.Authentication,  // 先鉴权
-			middleware.RequestParamLog, // 接着打印请求日志
-			userController.GetById,     // 执行接口业务
-			middleware.ResponseDataLog, // 响应数据
+			middleware2.Authentication,  // 先鉴权
+			middleware2.RequestParamLog, // 接着打印请求日志
+			userController.GetById,      // 执行接口业务
+			middleware2.ResponseDataLog, // 响应数据
 		)
 		userGroup.GET("/pageList", userController.PageList)
 	}

@@ -2,6 +2,7 @@ package controller
 
 import (
 	"gin_02_02/model/user"
+	md5 "gin_02_02/utils/encrypt/md5"
 	"gin_02_02/utils/jwt"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -75,7 +76,11 @@ func (this *UserController) Login(context *gin.Context) {
 	if userDB == nil {
 		panic("用户不存在，请先注册")
 	}
-	if userLogin.Password != userDB.Password {
+
+	// md5(abc1231) ===>>> c39fa77ca90e664db1e4d670e2b353b6
+	// 鉴于密码不能进行铭文传输，因此这里使用简单的md5加密串来传输匹配
+	if !md5.Match(userDB.Password, userLogin.Password) {
+		//if userLogin.Password != userDB.Password {
 		panic("密码不正确！！！")
 	}
 

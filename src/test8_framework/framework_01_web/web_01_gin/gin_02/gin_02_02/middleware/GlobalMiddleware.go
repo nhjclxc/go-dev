@@ -33,6 +33,7 @@ func Authentication(context *gin.Context) {
 			"msg":  "请登录",
 		})
 
+		// Abort是终止的意思，c.Abort()表示终止调用该请求的剩余处理程序
 		// 鉴权不通过，终止该请求
 		context.Abort()
 	}
@@ -60,6 +61,7 @@ func RequestParamLog(context *gin.Context) {
 	// 记录程序的执行时间
 	start := time.Now().Nanosecond()
 
+	// 中间件里面加上ctx.Next()可以让我们在路由匹配完成后执行一些操作。
 	// 调用该请求的剩余处理程序
 	context.Next()
 

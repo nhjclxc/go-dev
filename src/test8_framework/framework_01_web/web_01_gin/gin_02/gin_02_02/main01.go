@@ -1,8 +1,8 @@
 package main
 
 import (
+	"gin_02_02/middleware"
 	myRouter "gin_02_02/router"
-	"gin_02_02/utils/middleware"
 	"github.com/gin-gonic/gin"
 )
 
