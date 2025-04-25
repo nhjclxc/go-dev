@@ -33,6 +33,10 @@ type GenTable2 struct {
 
 	// 更新时间
 	UpdateTime JSONTime `gorm:"column:update_time"`
+
+	// // 二、一对多：在主表中写：
+	// 下面的 "foreignKey:TableId" 里面的 TableId 是 GenTableColumn2 里面与主表关联的id
+	GenTableColumn2 []GenTableColumn2 `gorm:"foreignKey:TableId"`
 }
 
 func (GenTable2) TableName() string {

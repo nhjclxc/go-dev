@@ -26,5 +26,11 @@ func GenTable2RoutesInit(router *gin.Engine) {
 		genTable2Router.GET("/getList", genTable2Controller.GetList)
 		// http://localhost:8090/genTable2/getPageList
 		genTable2Router.GET("/getPageList", genTable2Controller.GetPageList)
+		// http://localhost:8090/genTable2/getListWithChild
+		genTable2Router.GET("/getListWithChild", genTable2Controller.GetListWithChild)
+		// http://localhost:8090/genTable2/updateByTransaction
+		genTable2Router.GET("/updateByTransaction", genTable2Controller.UpdateByTransaction)
+		// http://localhost:8090/genTable2/updateByTransaction2
+		genTable2Router.GET("/updateByTransaction2", genTable2Controller.UpdateByTransaction2)
 	}
 }

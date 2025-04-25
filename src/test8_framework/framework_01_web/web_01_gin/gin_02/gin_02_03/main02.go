@@ -12,6 +12,7 @@ import (
 比如我们要对 name 字段做校验，要不能为空，并且不等于 admin ，类似这种需求，就无法 binding 现成的方法
 需要我们自己验证方法才能实现 官网示例（https://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Custom_Functions）
 这里需要下载引入下 github.com/go-playground/validator
+// https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags
 */
 type Person struct {
 	Age int `form:"age" binding:"required,gt=10"`

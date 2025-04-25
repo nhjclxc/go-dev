@@ -20,6 +20,8 @@ func init() {
 		Logger: logger.Default.LogMode(logger.Info),
 		// 显示出查询的所有字段
 		QueryFields: true,
+		// 禁用默认事务，true 表示不开起事务；不写或写false表示开启事务
+		//SkipDefaultTransaction: true,
 	})
 
 	/*

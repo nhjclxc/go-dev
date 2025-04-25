@@ -17,6 +17,12 @@ func main() {
 
 	// 注册路由
 	myRouter.GenTable2RoutesInit(router)
+	myRouter.GenTableColumn2RoutesInit(router)
+
+	// 联表查询
+	// 一、一对一：在子表中写：GenTable2 GenTable2 `gorm:"foreignKey:TableId;references:TableId"`
+	// 二、一对多：在主表中写：GenTableColumn2 []GenTableColumn2 `gorm:"foreignKey:TableId"`
+	// 三、多对多：
 
 	// 启动
 	router.Run(":8090")

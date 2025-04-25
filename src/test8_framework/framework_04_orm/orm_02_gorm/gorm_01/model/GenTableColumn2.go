@@ -7,7 +7,7 @@ type GenTableColumn2 struct {
 	// 使用 gorm 将数据库里面的字段对应
 
 	// 代码生成业务字段表主键
-	ColumnId int64 `gorm:"column:column_id"`
+	ColumnId int64 `gorm:"primaryKey;column:column_id"`
 
 	// 归属表编号
 	TableId int64 `gorm:"column:table_id"`
@@ -35,6 +35,12 @@ type GenTableColumn2 struct {
 
 	// 更新时间
 	UpdateTime JSONTime `gorm:"column:update_time"`
+
+	// 多表关联查询：
+	// 在子表（GenTableColumn2）中写主表（GenTable2）的实体类
+	// foreignKey:TableId 里面的 TableId 是子表的 关联id
+	// references:TableId 里面的 TableId 是主表的 关联id
+	GenTable2 GenTable2 `gorm:"foreignKey:TableId;references:TableId"`
 }
 
 func (GenTableColumn2) TableName() string {
