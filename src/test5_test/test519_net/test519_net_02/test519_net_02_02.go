@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func main02() {
 
 	/*
 		编写一个网页服务器监听端口 8080，有如下处理函数：

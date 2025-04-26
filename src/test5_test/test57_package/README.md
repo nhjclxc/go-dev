@@ -294,3 +294,5 @@ go install	用来编译并安装可执行程序到 $GOBIN 或 $GOPATH/bin	推荐
 添加依赖到当前项目	✅ go get
 调整某个依赖的版本	✅ go get
 安装某个包但不影响项目依赖	✅ go install
+
+# 下载一个 go.mod 里面的所有包命令` go mod download`

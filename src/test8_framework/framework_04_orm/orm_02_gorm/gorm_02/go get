@@ -1,9 +1,9 @@
 
 
-go get github.com/go-gorm/gorm
+go get -u github.com/go-gorm/gorm
 
 
 go get -u gorm.io/driver/mysql
 
 
-github.com/google/uuid
+go get -u github.com/google/uuid
