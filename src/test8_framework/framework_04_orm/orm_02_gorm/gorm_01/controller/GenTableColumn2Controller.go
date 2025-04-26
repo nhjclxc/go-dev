@@ -31,7 +31,7 @@ func (this *GenTableColumn2Controller) GetById(context *gin.Context) {
 
 	// 执行查询
 	res := []model.GenTableColumn2{}
-	// 关联表 GenTable2
+	// 连表 GenTable2
 	dbQuery.Preload("GenTable2").Find(&res)
 
 	// 响应数据

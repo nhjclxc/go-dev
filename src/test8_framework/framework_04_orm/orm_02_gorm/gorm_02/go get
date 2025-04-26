@@ -1,0 +1,9 @@
+
+
+go get github.com/go-gorm/gorm
+
+
+go get -u gorm.io/driver/mysql
+
+
+github.com/google/uuid
