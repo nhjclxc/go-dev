@@ -1,0 +1,16 @@
+{
+  "appname": "config_01",
+  "runmode": "dev",
+  "mysql": {
+    "user": "root",
+    "password": "123456",
+    "host": "192.198.1.1",
+    "port": 3306,
+    "dbname": "db-dev"
+  },
+  "redis": {
+    "host": "192.168.1.1",
+    "port": 1234,
+    "auth": "123456"
+  }
+}

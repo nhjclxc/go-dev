@@ -1,0 +1,4 @@
+appname: config_01
+httpport: 8080
+isopen: true
+runmode: dev
