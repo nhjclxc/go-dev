@@ -11,7 +11,7 @@ import (
 
 // TabUser -
 type TabUser struct {
-	UserId       int       `orm:"column(user_id);auto"`
+	Id           int       `orm:"column(user_id);auto"`
 	Name         string    `orm:"column(name);size(255)"`
 	Email        string    `orm:"column(email);size(255);null"`
 	Age          int8      `orm:"column(age)"`
