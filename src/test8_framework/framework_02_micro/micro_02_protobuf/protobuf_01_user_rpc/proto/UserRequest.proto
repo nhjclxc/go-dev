@@ -1,6 +1,6 @@
 
 
-// 在proto文件夹下面，进入cmd输入编译命令：protoc --go_out=. --go-grpc_out=. proto/UserRequest.proto
+// 在proto文件夹下面，进入cmd输入编译命令：protoc --go_out=. --go-grpc_out=. UserRequest.proto
 // 注意：*.pb.go文件生成之后不要轻易修改它。如果要修改应当从*.proto源文件夹中修改，然后重新编译输出
 
 

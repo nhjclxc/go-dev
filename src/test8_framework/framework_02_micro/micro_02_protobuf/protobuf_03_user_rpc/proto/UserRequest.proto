@@ -1,0 +1,36 @@
+
+
+
+// 1、定义版本
+syntax = "proto3";
+
+
+// 2、定义包
+option go_package = "grpc/user";
+
+
+// 3、定义请求体
+message UserRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+
+// 4、定义响应结构
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  string idCard = 3;
+  int32 age = 4;
+  string address = 5;
+  repeated string hobby = 6;
+}
+
+
+// 5、定义微服务接口
+service UserService {
+  rpc GetUser(UserRequest) returns (UserResponse) {}
+}
+
+
+// protoc --go_out=. --go-grpc_out=. UserRequest.proto
