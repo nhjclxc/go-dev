@@ -1,0 +1,44 @@
+
+
+// 在proto文件夹下面，进入cmd输入编译命令：protoc --go_out=. --go-grpc_out=. proto/UserRequest.proto
+// 注意：*.pb.go文件生成之后不要轻易修改它。如果要修改应当从*.proto源文件夹中修改，然后重新编译输出
+
+
+// protoc --go_out=. --go-grpc_out=. UserRequest.proto
+// protoc --go_out=pb --go-grpc_out=pb UserRequest.proto
+
+
+// 版本号
+syntax = "proto3";
+
+// 指定包名
+// [START go_declaration]
+option go_package = "grpc/userinfo";
+// [END go_declaration]
+
+// 定义结构体
+message UserRequest {
+  // 定义用户名
+  string name = 1;
+}
+
+// 响应结构体
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  // repeated修饰符是可变数组，go转切片
+  repeated string hobby = 4;
+}
+
+
+
+
+// 必须定义以下内容，否则远程调用接口无法发现这个接口
+// 定义哪些微服务以及哪些接口将使用到这个消息体
+
+// service定义方法
+service UserInfoService {
+  rpc GetUserInfoByName (UserRequest) returns (UserResponse) {
+  }
+}
