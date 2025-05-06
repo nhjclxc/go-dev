@@ -1,0 +1,267 @@
+
+[Go语言-Golang Gin Go Gorm Go-Micro微服务k8s教程 2025年更新](https://www.bilibili.com/video/BV1XY4y1t76G?p=76)
+[Golang微服务框架Go-micro入门](https://www.bilibili.com/video/BV1JK4y1a7o4/)
+[golang微服务笔记资源下载](https://gitcode.com/Open-source-documentation-tutorial/5b043)
+[06-微服务](https://github.com/overnote/over-golang/tree/master/06-%E5%BE%AE%E6%9C%8D%E5%8A%A1)
+
+
+[](https://github.com/Allenxuxu/microservices.git)
+[](https://github.com/qingshanyinyin/IHome.git)
+[](https://github.com/hb-chen/micro-quick-start.git)
+
+
+[go-micro官方开源地址](https://github.com/micro/go-micro.git)
+
+
+[go-micro 微服务开发中文手册](https://lixiangyun.gitbook.io/go-micro)
+[](https://github.com/rubyhan1314/Golang-100-Days.git)
+[Go Micro 中文文档](http://m2.topgoer.com/)
+[Go Micro 中文文档 ](https://learnku.com/docs/go-micro/1.x)
+[]()
+[]()
+[]()
+
+
+
+
+
+依赖包：``` go get go-micro.dev/v5 ```
+
+官网：github.com/micro/go-micro
+
+## Go-Micro 必须的依赖工具
+
+1. protoc.exe 工具：[https://github.com/protocolbuffers/protobuf/releases/tag/v31.0-rc2](https://objects.githubusercontent.com/github-production-release-asset-2e65be/23357588/04ba4af3-1503-4779-90a3-f4bad4044593?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250506%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250506T080411Z&X-Amz-Expires=300&X-Amz-Signature=d6dbc3ff21c57647af20c831915d0c96b33294d13dea5f6e99832fbde511bbb3&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dprotoc-31.0-rc-2-win64.zip&response-content-type=application%2Foctet-stream)
+2. protoc-gen-go.exe 工具：使用命令安装 ```go install google.golang.org/protobuf/protoc-gen-go@latest```
+
+
+// 环境配置
+// 1、去 github.com/golang/protobuf 下载最新的 protoc.exe，并将其路径放到系统环境变量里面
+// 		检查是否配置成功：在cmd里面执行：protoc --version
+// 2、下载 protobuf 的 golang 插件(注意这个插件是一个exe文件)，
+//		命令：go install google.golang.org/protobuf/protoc-gen-go@latest
+// 		在 GOPATH 下面将生成一个 protoc-gen-go.exe 可执行文件
+
+
+
+
+
+## Go-Micro 简介
+
+Go-Micro 是一个用 Go 编写的 **微服务开发框架**，旨在简化分布式系统的开发。它封装了服务注册发现、负载均衡、RPC、消息发布订阅、配置管理等关键能力，支持插件化的架构，非常适合构建云原生微服务应用。
+
+下面是 Go-Micro 的核心知识点及其讲解：
+
+---
+
+## 一、Go-Micro 的基本组成
+
+Go-Micro 遵循插件化架构，主要包括以下核心组件：
+
+| 组件            | 作用          ![img.png](img.png)                 |
+| ------------- | ---------------------------- |
+| **Service**   | 服务入口，封装了服务注册、启动、停止等流程        |
+| **Client**    | 用于调用其他服务的客户端                 |
+| **Server**    | 接收并处理 RPC 请求的服务端             |
+| **Registry**  | 服务注册与发现（如 Consul、etcd、nacos） |
+| **Transport** | 网络传输协议（如 gRPC、HTTP、TCP）      |
+| **Broker**    | 消息中间件，用于发布/订阅消息              |
+| **Selector**  | 选择服务节点的负载均衡策略                |
+| **Codec**     | 编解码器（如 JSON、protobuf）        |
+| **Config**    | 配置中心（可接入本地文件、consul、etcd）    |
+| **Metadata**  | 元数据传递机制                      |
+| **Logger**    | 日志组件（支持自定义插件）                |
+
+---
+
+## 二、服务开发流程
+
+### 1. 定义接口（使用 protobuf）
+
+```protobuf
+syntax = "proto3";
+
+service Greeter {
+  rpc Hello(Request) returns (Response) {}
+}
+
+message Request {
+  string name = 1;
+}
+
+message Response {
+  string msg = 1;
+}
+```
+
+### 2. 生成代码
+
+```bash
+protoc --go_out=. --micro_out=. greeter.proto
+```
+
+这会生成服务代码和 handler 接口。
+
+### 3. 实现服务
+
+```go
+type Greeter struct{}
+
+func (g *Greeter) Hello(ctx context.Context, req *pb.Request, rsp *pb.Response) error {
+    rsp.Msg = "Hello " + req.Name
+    return nil
+}
+```
+
+### 4. 启动服务
+
+```go
+service := micro.NewService(
+    micro.Name("greeter"),
+    micro.Version("latest"),
+)
+
+service.Init()
+
+pb.RegisterGreeterHandler(service.Server(), new(Greeter))
+
+if err := service.Run(); err != nil {
+    log.Fatal(err)
+}
+```
+
+---
+
+## 三、服务调用
+
+```go
+service := micro.NewService()
+service.Init()
+
+greeter := pb.NewGreeterService("greeter", service.Client())
+
+rsp, err := greeter.Hello(context.TODO(), &pb.Request{Name: "Go-Micro"})
+if err != nil {
+    log.Fatal(err)
+}
+fmt.Println(rsp.Msg)
+```
+
+---
+
+## 四、服务注册与发现（Registry）
+
+Go-Micro 默认使用内置的 memory 注册中心。生产环境通常使用：
+
+* Consul
+* etcd
+* Nacos
+* Kubernetes
+
+注册示例（以 Consul 为例）：
+
+```go
+import "github.com/asim/go-micro/plugins/registry/consul/v4"
+
+reg := consul.NewRegistry()
+
+service := micro.NewService(
+    micro.Registry(reg),
+)
+```
+
+---
+
+## 五、服务间通信方式
+
+* **同步调用（RPC）**
+* **异步消息（Pub/Sub）**
+
+发布消息示例：
+
+```go
+pub := micro.NewEvent("topic.name", service.Client())
+
+pub.Publish(context.TODO(), &pb.Message{Text: "event"})
+```
+
+订阅消息示例：
+
+```go
+micro.RegisterSubscriber("topic.name", service.Server(), func(ctx context.Context, msg *pb.Message) error {
+    fmt.Println("Received message:", msg.Text)
+    return nil
+})
+```
+
+---
+
+## 六、负载均衡（Selector）
+
+默认是轮询（round-robin），也支持自定义策略，如加权随机、最少连接数等。
+
+```go
+import "github.com/asim/go-micro/plugins/selector/random/v4"
+
+service := micro.NewService(
+    micro.Selector(random.NewSelector()),
+)
+```
+
+---
+
+## 七、插件化机制
+
+Go-Micro 支持插件热插拔，包括：
+
+* registry（etcd、consul、nacos）
+* broker（Kafka、RabbitMQ）
+* transport（grpc、http）
+* selector（随机、权重）
+* config（file、etcd、consul）
+* logger（zap、logrus）
+
+通过 import 即可生效：
+
+```go
+import _ "github.com/asim/go-micro/plugins/registry/nacos/v4"
+```
+
+---
+
+## 八、常见扩展项目
+
+| 项目               | 功能                     |
+| ---------------- | ---------------------- |
+| **go-micro**     | 核心微服务框架                |
+| **go-plugins**   | 插件集合                   |
+| **go-micro-api** | REST API 网关            |
+| **go-micro-web** | Web 网关服务               |
+| **go-micro-cli** | 命令行工具支持                |
+| **micro**        | 官方 CLI 工具（可部署、调用、调试服务） |
+
+---
+
+## 九、部署与运维
+
+* 可以使用 **Docker + Consul + micro CLI** 快速搭建开发环境。
+* 支持 Kubernetes 原生注册。
+* 配合 Prometheus 实现监控。
+* 可通过 Sidecar 模式和服务网格集成（如 Istio）。
+
+---
+
+## 十、Go-Micro 与其他微服务框架比较
+
+| 框架           | 语言   | 特点                       |
+| ------------ | ---- | ------------------------ |
+| Go-Micro     | Go   | 插件化、高性能、轻量级              |
+| Dubbo        | Java | 生态成熟、支持多协议               |
+| Spring Cloud | Java | 丰富功能、上手快                 |
+| gRPC         | 多语言  | 高效通信，接口定义清晰，但缺少服务注册等周边能力 |
+
+---
+
+如果你打算使用 Go-Micro 构建微服务系统，我可以进一步帮你写一个完整的示例工程结构和代码演示。
+
+你希望我继续介绍哪一部分，例如：**完整项目结构、服务网关整合、Consul配置、异步通信、还是注册中心选型？**

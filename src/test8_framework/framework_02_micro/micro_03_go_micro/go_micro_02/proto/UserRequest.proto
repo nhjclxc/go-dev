@@ -1,0 +1,29 @@
+
+
+// grpc版本的 protoc
+// protoc --go_out=. --go-grpc_out=. UserRequest.proto
+
+
+syntax = "proto3";
+
+option go_package = "user/micro";
+
+message UserRequest {
+  string name = 1;
+  string address = 2;
+  int32 age = 3;
+  repeated string hobby = 4;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  string address = 3;
+  int32 age = 4;
+  repeated string hobby = 5;
+}
+
+service UserService {
+  rpc GetUserByName(UserRequest) returns(UserResponse) {}
+  rpc InsertUser(UserRequest) returns(UserResponse) {}
+}

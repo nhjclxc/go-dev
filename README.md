@@ -16,7 +16,14 @@ https://word.topgoer.com/
 https://www.bookstack.cn/read/golang_development_notes/zh-preface.md
 https://github.com/guyan0319/golang_development_notes/blob/master/zh/preface.md
 
+[go开发学习路线](https://github.com/darius-khll/golang-developer-roadmap.git)
+go开发学习路线看 go-path.png
+
+[//]: # (![go-path.png]&#40;go-path.png&#41;)
+
 # 学习资源
+
+[Go开发模式 go-patterns](https://github.com/tmrts/go-patterns.git)
 
 ## 社区
 
