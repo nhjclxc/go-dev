@@ -33,6 +33,8 @@ go开发学习路线看 go-path.png
 
 [golang全栈指南 - - - - - 牛逼的网站](https://golangguide.top/)
 
+[Golang 慢慢学](https://haimait.top/docs/golang)
+
 https://www.itying.com/category-90-b0.html
 
 
