@@ -76,7 +76,6 @@ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 [go-zero入门，看这一篇就够了](https://juejin.cn/post/7225565801791799354)
 
-[go-zero中api从入门到大师](https://blog.csdn.net/qq_63728673/article/details/140814307)
 
 [03. go-zero简介及如何学go-zero](https://www.cnblogs.com/haima/p/16057786.html)
 
