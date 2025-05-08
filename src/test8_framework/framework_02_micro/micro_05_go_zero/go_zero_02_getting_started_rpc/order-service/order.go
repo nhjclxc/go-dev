@@ -4,18 +4,16 @@ import (
 	"flag"
 	"fmt"
 
-	"zero-order/internal/config"
-	"zero-order/internal/handler"
-	"zero-order/internal/svc"
+	"order-service/internal/config"
+	"order-service/internal/handler"
+	"order-service/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )
 
-var configFile = flag.String("f", "etc/order-api.yaml", "the config file")
+var configFile = flag.String("f", "etc/order.yaml", "the config file")
 
-// cmd启动命令：go run order.go -f etc/order-api.yaml
-// 访问接口：curl -X POST http://127.0.0.1:8090/order/info -H "Content-Type: application/json" -d "{\"orderId\":666}"
 func main() {
 	flag.Parse()
 
@@ -30,4 +28,5 @@ func main() {
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
+
 }

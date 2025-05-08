@@ -1,11 +1,9 @@
-
-
 // api语法版本
 syntax = "v2"
 
 info (
 	author: "nhjclxc"
-	date:   "2025-05-07"
+	date:   "2025-05-08"
 	desc:   "订单api说明（对前端提供）"
 )
 
@@ -27,9 +25,8 @@ service order-api {
 	@handler orderInfo
 	//请求方法是post，路径是/order/info，参数是OrderInfoReq，返回值是OrderInfoResp
 	post /order/info (OrderInfoReq) returns (OrderInfoResp)
-
-
-	//可以继续定义多个api
-	// @doc、@handler、post 这三个构成一个 http 接口
+//可以继续定义多个api
+// @doc、@handler、post 这三个构成一个 http 接口
 }
 
+// goctl api go -api order.api --dir ../ --style=goZero

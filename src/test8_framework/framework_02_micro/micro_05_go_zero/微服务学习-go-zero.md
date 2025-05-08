@@ -60,9 +60,10 @@ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 ### go-zero-looklook
 
-[go-zero-looklook](https://github.com/Mikaelemmmm/go-zero-looklook.git)，
 
-[go-zero-looklook对应的教程文档](https://github.com/Mikaelemmmm/go-zero-looklook/tree/main/doc/chinese)
+[go-zero-looklook](https://github.com/Mikaelemmmm/go-zero-looklook.git)是go-zero框架的最佳实践
+
+[go-zero-looklook对应的最佳实际教程文档](https://github.com/Mikaelemmmm/go-zero-looklook/tree/main/doc/chinese)
 
 [go-zero-looklook 视频教程](https://www.bilibili.com/video/BV1P3411p79J)
 
@@ -120,5 +121,7 @@ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 
 [zero-examples](https://github.com/zeromicro/zero-examples)
+
+[awesome-zero](https://github.com/zeromicro/awesome-zero)
 
 
