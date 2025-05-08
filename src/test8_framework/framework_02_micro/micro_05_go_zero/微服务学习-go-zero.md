@@ -7,6 +7,10 @@
 
 [官网文档](https://go-zero.dev/docs/concepts/overview)
 
+[zero-doc](https://github.com/zeromicro/zero-doc.git)
+
+[goctl-swagger](https://github.com/zeromicro/goctl-swagger.git)
+
 
 ## go-zero 环境搭建
 

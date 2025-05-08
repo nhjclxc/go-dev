@@ -33,3 +33,18 @@ service order-api {
 	// @doc、@handler、post 这三个构成一个 http 接口
 }
 
+
+// 更多关于 api 文件编写的规范，请看：https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md
+
+//api语法结构
+//	syntax语法声明
+//	import语法块
+//	info语法块
+//	type语法块
+//	service语法块
+//	隐藏通道
+
+//在以上语法结构中，各个语法块从语法上来说，按照语法块为单位，可以在.api文件中任意位置声明， 但是为了提高阅读效率，我们建议按照以上顺序进行声明，因为在将来可能会通过严格模式来控制语法块的顺序。
+
+
+
