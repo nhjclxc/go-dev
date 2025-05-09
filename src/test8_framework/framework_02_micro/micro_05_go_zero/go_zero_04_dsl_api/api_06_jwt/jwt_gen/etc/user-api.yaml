@@ -1,0 +1,8 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8090
+
+# jwt 配置认证
+Auth:
+  AccessSecret: "qwertyuiop1234567890"  # JWT 签名密钥
+  AccessExpire: 123456                  # 过期时间（秒）

@@ -1,0 +1,48 @@
+syntax = "v2"
+
+info (
+	title:   "type title here"
+	desc:    "type desc here"
+	author:  "type author here"
+	email:   "type email here"
+	version: "type version here"
+)
+
+// JWT
+// https://go-zero.dev/docs/tutorials/api/jwt
+// JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间传递声明式信息。它是一种基于JSON的轻量级的身份验证和授权机制，用于在客户端和服务器之间安全地传输信息。
+type LoginReq {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type LoginResp {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Token string `json:"token"`
+}
+
+type UserInfoReq {
+	ID string `json:"id"`
+}
+
+type UserInfoResp {
+	Name string `json:"name"`
+}
+
+service user-api {
+	@handler login
+	post /user/login (LoginReq) returns (LoginResp)
+}
+
+
+// 以下的jwt仅对这个 @server 对应的 service 块有效，即对内部的 /user/info 接口有效
+@server (
+	jwt: Auth // 开启 jwt 认证
+)
+service user-api {
+	@handler userInfo
+	post /user/info (UserInfoReq) returns (UserInfoResp)
+}
+
+// goctl api go -api jwt.api --dir jwt_gen --style goZero
