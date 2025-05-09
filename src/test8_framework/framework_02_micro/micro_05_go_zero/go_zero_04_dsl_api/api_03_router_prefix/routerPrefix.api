@@ -1,0 +1,51 @@
+syntax = "v2"
+
+// 路由前缀
+// 在 go-zero 中，我们通过 api 语言来声明 HTTP 服务，然后通过 goctl 生成 HTTP 服务代码，在之前我们系统性的介绍了 API 规范。
+//在 HTTP 服务开发中，路由前缀需求是非常常见的，比如我们通过路由来区分版本，或者通过路由来区分不同的服务，这些都是非常常见的需求。
+info (
+	title:   "type title here"
+	desc:    "type desc here"
+	author:  "type author here"
+	email:   "type email here"
+	version: "type version here"
+)
+
+type (
+	HelloReq {
+		Name string `path:"name"`
+	}
+)
+
+type (
+	HelloResp {
+		Message string `json:"message"`
+	}
+)
+
+// 假设我们有一个用户服务，我们需要通过路由来区分不同的版本，我们可以通过 api 语言来声明路由前缀：
+//https://example.com/v1/users
+//https://example.com/v2/users
+@server (
+	group:  hello
+	prefix: /v1
+)
+service routerPrefix {
+	@handler hello1
+	// group 也会被加入 url 前缀
+	// https://example.com/v1/hello/sayHello
+	get /sayHello/:name (HelloReq) returns (HelloResp)
+}
+
+@server (
+	group:  hello
+	prefix: /v2
+)
+// 注意：多个 service 块的名称必须相同routerPrefix
+service routerPrefix {
+	@handler hello2
+	// https://example.com/v2/hello/sayHello
+	get /sayHello/:name (HelloReq) returns (HelloResp)
+}
+
+// goctl api go -api routerPrefix.api --dir api_gen --style goZero

@@ -1,0 +1,54 @@
+syntax = "v2"
+
+// 类型声明
+
+info (
+	title:   "type title here"
+	desc:    "type desc here"
+	author:  "type author here"
+	email:   "type email here"
+	version: "type version here"
+)
+
+type Base {
+	BaseName string
+}
+
+type StructureExample {
+	// 基本数据类型示例
+	BaseInt     int     `json:"base_int"`
+	BaseBool    bool    `json:"base_bool"`
+	BaseString  string  `json:"base_string"`
+	BaseByte    byte    `json:"base_byte"`
+	BaseFloat32 float32 `json:"base_float32"`
+	BaseFloat64 float64 `json:"base_float64"`
+	// 切片示例
+	BaseIntSlice     []int     `json:"base_int_slice"`
+	BaseBoolSlice    []bool    `json:"base_bool_slice"`
+	BaseStringSlice  []string  `json:"base_string_slice"`
+	BaseByteSlice    []byte    `json:"base_byte_slice"`
+	BaseFloat32Slice []float32 `json:"base_float32_slice"`
+	BaseFloat64Slice []float64 `json:"base_float64_slice"`
+	// map 示例
+	BaseMapIntString      map[int]string               `json:"base_map_int_string"`
+	BaseMapStringInt      map[string]int               `json:"base_map_string_int"`
+	BaseMapStringStruct   map[string]*StructureExample `json:"base_map_string_struct"`
+	BaseMapStringIntArray map[string][]int             `json:"base_map_string_int_array"`
+	// 匿名示例
+	*Base
+	// 指针示例
+	Base4 *Base `json:"base4"`
+	// 新的特性（ goctl >= 1.5.1 版本支持 ）
+	// 标签忽略示例
+	TagOmit string
+	// 泛型的支持
+	TagaOmit2 interface{}
+	Object    map[string]interface{} `json:"-"`
+}
+
+service typeDeclareTest {
+	@handler hell
+	get /hello/:name
+}
+
+// goctl api go -api typeDeclareTest.api --dir api_gen --style goZero

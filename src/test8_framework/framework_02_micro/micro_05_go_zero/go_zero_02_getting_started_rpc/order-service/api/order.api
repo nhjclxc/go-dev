@@ -29,4 +29,4 @@ service order-api {
 // @doc、@handler、post 这三个构成一个 http 接口
 }
 
-// goctl api go -api order.api --dir ../ --style=goZero
+// goctl api go -api order.api --dir ../ --style goZero

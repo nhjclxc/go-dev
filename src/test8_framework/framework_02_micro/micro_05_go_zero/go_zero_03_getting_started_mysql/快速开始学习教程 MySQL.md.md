@@ -14,7 +14,7 @@
 
 # 二、执行 goctl 命令生成 model 代码
 
-进入 [user](model%2Fuser) 文件夹，执行 `goctl model mysql ddl --src tab_user.sql --dir . --style=goZero`
+进入 [user](model%2Fuser) 文件夹，执行 `goctl model mysql ddl --src tab_user.sql --dir . --style goZero`
 
 将生成三个文件，tabUserModel.go 、tabUserModel_gen.go 、vars.go
 

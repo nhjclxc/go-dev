@@ -48,3 +48,4 @@ service order-api {
 
 
 
+// goctl api go -api order.api --dir ../ --style goZero

@@ -1,0 +1,56 @@
+syntax = "v2"
+
+info (
+	title:   "Standard01 API"
+	desc:    "这是一个使用 go-zero 的标准接口定义示例"
+	author:  "nhjclxc"
+	version: "1.0"
+)
+
+// 单结构体
+type Foo {
+	// Message 是要生成 go 的字段
+	// string 是数据类型，
+	// `json:"message"`  结构体标签（tag），用来指定序列化（如 JSON）时字段名应该变成什么。
+	Message string `json:"message"`
+	Age     int    `json:"age"`
+}
+
+type HelloResp {
+	Message string `json:"message"`
+}
+
+// 结构体组
+type (
+	// 用户信息
+	// 注意：嵌套的结构体组下面，不能使用 struct
+	// User struct {
+	User {
+		ID       int64  `json:"id"` // 用户ID
+		Name     string `json:"name"` // 用户名
+		Email    string `json:"email"` // 邮箱
+		IsActive bool   `json:"isActive"` // 是否激活
+	}
+	// 创建用户的请求体
+	CreateUserReq {
+		Name  string `json:"name"`
+		Email string `json:"email"`
+	}
+	// 创建用户的响应体
+	CreateUserResp {
+		ID      int64  `json:"id"`
+		Message string `json:"message"`
+	}
+	// 错误响应结构
+	ErrorResp {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	}
+)
+
+service standard01service {
+	@handler CreateUser
+	post /api/user/create (CreateUserReq) returns (CreateUserResp)
+}
+
+// goctl api go -api standard01.api --dir standard01_gen --style goZero
