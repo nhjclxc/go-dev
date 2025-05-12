@@ -3,6 +3,32 @@
 
 package types
 
+
+// 参数校验规则：
+// 在 api 描述语言中，我们可以通过在 tag 中来声明参数接收规则，
+//除此之外，还支持参数的校验，参数校验的规则仅对 请求体 有效，参数校验的规则写在 tag value中，
+//目前 go-zero 支持的参数校验规则如下：
+// 接收规则			说明											示例
+//optional	当前字段是可选参数，允许为零值(zero value)				`json:"foo,optional"`
+//options	当前参数仅可接收的枚举值								`json:"gender,options=foo|bar"`
+//default	当前参数默认值										`json:"gender,default=male"`
+//range		当前参数数值有效范围，仅对数值有效，写法规则详情见下文温馨提示	`json:"age,range=[0:120]"`
+
+type RequestFoo struct {
+
+
+	Username string `json:"username,optional"`
+	ElementType int `json:"elementType,options=1|2|3"`
+
+	PageNum int `json:"pageNum,default=1"`
+	PageSize int `json:"pageSize,default=10"`
+
+	Age int `json:"age,range=[18,90]"` // (min:max]
+
+
+}
+
+
 type LoginReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`

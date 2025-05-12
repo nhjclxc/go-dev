@@ -11,7 +11,7 @@ import (
 
 
 // JwtAuthMiddleware 自定义jwt认证中间件
-
+// 官方文档：https://go-zero.dev/docs/tutorials/api/middleware
 
 // 自定义中间件步骤
 // 1. 自定义中间件结构体 JwtAuthMiddleware
@@ -52,12 +52,12 @@ func (this *JwtAuthMiddleware) JwtAuthorization(next http.HandlerFunc) http.Hand
 		tokenMapClaims, err := jwt.ParseToken(this.cfg.Auth.AccessSecret, tokenString)
 
 		if err != nil {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			http.Error(w, "Invalid token " + err.Error(), http.StatusUnauthorized)
 			return
 		}
 		err = tokenMapClaims.Valid()
-		if err != nil{
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+		if err != nil {
+			http.Error(w, "Invalid token " + err.Error(), http.StatusUnauthorized)
 			return
 		}
 

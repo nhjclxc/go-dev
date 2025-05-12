@@ -1,0 +1,67 @@
+syntax = "v2"
+
+info (
+	title:   "type title here"
+	desc:    "type desc here"
+	author:  "type author here"
+	email:   "type email here"
+	version: "type version here"
+)
+
+
+// 在 api 描述语言中，没有 package 的概念，所以在引入其他 api 文件时，需要使用相对路径，如上面示例中的 import "base.api"，
+// 如果是在同一个目录下，亦可以使用 import "./base.api"。 import 支持相对路径和绝对路径。
+// 在 api 描述语言中，我们规定将所有 service 语法块声明的 HTTP 服务信息都放在 main api文件中，抽象结构体放在其他 api 文件中，
+// 然后在 main api 文件中引入其他 api 文件，这样可以让 main api 文件更加简洁，易于维护，而被引入的 api 文件中不允许出现 service 语法块，否则会报错。
+// 特别注意：api 引入不支持循环引入！！！
+
+// 引入 base.api
+import "base.api"
+
+
+// JWT
+// https://go-zero.dev/docs/tutorials/api/jwt
+// JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间传递声明式信息。它是一种基于JSON的轻量级的身份验证和授权机制，用于在客户端和服务器之间安全地传输信息。
+type LoginReq {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type LoginResp {
+	// 匿名将base响应嵌入
+	BaseResp
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Token string `json:"token"`
+}
+
+type UserInfoReq {
+	ID string `json:"id"`
+}
+
+type UserInfoResp {
+	Name string `json:"name"`
+}
+
+service user-api {
+	@handler login
+	post /user/login (LoginReq) returns (LoginResp)
+}
+
+
+// 以下的jwt仅对这个 @server 对应的 service 块有效，即对内部的 /user/info 接口有效
+@server (
+	// jwt: 是固定关键字，表示你要开启 JWT 鉴权。
+	// Auth 是可自定义的名称，并不是固定写法，但它必须与你在 config.yaml 或 etc/*.yaml 配置文件中定义的 Auth 相关配置项匹配。
+	jwt: Auth // 开启 jwt 认证
+
+
+	// 通过 middileware 关键字声明中间件，多个中间件以英文逗号分割，如 UserAgentMiddleware,LogMiddleware
+	middleware: UserAgentMiddleware
+)
+service user-api {
+	@handler userInfo
+	post /user/info (UserInfoReq) returns (UserInfoResp)
+}
+
+// goctl api go -api jwt.api --dir ../jwt_gen --style goZero

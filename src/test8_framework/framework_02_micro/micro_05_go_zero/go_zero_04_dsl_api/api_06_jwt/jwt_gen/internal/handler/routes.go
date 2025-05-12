@@ -37,9 +37,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 
+	// 以下是自定义读取权限认证的演示
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.JwtAuthMiddleware.JwtAuthorization}, // auto added by goctl
+			[]rest.Middleware{
+				serverCtx.JwtAuthMiddleware.JwtAuthorization,
+				serverCtx.UserAgentMiddleware.Handle,
+			},
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
