@@ -1,0 +1,295 @@
+basePath: /dev-api
+consumes:
+- application/json
+host: localhost
+info:
+  contact:
+    email: example@gmail.com
+    name: keson.an
+    url: https://github.com/zeromicro/go-zero
+  description: 演示 api 生成 swagger...
+  license:
+    name: MIT
+    url: https://github.com/zeromicro/go-zero/blob/master/LICENSE
+  termsOfService: https://github.com/zeromicro/go-zero
+  title: 演示 API
+  version: v1
+paths:
+  /ping/ping:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      responses:
+        default:
+          description: ""
+          schema:
+            properties:
+              code:
+                description: ' 200-请求成果<br>404-未找到该路径'
+                example: 0
+                type: integer
+              data:
+                properties:
+                  code:
+                    description: 响应体示例展示
+                    example: 200
+                    type: integer
+                  msg:
+                    example: success
+                    type: string
+                type: object
+              msg:
+                description: business message
+                example: ok
+                type: string
+            type: object
+      schemes:
+      - https
+      security:
+      - apiKey: []
+      summary: ping
+      tags:
+      - 请求测试
+  /v1/user/hello/{name}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: name
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            addr:
+              description: 非必填
+              type: string
+            gender:
+              default: male
+              description: 默认值
+              enum:
+              - male
+              - female
+              example: male
+              type: string
+            id:
+              description: 有效范围值
+              example: 10
+              maximum: 10000
+              minimum: 1
+              type: integer
+            language:
+              description: 枚举
+              enum:
+              - golang
+              - java
+              - python
+              - typescript
+              - rust
+              type: string
+          required:
+          - id
+          - language
+          - gender
+          type: object
+      produces:
+      - application/json
+      responses:
+        default:
+          description: ""
+          schema:
+            properties:
+              code:
+                description: 1001-未登录<br>1002-无权限操作
+                example: 0
+                type: integer
+              data:
+                properties:
+                  message:
+                    type: string
+                type: object
+              msg:
+                description: business message
+                example: ok
+                type: string
+            type: object
+      schemes:
+      - https
+      security:
+      - apiKey: []
+      summary: hello
+      tags:
+      - 用户操作
+  /v1/user/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: name
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            addr:
+              description: 非必填
+              type: string
+            gender:
+              default: male
+              description: 默认值
+              enum:
+              - male
+              - female
+              example: male
+              type: string
+            id:
+              description: 有效范围值
+              example: 10
+              maximum: 10000
+              minimum: 1
+              type: integer
+            language:
+              description: 枚举
+              enum:
+              - golang
+              - java
+              - python
+              - typescript
+              - rust
+              type: string
+          required:
+          - id
+          - language
+          - gender
+          type: object
+      produces:
+      - application/json
+      responses:
+        default:
+          description: ""
+          schema:
+            properties:
+              code:
+                description: ' 1003-用不存在<br>1004-非法操作'
+                example: 0
+                type: integer
+              data:
+                properties:
+                  message:
+                    type: string
+                type: object
+              msg:
+                description: business message
+                example: ok
+                type: string
+            type: object
+      schemes:
+      - https
+      security:
+      - apiKey: []
+      summary: login
+      tags:
+      - 用户操作
+  /v1/user/logout:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: name
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            addr:
+              description: 非必填
+              type: string
+            gender:
+              default: male
+              description: 默认值
+              enum:
+              - male
+              - female
+              example: male
+              type: string
+            id:
+              description: 有效范围值
+              example: 10
+              maximum: 10000
+              minimum: 1
+              type: integer
+            language:
+              description: 枚举
+              enum:
+              - golang
+              - java
+              - python
+              - typescript
+              - rust
+              type: string
+          required:
+          - id
+          - language
+          - gender
+          type: object
+      produces:
+      - application/json
+      responses:
+        default:
+          description: ""
+          schema:
+            properties:
+              code:
+                description: 1001-未登录<br>1002-无权限操作
+                example: 0
+                type: integer
+              data:
+                properties:
+                  message:
+                    type: string
+                type: object
+              msg:
+                description: business message
+                example: ok
+                type: string
+            type: object
+      schemes:
+      - https
+      security:
+      - apiKey: []
+      summary: logout
+      tags:
+      - 用户操作
+produces:
+- application/json
+schemes:
+- https
+securityDefinitions:
+  apiKey:
+    in: header
+    name: x-api-key
+    type: apiKey
+  petstore_auth:
+    authorizationUrl: http://swagger.io/api/oauth/dialog
+    flow: implicit
+    scopes:
+      read:pets: read your pets
+      write:pets: modify pets in your account
+    type: oauth2
+swagger: "2.0"
+x-date: "2025-05-12 21:39:40"
+x-description: This is a goctl generated swagger file.
+x-github: https://github.com/zeromicro/go-zero
+x-go-zero-doc: https://go-zero.dev/
+x-goctl-version: 1.8.3

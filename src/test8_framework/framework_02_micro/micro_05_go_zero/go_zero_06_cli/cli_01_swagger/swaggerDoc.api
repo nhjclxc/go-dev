@@ -1,0 +1,114 @@
+syntax = "v1"
+
+info(
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+
+
+    // 基础信息配置
+    title: "演示 API"                        // 对应 swagger 中的标题
+    description: "演示 api 生成 swagger..."  // 对应 swagger 中的描述
+    version: "v1"                            // 对应 swagger 中的版本
+
+
+    // 服务条款与联系人
+    termsOfService: "https://github.com/zeromicro/go-zero"  // API服务条款URL
+    contactName: "keson.an"                                // 技术支持联系人姓名
+    contactURL: "https://github.com/zeromicro/go-zero"     // 联系人相关链接
+    contactEmail: "example@gmail.com"                      // 联系人邮箱
+
+
+    // 许可证信息
+    licenseName: "MIT"                                       // 许可证类型(如 MIT/Apache 2.0/GPL等)
+    licenseURL: "https://github.com/zeromicro/go-zero/blob/master/LICENSE"  // 许可证详情URL
+
+
+    // 协议与主机配置
+    consumes: "application/json"  // 默认请求内容类型，可配置多个用逗号分隔
+    produces: "application/json"  // 默认响应内容类型，可配置多个用逗号分隔
+    schemes: "https"              // 支持协议(http/https/ws/wss)，可配置多个
+    host: "localhost"           // API服务主机地址(不带协议头)
+    basePath: "/dev-api"               // API基础路径，所有接口都会添加此前缀
+
+
+    // 全局错误码描述定义
+    wrapCodeMsg: "true" // 注意：布尔值语法在 goctl 1.8.4 版本支持，老版本可写成 wrapCodeMsg: "true"
+    bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作"
+
+
+    // 自定义鉴权类型
+    // 通过 securityDefinitionsFromJson 定义多种鉴权方式，然后在 @server 中通过 authType 字段类声明该分组下的所有路由的鉴权方式。 api 鉴权 json 格式请参考 open api spec 标准说明，详情见 https://swagger.io/specification/v2/#security-definitions-object
+    securityDefinitionsFromJson: `{"apiKey":{"type":"apiKey","name":"x-api-key","in":"header"},"petstore_auth":{"type":"oauth2","authorizationUrl":"http://swagger.io/api/oauth/dialog","flow":"implicit","scopes":{"write:pets":"modify pets in your account","read:pets":"read your pets"}}}`
+
+
+    // 生成 definitions 格式
+    //如果你想对响应体或者 json 请求体生成为引用类型，即所有结构体都存放在 model 模型中，在使用到相关结构体时使用 ref 去关联，可以在 api info 中声明。 声明写法 useDefinitions: true， 写法示例：
+    useDefinitions: "true"
+)
+
+
+type (
+    PingReq {
+    }
+    HelloReq {
+                                                                                    // 这个名字是一个路径参数，如：/ping/ping/zhangsan，
+        Name string `path:"name"`
+
+                                                                                    // 参数控制
+        Id int `json:"id,range=[1:10000],example=10"`                               // 有效范围值
+        Language string `json:"language,options=golang|java|python|typescript|rust"`// 枚举
+        Gender string `json:"gender,default=male,options=male|female,example=male"` // 默认值
+        Addr string `json:"addr,optional"`                                          // 非必填
+    }
+)
+
+type (
+    PingResp {
+        Code int `json:"code,example=200"` // 响应体示例展示
+        Msg string `json:"msg,example=success"`
+    }
+    HelloResp {
+        Message string `json:"message"`
+    }
+)
+
+
+@server(
+    authType: apiKey // 声明/user/info 使用 apiKey 鉴权类型
+    tags: "用户操作"
+    prefix: /v1
+)
+    // 接口级别错误码描述定义
+service Swagger {
+    @doc(
+        // 接口级别业务错误码枚举描述，会覆盖全局的业务错误码，json 格式,key 为业务错误码，value 为该错误码的描述，
+        // 仅当 wrapCodeMsg 为 true 时生效
+        // 注意，如果声明了 useDefinitions 为 true 时，方法级别业务错误码不会生效，因为对于复用的结构体在多个方法下如果业务不一样，无法都兼顾生成。
+        bizCodeEnumDescription: " 1003-用不存在<br>1004-非法操作"
+    )
+    @handler login
+    post /user/login (HelloReq) returns (HelloResp)
+
+    @handler logout
+    post /user/logout (HelloReq) returns (HelloResp)
+
+    @handler hello
+    post /user/hello/:name (HelloReq) returns (HelloResp)
+}
+
+
+@server(
+    authType: apiKey
+    tags: "请求测试"
+    prefix: /ping
+)
+service Swagger {
+    @doc(
+        bizCodeEnumDescription: " 200-请求成果<br>404-未找到该路径"
+    )
+    @handler ping
+    post /ping (PingReq) returns (PingResp)
+}
+
+// goctl api swagger --api .\swaggerDoc.api --dir ./swaggerGen --filename swaggerDocFile --yaml
