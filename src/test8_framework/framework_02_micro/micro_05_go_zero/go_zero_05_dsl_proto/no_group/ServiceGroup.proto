@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+
+option go_package = "gen/qq";
+
+message LoginReq{}
+message LoginResp{}
+message UserInfoReq{}
+message UserInfoResp{}
+message UserInfoUpdateReq{}
+message UserInfoUpdateResp{}
+message UserListReq{}
+message UserListResp{}
+
+message UserRoleListReq{}
+message UserRoleListResp{}
+message UserRoleUpdateReq{}
+message UserRoleUpdateResp{}
+message UserRoleInfoReq{}
+message UserRoleInfoResp{}
+message UserRoleAddReq{}
+message UserRoleAddResp{}
+message UserRoleDeleteReq{}
+message UserRoleDeleteResp{}
+
+
+message UserClassListReq{}
+message UserClassListResp{}
+message UserClassUpdateReq{}
+message UserClassUpdateResp{}
+message UserClassInfoReq{}
+message UserClassInfoResp{}
+message UserClassAddReq{}
+message UserClassAddResp{}
+message UserClassDeleteReq{}
+message UserClassDeleteResp{}
+
+service UserService{
+  rpc Login (LoginReq) returns (LoginResp);
+  rpc UserInfo (UserInfoReq) returns (UserInfoResp);
+  rpc UserInfoUpdate (UserInfoUpdateReq) returns (UserInfoUpdateResp);
+  rpc UserList (UserListReq) returns (UserListResp);
+
+  rpc UserRoleList (UserRoleListReq) returns (UserRoleListResp);
+  rpc UserRoleUpdate (UserRoleUpdateReq) returns (UserRoleUpdateResp);
+  rpc UserRoleInfo (UserRoleInfoReq) returns (UserRoleInfoResp);
+  rpc UserRoleAdd (UserRoleAddReq) returns (UserRoleAddResp);
+  rpc UserRoleDelete (UserRoleDeleteReq) returns (UserRoleDeleteResp);
+
+  rpc UserClassList (UserClassListReq) returns (UserClassListResp);
+  rpc UserClassUpdate (UserClassUpdateReq) returns (UserClassUpdateResp);
+  rpc UserClassInfo (UserClassInfoReq) returns (UserClassInfoResp);
+  rpc UserClassAdd (UserClassAddReq) returns (UserClassAddResp);
+  rpc UserClassDelete (UserClassDeleteReq) returns (UserClassDeleteResp);
+}
+
+
+// goctl rpc protoc ServiceGroup.proto --go_out=. --go-grpc_out=. --zrpc_out=.
