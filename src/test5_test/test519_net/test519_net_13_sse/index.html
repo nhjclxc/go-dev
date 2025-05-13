@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE 示例</title>
+</head>
+<body>
+<h1>SSE 测试</h1>
+<div id="output"></div>
+
+<script>
+    const eventSource = new EventSource("http://localhost:8080/sse");
+
+    eventSource.onmessage = function(event) {
+        const div = document.getElementById("output");
+        div.innerHTML += "<p>" + event.data + "</p>";
+    };
+
+    eventSource.onerror = function(err) {
+        console.error("连接出错", err);
+        eventSource.close();
+    };
+</script>
+</body>
+</html>
