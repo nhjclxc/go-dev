@@ -1,0 +1,12 @@
+Host = "111.222.123.223"
+Port = 556677
+
+[Device.Face.Yufan]
+appKey = "tomltomlappKeyappKey"
+appSecret = "tomltomlappSecretappSecret"
+
+[Device.Face.Haik]
+baseUrl = "tomltomlhttps://www.abc.com"
+
+[Device.vehicle]
+palt = "tomltoml666z"

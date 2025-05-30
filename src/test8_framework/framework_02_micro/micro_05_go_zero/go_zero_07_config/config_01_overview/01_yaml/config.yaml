@@ -1,0 +1,12 @@
+Host: 111.222.123.223
+Port: 12345
+
+Device:
+  Face:
+    Yufan:
+      appKey: appKeyappKey
+      appSecret: appSecretappSecret
+    Haik:
+      baseUrl: https://www.abc.com
+  vehicle:
+    palt: 666z
