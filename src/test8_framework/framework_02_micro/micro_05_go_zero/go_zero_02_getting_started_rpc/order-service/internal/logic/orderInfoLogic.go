@@ -45,7 +45,7 @@ func (l *OrderInfoLogic) OrderInfo(req *types.OrderInfoReq) (resp *types.OrderIn
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("orderInfoLogic.OrderInfo.GetUserByName.userResp = %v \n", userResp)
+	fmt.Printf("\n\norderInfoLogic.OrderInfo.GetUserByName.userResp = %v \n\n", userResp)
 
 	resp = &types.OrderInfoResp{
 		OrderId: req.OrderId,

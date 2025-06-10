@@ -26,8 +26,9 @@ func main() {
 	//pwd := ""
 	//fixed := 5
 
-	// go build -o MixingPlant.exe MixingPlant.go
-	// MixingPlant.exe  -path=D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb -pwd= -fixed=5 -uuid=abc123 -env=0
+	// go build -o MixingPlant22.exe MixingPlant.go
+	// MixingPlant.exe  -path=D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb -pwd= -fixed=5 -uuid=abc123 -env=1
+	// rsrc -ico favicon.ico -o rsrc.syso
 
 	// 定义命令行参数
 	uuid := flag.String("uuid", "aaa111", "全局唯一uuid")
@@ -47,7 +48,7 @@ func main() {
 	fmt.Println("启动环境:", *env)
 
 
-	*path = `D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb`
+	//*path = `D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb`
 	dsn := fmt.Sprintf("Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=%s;PWD=%s;", *path, *pwd)
 
 
@@ -65,9 +66,9 @@ func main() {
 
 	domain := "https://127.0.0.1:8080"
 	if *env == 1 {
-		domain = "https://api-dev.xxx.com"
+		domain = "https://api-sc-dev.hkznkj.com"
 	} else if *env == 2 {
-		domain = "https://api.xxx.com"
+		domain = "https://api-sc.hkznkj.com"
 	}
 
 	for range ticker.C {
@@ -76,7 +77,7 @@ func main() {
 		now := time.Now()
 		oneMinuteAgo := now.Add(time.Second * -1 * time.Duration(*fixed))
 
-		fmt.Printf("查询时间段：start: " + oneMinuteAgo.String() + ", end: " + now.String())
+		fmt.Printf("查询时间段：start: " + oneMinuteAgo.String() + ", end: " + now.String() + "\n")
 
 		var resultsDosage []Dosage = queryDosage(db, now, oneMinuteAgo)
 
@@ -85,6 +86,8 @@ func main() {
 			if errdosage == nil {
 				uploadToServer(string(dosageBody), domain + "/device/mining/plant/dosage/" + *uuid)
 			}
+		} else {
+			fmt.Printf("Dosage 数据为空！\n")
 		}
 
 		var resultsPiece []Piece = queryPiece(db, now, oneMinuteAgo)
@@ -93,6 +96,8 @@ func main() {
 			if errpiece == nil {
 				uploadToServer(string(pieceBody), domain + "/device/mining/plant/piece/" + *uuid)
 			}
+		} else {
+			fmt.Printf("Piece 数据为空！\n")
 		}
 
 		var resultsProduce []Produce = queryProduce(db, now, oneMinuteAgo)
@@ -101,6 +106,8 @@ func main() {
 			if errproduce == nil {
 				uploadToServer(string(produceBody), domain + "/device/mining/plant/produce/" + *uuid)
 			}
+		} else {
+			fmt.Printf("Produce 数据为空！\n")
 		}
 	}
 }
@@ -161,18 +168,18 @@ func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce)
 		var p Produce
 		err = rows.Scan(
 			&p.ID, &p.Code, &p.DatTim, &p.Attribute, &p.Contract,
-			//&p.Customer,
-			//&p.ProjName, &p.ProjType, &p.ProjGrade, &p.ProjArea, &p.ProjAdr,
-			//&p.Distance, &p.ConsPos, &p.Pour, &p.Variety, &p.BetLev, &p.Filter,
-			//&p.Freeze, &p.Lands, &p.Cement, &p.Stone, &p.EnSize, &p.AddLiq,
-			//&p.Request, &p.Recipe, &p.MixLast, &p.MorRec, &p.Mete, &p.BegTim,
-			//&p.EndTim, &p.Attamper, &p.Data, &p.Flag, &p.Notes, &p.Vehicle,
-			//&p.Driver, &p.ProdTimB, &p.ProdTimE, &p.ProdMete, &p.MorMete,
-			//&p.ProdErr, &p.ProdCnt, &p.MorCnt, &p.TotVehs, &p.TotMete, &p.Qualitor,
-			//&p.Operator, &p.LeftTim, &p.ArriveTim, &p.ChkLands, &p.ChkTemp,
-			//&p.UnloadTim, &p.OverTim, &p.Acceptor, &p.Mark, &p.MISID,
+			&p.Customer,
+			&p.ProjName, &p.ProjType, &p.ProjGrade, &p.ProjArea, &p.ProjAdr,
+			&p.Distance, &p.ConsPos, &p.Pour, &p.Variety, &p.BetLev, &p.Filter,
+			&p.Freeze, &p.Lands, &p.Cement, &p.Stone, &p.EnSize, &p.AddLiq,
+			&p.Request, &p.Recipe, &p.MixLast, &p.MorRec, &p.Mete, &p.BegTim,
+			&p.EndTim, &p.Attamper, &p.Data, &p.Flag, &p.Notes, &p.Vehicle,
+			&p.Driver, &p.ProdTimB, &p.ProdTimE, &p.ProdMete, &p.MorMete,
+			&p.ProdErr, &p.ProdCnt, &p.MorCnt, &p.TotVehs, &p.TotMete, &p.Qualitor,
+			&p.Operator, &p.LeftTim, &p.ArriveTim, &p.ChkLands, &p.ChkTemp,
+			&p.UnloadTim, &p.OverTim, &p.Acceptor, &p.Mark, &p.MISID,
 			&p.Stamp,
-			//&p.Task, &p.Contacts, &p.ContTel, &p.Bend,
+			&p.Task, &p.Contacts, &p.ContTel, &p.Bend,
 		)
 
 		if err != nil {
@@ -206,8 +213,8 @@ func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
 		var piece Piece
 		err = rows.Scan(
 			&piece.ID,&piece.Produce,&piece.RecID,&piece.Recipe,&piece.Serial,
-			//&piece.Blender, &piece.DatTim,
-			//&piece.BldTim, &piece.PieAmnt, &piece.Lands, &piece.Temper, &piece.PieErr, &piece.Data, &piece.Flag,
+			&piece.Blender, &piece.DatTim,
+			&piece.BldTim, &piece.PieAmnt, &piece.Lands, &piece.Temper, &piece.PieErr, &piece.Data, &piece.Flag,
 			&piece.Stamp,
 		)
 
@@ -246,14 +253,14 @@ func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Dosage) {
 			&dosage.StorlD,
 			&dosage.Storage,
 			&dosage.MaterlD,
-			//&dosage.Material,
-			//&dosage.RecAmnt,
-			//&dosage.PlanAmnt,
-			//&dosage.FactAjnnt,
-			//&dosage.Fall,
-			//&dosage.FinTim,
-			//&dosage.Data,
-			//&dosage.Flag,
+			&dosage.Material,
+			&dosage.RecAmnt,
+			&dosage.PlanAmnt,
+			&dosage.FactAjnnt,
+			&dosage.Fall,
+			&dosage.FinTim,
+			&dosage.Data,
+			&dosage.Flag,
 			&dosage.Stamp,
 		)
 		if err != nil {

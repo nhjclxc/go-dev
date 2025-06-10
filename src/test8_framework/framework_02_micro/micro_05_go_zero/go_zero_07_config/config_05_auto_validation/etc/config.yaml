@@ -1,0 +1,5 @@
+Name: config_05_auto_validation
+MetricsUrl: 651.2.3.5
+Port: 8090
+Mode: test
+MaxUsers: 666

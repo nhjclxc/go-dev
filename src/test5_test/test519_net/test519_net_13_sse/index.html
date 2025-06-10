@@ -9,7 +9,7 @@
 <div id="output"></div>
 
 <script>
-    const eventSource = new EventSource("http://localhost:8080/sse");
+    let eventSource = new EventSource("http://localhost:8080/sse");
 
     eventSource.onmessage = function(event) {
         const div = document.getElementById("output");

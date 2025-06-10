@@ -1,0 +1,10 @@
+
+
+
+test文件夹是本项目专门用于测试接口的文件夹，类似于SpringBoot的test文件夹
+
+
+test文件夹里面的结构应当和`internal\handler`里面的一样
+
+
+orderInfoHandler.go

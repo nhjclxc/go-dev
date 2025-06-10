@@ -1,0 +1,9 @@
+Name: order-api
+Host: 0.0.0.0
+Port: 8899
+
+
+Middlewares:
+  Metrics: true
+#  Trace: true
+  Recover: true

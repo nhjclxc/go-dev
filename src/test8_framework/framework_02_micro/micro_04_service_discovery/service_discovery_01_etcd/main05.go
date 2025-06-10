@@ -11,7 +11,7 @@ import (
 
 // 基于etcd实现分布式锁
 // go.etcd.io/etcd/clientv3/concurrency在etcd之上实现并发操作，如分布式锁、屏障和选举。
-func main() {
+func main05() {
 
 	// 基于etcd实现的分布式锁示例
 

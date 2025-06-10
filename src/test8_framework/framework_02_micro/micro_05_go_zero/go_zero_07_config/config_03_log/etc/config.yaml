@@ -1,0 +1,10 @@
+Name: config_02_service
+MetricsUrl: 0.0.0.0
+Port: 8090
+log:
+  serviceName: my-service
+  level: info
+  mode: console
+  encoding: plain
+  path: logs
+  keepDays: 7

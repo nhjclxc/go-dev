@@ -1,0 +1,55 @@
+// api语法版本
+syntax = "v2"
+
+info (
+	author: "nhjclxc"
+	date:   "2025-06-04"
+	desc:   "Http Server"
+)
+
+type (
+	UserInfoReq {
+		UserId   int64  `form:"userId"` //用户id
+		Username string `form:"username"` //用户名
+		Name     string `form:"name"` //名字
+	}
+	UserInfoResp {
+		UserId   int64  `json:"userId"` //用户id
+		Username string `json:"username"` //用户名
+		Name     string `json:"name"` //名字
+		Address  string `json:"address"` //地址
+		Age      int    `json:"age"` //年龄
+	}
+	InsertUserInfoReq {
+		Username string `json:"username"` //用户名
+		Name     string `json:"name"` //名字
+		Address  string `json:"address"` //地址
+		Age      int    `json:"age"` //年龄
+	}
+)
+
+//定义了一个服务叫 UserApi
+service UserApi {
+	//获取接口的名字叫获取用户信息
+	@doc "获取用户信息"
+	//对应的hanlder即controller是userInfo
+	@handler userInfo
+	//请求方法是post，路径是/user/info，参数是UserInfoReq，返回值是UserInfoResp
+	get /user/info (UserInfoReq) returns (UserInfoResp)
+
+	@doc "新增用户"
+	@handler InsertUserInfo
+	post /user/info (InsertUserInfoReq)
+}
+
+// 更多关于 api 文件编写的规范，请看：https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md
+//api语法结构
+// syntax语法声明
+// import语法块
+// info语法块
+// type语法块
+// service语法块
+// 隐藏通道
+//在以上语法结构中，各个语法块从语法上来说，按照语法块为单位，可以在.api文件中任意位置声明， 但是为了提高阅读效率，我们建议按照以上顺序进行声明，因为在将来可能会通过严格模式来控制语法块的顺序。
+// goctl api go -api user.api --dir ../ --style goZero
+// 官方参考：https://go-zero.dev/docs/tutorials/grpc/server/example

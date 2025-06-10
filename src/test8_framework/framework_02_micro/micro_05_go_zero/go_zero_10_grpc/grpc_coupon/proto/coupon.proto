@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "./grpc/coupon";
+
+message GrpcGetCouponReq {
+  string couponId = 1;
+}
+
+message GrpcGetCouponResp {
+  string couponId = 1;
+  string couponName = 2;
+  int32 deAmount = 3;
+}
+
+service GrpcCouponService {
+  rpc GrpcGetCoupon(GrpcGetCouponReq) returns (GrpcGetCouponResp);
+}
+
+
+// goctl rpc protoc coupon.proto --go_out=../ --go-grpc_out=../ --zrpc_out=../

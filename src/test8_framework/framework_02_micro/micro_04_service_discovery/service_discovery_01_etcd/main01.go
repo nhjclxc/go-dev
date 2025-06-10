@@ -14,7 +14,7 @@ import (
 // https://pkg.go.dev/go.etcd.io/etcd/client/v3?utm_source=chatgpt.com
 
 // go get go.etcd.io/etcd/clientv3
-func main01() {
+func main() {
 
 
 	// etcd client put/get demo
@@ -48,6 +48,18 @@ func main01() {
 		return
 	}
 	for _, ev := range resp.Kvs {
+		fmt.Printf("%s:%s\n", ev.Key, ev.Value)
+	}
+
+	// get
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	resp2, err := cli.Get(ctx, "user.rpc")
+	cancel()
+	if err != nil {
+		fmt.Printf("get from etcd failed, err:%v\n", err)
+		return
+	}
+	for _, ev := range resp2.Kvs {
 		fmt.Printf("%s:%s\n", ev.Key, ev.Value)
 	}
 }

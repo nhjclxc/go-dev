@@ -1,0 +1,45 @@
+RestConf:
+  Name: order-api
+  Host: 0.0.0.0
+  Port: 9092
+  Mode: dev
+
+
+# 当前服务（user）的 gRPC 服务端配置
+RpcConf:
+  Name: order.rpc
+  ListenOn: 0.0.0.0:9192  # grpc服务地址
+  Etcd:  # 注册到注册中心etcd
+    Hosts:
+      - 39.106.59.225:2379
+    Key: order.rpc
+  NonBlock: true
+  # 查看etcd服务是否注册成功
+  # docker exec etcd etcdctl --endpoints=39.106.59.225:2379 get order.rpc --prefix
+
+
+# 当前服务作为 gRPC 客户端，去调用 coupon.rpc（使用 etcd 发现）
+RpcCouponConf:
+  Etcd:
+    Hosts:
+      - 39.106.59.225:2379
+    Key: coupon.rpc
+  Timeout: 3000
+
+# 当前服务作为 gRPC 客户端，去调用 user.rpc（使用 etcd 发现）
+RpcUserConf:
+  Etcd:
+    Hosts:
+      - 39.106.59.225:2379
+    Key: user.rpc
+  Timeout: 3000
+
+
+
+
+
+#Redis:
+#  Host: 39.106.59.225:6379
+#  Type: node  # 也可以是 cluster
+#  Pass: root123
+#  Key: user:rpc

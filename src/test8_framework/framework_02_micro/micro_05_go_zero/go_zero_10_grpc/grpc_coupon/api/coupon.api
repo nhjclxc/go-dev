@@ -1,0 +1,39 @@
+// api语法版本
+syntax = "v2"
+
+info (
+	author: "nhjclxc"
+	date:   "2025-06-04"
+	desc:   "Http coupon Server"
+)
+
+type (
+	GetCouponReq {
+		CouponId   int64  `form:"couponId"` //优惠劵id
+		CouponName string `form:"couponName"` //优惠劵名称
+	}
+	GetCouponResp {
+		CouponId   int64  `json:"couponId"` //优惠劵id
+		CouponName string `json:"couponName"` //优惠劵名称
+		DeAmount   int    `json:"deAmount"` //抵扣金额
+	}
+	InsertCouponReq {
+		CouponId   int64  `json:"couponId"` //优惠劵id
+		CouponName string `json:"couponName"` //优惠劵名称
+		DeAmount   int    `json:"deAmount"` //抵扣金额
+		Remark     string `json:"remark"` //备注
+	}
+)
+
+//定义了一个服务叫 Coupon
+service Coupon {
+	@doc "获取优惠劵信息"
+	@handler GetCoupon
+	get /coupon/info (GetCouponReq) returns (GetCouponResp)
+
+	@doc "新增优惠劵"
+	@handler InsertCoupon
+	post /coupon/info (InsertCouponReq)
+}
+
+// goctl api go -api coupon.api --dir ../ --style goZero

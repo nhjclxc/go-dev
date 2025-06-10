@@ -27,7 +27,7 @@ func NewGetUserByNameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 func (l *GetUserByNameLogic) GetUserByName(in *user.UserReq) (*user.UserResp, error) {
 	// todo: add your logic here and delete this line
 
-	fmt.Println("GetUserByName.rpc执行到了吗？？？", in.GetUserId())
+	fmt.Println("\n\nGetUserByName.rpc执行到了吗？？？\n\n", in.GetUserId())
 
 	return &user.UserResp{
 		UserId: in.UserId,

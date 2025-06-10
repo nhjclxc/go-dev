@@ -1,0 +1,21 @@
+
+RestConf:
+  Name: user-api
+  Host: 0.0.0.0
+  Port: 9091
+  Mode: dev
+
+
+# 当前服务（user）的 gRPC 服务端配置
+RpcConf:
+  Name: user.rpc
+  ListenOn: 0.0.0.0:9191  # grpc服务地址
+  Etcd:  # 注册到注册中心etcd
+    Hosts:
+    - 39.106.59.225:2379
+    Key: user.rpc
+  NonBlock: true
+  # 查看etcd服务是否注册成功
+  # docker exec etcd etcdctl --endpoints=39.106.59.225:2379 get user.rpc --prefix
+
+

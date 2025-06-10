@@ -1,0 +1,11 @@
+# rest.yaml
+name: config_02_service
+host: 0.0.0.0
+port: 8080
+certFile: "/etc/ssl/certs/server.crt"
+keyFile: "/etc/ssl/private/server.key"
+verbose: true
+maxConns: 15000
+maxBytes: 2097152  # 2MB
+timeout: 5000      # ms
+cpuThreshold: 750

@@ -3,6 +3,9 @@ Host: 0.0.0.0
 Port: 8081
 
 UserService:
+  Name: order-service
+  Endpoints:
+    - 127.0.0.1:8080
   Etcd:
     Hosts:
       - 39.106.59.225:2379
