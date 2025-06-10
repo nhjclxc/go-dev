@@ -3,9 +3,9 @@ package logic
 import (
 	"context"
 	"fmt"
+	"grpc_order/grpc/coupon"
 	"strconv"
 
-	"grpc_order/grpc/coupon"
 	"grpc_order/grpc/user"
 	"grpc_order/internal/svc"
 	"grpc_order/internal/types"

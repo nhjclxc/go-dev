@@ -3,7 +3,6 @@ package logic
 import (
 	"context"
 	"fmt"
-	"grpc_coupon/grpc/order"
 	"grpc_coupon/grpc/user"
 	"grpc_coupon/internal/svc"
 	"grpc_coupon/internal/types"
@@ -35,13 +34,6 @@ func (l *GetCouponLogic) GetCoupon(req *types.GetCouponReq) (resp *types.GetCoup
 
 
 	// 调用微服务 grpc
-	gRpcOrderReq := order.GrpcGetOrderReq{OrderId: strconv.FormatInt(req.CouponId, 10)}
-	gRpcOrderResp, err := l.svcCtx.GrpcOrderService.GrpcGetOrder(l.ctx, &gRpcOrderReq)
-	if err != nil {
-		return nil, err
-	}
-	fmt.Printf("\n\n GRPC调用 order 返回成功：UserInfo.OrderGrpcService.GetGrpcOrderByName = %v \n\n", gRpcOrderResp)
-
 	userReq := user.GrpcGetUserReq{UserId: strconv.FormatInt(req.CouponId, 10)}
 	getUserByNameResp, err := l.svcCtx.GrpcUserService.GrpcGetUser(l.ctx, &userReq)
 	if err != nil {

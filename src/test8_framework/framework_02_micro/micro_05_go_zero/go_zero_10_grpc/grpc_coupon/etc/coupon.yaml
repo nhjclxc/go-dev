@@ -17,15 +17,6 @@ RpcConf:
   # 查看etcd服务是否注册成功
   # docker exec etcd etcdctl --endpoints=39.106.59.225:2379 get coupon.rpc --prefix
 
-
-# 当前服务作为 gRPC 客户端，去调用 order.rpc（使用 etcd 发现）
-RpcOrderConf:
-  Etcd:
-    Hosts:
-      - 39.106.59.225:2379
-    Key: order.rpc
-  Timeout: 3000
-
 # 当前服务作为 gRPC 客户端，去调用 order.rpc（使用 etcd 发现）
 RpcUserConf:
   Etcd:
