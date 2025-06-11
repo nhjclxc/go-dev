@@ -1,0 +1,12 @@
+Name: MqttApi
+Host: 0.0.0.0
+Port: 8888
+
+MqttConf:
+  Broker: "tcp://127.0.0.1:1883"
+  ClientId: "gozero-mqtt-client"
+  Username: "admin"
+  Password: "public"
+  SubTopics:
+    - "device/status"
+    - "sensor/data"
