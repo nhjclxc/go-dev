@@ -1,0 +1,7 @@
+Name: RabbitmqApi
+Host: 0.0.0.0
+Port: 8888
+
+
+RabbitMQConf:
+  Url: "amqp://admin:admin123@39.106.59.225:5672/gorabbitmq"

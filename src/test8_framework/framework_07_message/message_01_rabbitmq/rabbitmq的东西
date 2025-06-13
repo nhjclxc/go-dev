@@ -12,3 +12,15 @@ https://www.bookstack.cn/read/topgoer/95df784ed17facc4.md
 
 
 https://www.topgoer.cn/docs/golang/chapter10-6-1
+
+
+
+
+注意：golang整合rabbitmq使用github.com/rabbitmq/amqp091-go，
+
+| 名称                       | 地址                                                   | 状态           | 是否推荐              | 特点                                       |
+| ------------------------ | ---------------------------------------------------- | ------------ | ----------------- | ---------------------------------------- |
+| **streadway/amqp**       | [🔗 GitHub](https://github.com/streadway/amqp)       | **已归档，不再维护** | ⚠️ **不推荐新项目使用**   | 最早、使用最广泛，稳定但已停止维护。                       |
+| **rabbitmq/amqp091-go**  | [🔗 GitHub](https://github.com/rabbitmq/amqp091-go)  | ✅ 官方维护       | ✅ **推荐**          | RabbitMQ 官方维护的 Go 客户端，兼容 streadway/amqp。 |
+| **rabbitmq/amqp10-go**   | [🔗 GitHub](https://github.com/rabbitmq/amqp10-go)   | ✅ 官方维护       | ✅ 适用于 AMQP 1.0 场景 | 支持 AMQP 1.0（RabbitMQ 默认是 0.9.1），不适合普通场景。 |
+| **wagslane/go-rabbitmq** | [🔗 GitHub](https://github.com/wagslane/go-rabbitmq) | 社区维护         | ✅ 用于更高级封装         | 基于 amqp091-go，提供简化操作、自动重连、重试等特性。         |
