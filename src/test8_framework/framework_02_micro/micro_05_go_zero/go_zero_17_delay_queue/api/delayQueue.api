@@ -1,0 +1,27 @@
+// api语法版本
+syntax = "v2"
+
+info (
+	author: "nhjclxc"
+	date:   "2025-06-11"
+	desc:   "DelayQueue Server"
+)
+
+type (
+	DelayQueueReq {
+		Queue    string `form:"queue"`
+		Router   string `form:"router"`
+		Exchange string `form:"exchange"`
+		Msg      string `form:"msg"`
+	}
+)
+
+//定义了一个服务叫 delayQueue
+service DelayQueue {
+	@doc "获取用户信息"
+	@handler DelayQueue
+	get /delayQueue/api (DelayQueueReq)
+}
+
+// 更多关于 api 文件编写的规范，请看：https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md
+// goctl api go -api delayQueue.api --dir ../ --style goZero

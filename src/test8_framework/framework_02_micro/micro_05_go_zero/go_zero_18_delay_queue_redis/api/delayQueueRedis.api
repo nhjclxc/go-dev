@@ -1,0 +1,27 @@
+// api语法版本
+syntax = "v2"
+
+info (
+	author: "nhjclxc"
+	date:   "2025-06-11"
+	desc:   "DelayQueueRedis Server"
+)
+
+type (
+	DelayQueueRedisReq {
+		Queue    string `form:"queue"`
+		Router   string `form:"router"`
+		Exchange string `form:"exchange"`
+		Msg      string `form:"msg"`
+	}
+)
+
+//定义了一个服务叫 delayQueueRedis
+service DelayQueueRedis {
+	@doc "获取用户信息"
+	@handler DelayQueueRedis
+	get /delayQueueRedis/api (DelayQueueRedisReq)
+}
+
+// 更多关于 api 文件编写的规范，请看：https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md
+// goctl api go -api delayQueueRedis.api --dir ../ --style goZero

@@ -1,5 +1,8 @@
 
 # docker 按照 rabbitmq
+
+https://docker.aityp.com/
+
 ```shell
 docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/rabbitmq:4.1.0-management
  

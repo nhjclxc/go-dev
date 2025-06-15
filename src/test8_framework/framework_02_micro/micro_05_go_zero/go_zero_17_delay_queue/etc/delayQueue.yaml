@@ -1,0 +1,22 @@
+Name: DelayQueue
+Host: 0.0.0.0
+Port: 8888
+
+DqConf:
+  Beanstalks:
+    - Endpoint: 127.0.0.1:7771
+      Tube: tube1
+    - Endpoint: 127.0.0.1:7772
+      Tube: tube2
+  Redis:
+    Host: 39.106.59.225:6379
+    Type: node
+    Pass: "root123"
+    Tls: false
+
+Redis:
+  Host: 39.106.59.225:6379
+  Type: node
+  Pass: "root123"
+  Tls: false
+

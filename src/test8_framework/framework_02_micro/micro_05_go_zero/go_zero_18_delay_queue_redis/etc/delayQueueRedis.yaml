@@ -1,0 +1,10 @@
+Name: DelayQueueRedis
+Host: 0.0.0.0
+Port: 8888
+
+
+Redis:
+  Host: 39.106.59.225:6379
+  Type: node
+  Pass: "root123"
+  Tls: false
