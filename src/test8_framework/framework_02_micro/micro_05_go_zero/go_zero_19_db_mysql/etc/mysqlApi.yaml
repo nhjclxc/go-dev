@@ -1,0 +1,7 @@
+Name: MysqlApi
+Host: 0.0.0.0
+Port: 8090
+
+
+Mysql:
+  DataSource: root:root123@tcp(127.0.0.1:3306)/test?charset=utf8&parseTime=True

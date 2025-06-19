@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func main02() {
+func main() {
 
 	/*
 		编写一个网页服务器监听端口 8080，有如下处理函数：
@@ -16,7 +16,7 @@ func main02() {
 
 	http.HandleFunc("/hello/", helloServer)
 	http.HandleFunc("/shouthello/", shouthelloServer)
-	err := http.ListenAndServe("localhost:8080", nil)
+	err := http.ListenAndServe("39.106.59.225:8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err.Error())
 	}

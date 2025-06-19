@@ -1,0 +1,31 @@
+// api语法版本
+syntax = "v2"
+
+info (
+	author: "nhjclxc"
+	date:   "2025-06-11"
+	desc:   "redisApi Server"
+)
+
+type (
+	RedisApiReq {
+		TaskId   int64  `form:"taskId,optional"` //用户id
+		TaskName string `form:"taskName,optional"` //用户名
+	}
+	RedisApiResp {
+		TaskId   int64  `json:"taskId"` //用户id
+		TaskName string `json:"taskName"` //用户名
+		Address  string `json:"address"` //地址
+		Age      int    `json:"age"` //年龄
+	}
+)
+
+//定义了一个服务叫 RedisApi
+service RedisApi {
+	@doc "获取用户信息"
+	@handler redisApi
+	get /redis/get (RedisApiReq) returns (RedisApiResp)
+}
+
+// 更多关于 api 文件编写的规范，请看：https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md
+// goctl api go -api redisApi.api --dir ../ --style goZero

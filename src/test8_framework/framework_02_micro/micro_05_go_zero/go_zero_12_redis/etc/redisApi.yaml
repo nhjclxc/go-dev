@@ -1,8 +1,0 @@
-Name: zz
-Host: 0.0.0.0
-Port: 8888
-
-Redis:
-  Host: "127.0.0.1:6379"
-  Type: node        # 单节点模式：node，集群模式：cluster
-  Pass: ""          # Redis 密码，空字符串表示无密码

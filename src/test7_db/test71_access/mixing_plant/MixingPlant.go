@@ -10,6 +10,8 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -26,26 +28,50 @@ func main() {
 	//pwd := ""
 	//fixed := 5
 
-	// go build -o MixingPlant22.exe MixingPlant.go
-	// MixingPlant.exe  -path=D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb -pwd= -fixed=5 -uuid=abc123 -env=1
 	// rsrc -ico favicon.ico -o rsrc.syso
+	// go build -ldflags="-H windowsgui" -o MixingPlant.exe
+	// MixingPlant.exe -h
+	// MixingPlant.exe -uuid=BSBHZ01 -path=./BCS7.2.mdb -pwd=BCS7.2_SDBS -env=0 -fixed=5
+
+
+	// go build -o MixingPlant.exe MixingPlant.go
+
+
 
 	// 定义命令行参数
-	uuid := flag.String("uuid", "aaa111", "全局唯一uuid")
-	path := flag.String("path", "Database1.accdb", "Access 数据库路径")
-	pwd := flag.String("pwd", "", "Access 数据库密码")
-	fixed := flag.Int("fixed", 60, "固定参数（整数）")
-	env := flag.Int("env", 0, "启动环境")
+	uuid := flag.String("uuid", "BSBHZ01", "全局唯一uuid")
+	path := flag.String("path", "./BCS7.2.mdb", "Access 数据库路径")
+	pwd := flag.String("pwd", "BCS7.2_SDBS", "Access 数据库密码")
+	fixed := flag.Int("fixed", 60, "数据推送间隔，默认60秒")
+	env := flag.Int("env", 2, "启动环境，默认2. 0=local;1=dev;2=prod;")
+
+	// 自定义帮助信息
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "用法: %s [选项]\n\n", os.Args[0])
+		fmt.Fprintln(os.Stderr, "参数说明：")
+		fmt.Fprintln(os.Stderr, "  -uuid   string    全局唯一uuid")
+		fmt.Fprintln(os.Stderr, "  -path   string    Access 数据库路径")
+		fmt.Fprintln(os.Stderr, "  -pwd    string    Access 数据库密码")
+		fmt.Fprintln(os.Stderr, "  -fixed  int       数据推送间隔，默认60秒")
+		fmt.Fprintln(os.Stderr, "  -env    int       启动环境，默认2。0=local；1=dev；2=prod")
+		fmt.Fprintln(os.Stderr, "  -h               显示帮助信息")
+	}
+
+	flag.Parse()
 
 	// 解析命令行参数
 	flag.Parse()
 
 	// 打印读取结果
-	fmt.Println("全局唯一uuid:", *uuid)
-	fmt.Println("数据库路径:", *path)
-	fmt.Println("数据库密码:", *pwd)
-	fmt.Println("固定参数 fixed:", *fixed)
-	fmt.Println("启动环境:", *env)
+	fmt.Println("运行参数如下:")
+	fmt.Println("ㅤㅤㅤ全局唯一uuid:", *uuid)
+	fmt.Println("ㅤㅤㅤ数据库路径:", *path)
+	fmt.Println("ㅤㅤㅤ数据库密码:", *pwd)
+	fmt.Println("ㅤㅤㅤ固定参数 fixed:", *fixed)
+	fmt.Println("ㅤㅤㅤ启动环境:", *env)
+
+	//*path = "D:\\code\\go\\go-dev\\src\\test7_db\\test71_access\\mixing_plant\\BCS7.2.mdb"
+	//*uuid = "BSBHZ01"
 
 
 	//*path = `D:\code\go\go-dev\src\test7_db\test71_access\Database1.accdb`
@@ -71,58 +97,68 @@ func main() {
 		domain = "https://api-sc.hkznkj.com"
 	}
 
+	// 立即执行一次
+	doTask(fixed, db, domain, uuid)
+
+	// 按固定间隔执行任务
 	for range ticker.C {
+		doTask(fixed, db, domain, uuid)
+	}
+}
 
-		//// 获取当前时间和一分钟前时间
-		now := time.Now()
-		oneMinuteAgo := now.Add(time.Second * -1 * time.Duration(*fixed))
+func doTask(fixed *int, db *sql.DB, domain string, uuid *string) {
+	//// 获取当前时间和一分钟前时间
+	now := time.Now()
+	oneMinuteAgo := now.Add(time.Second * time.Duration(*fixed) * -1)
 
-		fmt.Printf("查询时间段：start: " + oneMinuteAgo.String() + ", end: " + now.String() + "\n")
+	fmt.Printf("查询时间段：start: " + oneMinuteAgo.String() + ", end: " + now.String() + "\n")
 
-		var resultsDosage []Dosage = queryDosage(db, now, oneMinuteAgo)
-
-		if resultsDosage != nil && len(resultsDosage) > 0 {
-			dosageBody, errdosage := json.Marshal(resultsDosage)
-			if errdosage == nil {
-				uploadToServer(string(dosageBody), domain + "/device/mining/plant/dosage/" + *uuid)
-			}
-		} else {
-			fmt.Printf("Dosage 数据为空！\n")
+	var resultsDosage []Dosage = queryDosage(db, now, oneMinuteAgo)
+	if resultsDosage != nil && len(resultsDosage) > 0 {
+		dosageBody, errdosage := json.Marshal(resultsDosage)
+		if errdosage == nil {
+			uploadToServer(string(dosageBody), domain+"/device/mining/plant/dosage/"+*uuid, len(resultsDosage))
 		}
+	} else {
+		fmt.Printf("Dosage 数据为空！\n")
+	}
 
-		var resultsPiece []Piece = queryPiece(db, now, oneMinuteAgo)
-		if resultsPiece != nil && len(resultsPiece) > 0 {
-			pieceBody, errpiece := json.Marshal(resultsPiece)
-			if errpiece == nil {
-				uploadToServer(string(pieceBody), domain + "/device/mining/plant/piece/" + *uuid)
-			}
-		} else {
-			fmt.Printf("Piece 数据为空！\n")
+	var resultsPiece []Piece = queryPiece(db, now, oneMinuteAgo)
+	if resultsPiece != nil && len(resultsPiece) > 0 {
+		pieceBody, errpiece := json.Marshal(resultsPiece)
+		if errpiece == nil {
+			uploadToServer(string(pieceBody), domain+"/device/mining/plant/piece/"+*uuid, len(resultsPiece))
 		}
+	} else {
+		fmt.Printf("Piece 数据为空！\n")
+	}
 
-		var resultsProduce []Produce = queryProduce(db, now, oneMinuteAgo)
-		if resultsProduce != nil && len(resultsProduce) > 0 {
-			produceBody, errproduce := json.Marshal(resultsProduce)
-			if errproduce == nil {
-				uploadToServer(string(produceBody), domain + "/device/mining/plant/produce/" + *uuid)
-			}
-		} else {
-			fmt.Printf("Produce 数据为空！\n")
+	var resultsProduce []Produce = queryProduce(db, now, oneMinuteAgo)
+	if resultsProduce != nil && len(resultsProduce) > 0 {
+		produceBody, errproduce := json.Marshal(resultsProduce)
+		if errproduce == nil {
+			uploadToServer(string(produceBody), domain+"/device/mining/plant/produce/"+*uuid, len(resultsProduce))
 		}
+	} else {
+		fmt.Printf("Produce 数据为空！\n")
 	}
 }
 
 
-func uploadToServer(body, url string) {
+func uploadToServer(body, url string, dataSize int) {
 
-	fmt.Printf("url = %s, request = %s. \n", url, body)
+	fmt.Printf("url = %s, request = %s, size = %d. \n", url, "body", dataSize)
+
+	if dataSize <= 0 {
+		return
+	}
 
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书校验
 	}
 	client := &http.Client{Transport: tr}
 
-	resp, err := client.Post(url, "application/json", strings.NewReader(string(body)))
+	resp, err := client.Post(url, "application/json", strings.NewReader(body))
 	if err != nil {
 		fmt.Printf(err.Error())
 		return
@@ -152,9 +188,19 @@ func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce)
 
 
 	query := fmt.Sprintf(`
-		SELECT * FROM Produce  WHERE Stamp BETWEEN ? AND ?
+		SELECT 
+		    ID, Code, DatTim, Attribute, Contract, Customer, ProjName, ProjType, ProjGrade, ProjArea, 
+			ProjAdr, Distance, ConsPos, Pour, Variety, BetLev, Filter, Freeze, Lands, Cement, Stone, BnSize, 
+			AddLiq, Request, Recipe, MixLast, MorRec, Mete, BegTim, EndTim, Attamper, Data, Flag, Notes, 
+			Vehicle, Driver, ProdTimB, ProdTimE, ProdMete, MorMete, ProdErr, ProdCnt, MorCnt, TotVehs, 
+			TotMete, Qualitor, Operator, LeftTim, ArriveTim, ChkLands, ChkTemp, UnloadTim, OverTim, 
+			Acceptor, Mark, MISID, Stamp, Task, Contacts, ContTel, Bend
+		FROM Produce
+		WHERE Stamp BETWEEN ? AND ?
 	`)
+	//SELECT * FROM Produce  WHERE Stamp BETWEEN ? AND ?
 
+	//rows, err := db.Query(query)
 	rows, err := db.Query(query, now, oneMinuteAgo)
 	if err != nil {
 		log.Println("查询失败:", err)
@@ -182,6 +228,17 @@ func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce)
 			&p.Task, &p.Contacts, &p.ContTel, &p.Bend,
 		)
 
+		p.CreateTime = fromOADate(p.Stamp)
+		p.DatTim = fromOADate(p.DatTim)
+		p.BegTim = fromOADate(p.BegTim)
+		p.EndTim = fromOADate(p.EndTim)
+		p.ProdTimB = fromOADate(p.ProdTimB)
+		p.ProdTimE = fromOADate(p.ProdTimE)
+		p.LeftTim = fromOADate(p.LeftTim)
+		p.ArriveTim = fromOADate(p.ArriveTim)
+		p.UnloadTim = fromOADate(p.UnloadTim)
+		p.OverTim = fromOADate(p.OverTim)
+
 		if err != nil {
 			log.Println("解析数据失败:", err)
 			continue
@@ -196,10 +253,15 @@ func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce)
 func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
 
 	query := fmt.Sprintf(`
-		SELECT * FROM Piece WHERE Stamp BETWEEN ? AND ?
+		SELECT 
+		    ID, Produce, RecID, Recipe, Serial, Blender, DatTim, BldTim, PieAmnt, Lands, Temper, PieErr, Data, Flag, Stamp, BldDrOpenTim
+		FROM Piece
+		WHERE Stamp BETWEEN ? AND ?
 	`)
 
+	//SELECT * FROM Piece WHERE Stamp BETWEEN ? AND ?
 
+	//rows, err := db.Query(query)
 	rows, err := db.Query(query, now, oneMinuteAgo)
 	if err != nil {
 		log.Println("查询失败:", err)
@@ -215,9 +277,10 @@ func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
 			&piece.ID,&piece.Produce,&piece.RecID,&piece.Recipe,&piece.Serial,
 			&piece.Blender, &piece.DatTim,
 			&piece.BldTim, &piece.PieAmnt, &piece.Lands, &piece.Temper, &piece.PieErr, &piece.Data, &piece.Flag,
-			&piece.Stamp,
+			&piece.Stamp,&piece.BldDrOpenTim,
 		)
 
+		piece.CreateTime = fromOADate(piece.Stamp)
 		if err != nil {
 			log.Println("解析数据失败:", err)
 			continue
@@ -233,9 +296,14 @@ func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Dosage) {
 
 
 	query := fmt.Sprintf(`
-		SELECT * FROM Dosage WHERE Stamp BETWEEN ? AND ?
+		SELECT 
+		   ID, Piece, StorID, Storage, MaterID, Material, Rate, RecAmnt, PlanAmnt, FactAmnt, Fall, FinTim, Data, Flag, Stamp, CRC, Mask
+		FROM Dosage 
+		WHERE Stamp BETWEEN ? AND ?
 	`)
+	//SELECT * FROM Dosage WHERE Stamp BETWEEN ? AND ?
 
+	//rows, err := db.Query(query)
 	rows, err := db.Query(query, now, oneMinuteAgo)
 	if err != nil {
 		log.Println("查询失败:", err)
@@ -262,7 +330,12 @@ func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Dosage) {
 			&dosage.Data,
 			&dosage.Flag,
 			&dosage.Stamp,
+			&dosage.Rate,
+			&dosage.CRC,
+			&dosage.Mask,
 		)
+		dosage.FinTim = fromOADate(dosage.FinTim)
+		dosage.CreateTime = fromOADate(dosage.Data)
 		if err != nil {
 			log.Println("解析数据失败:", err)
 			continue
@@ -274,13 +347,38 @@ func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Dosage) {
 }
 
 
+var nowTime = time.Now()
 
+func fromOADate(oa string) string {
+	const OABase = "1899-12-30T00:00:00Z"
+	baseTime, err := time.Parse(time.RFC3339, OABase)
+	if err != nil {
+		baseTime = nowTime
+	}
+
+	f, err := strconv.ParseFloat(oa, 64)
+	if err != nil {
+		baseTime = nowTime
+	}
+
+	seconds := f * 24 * 60 * 60
+	t := baseTime.Add(time.Duration(seconds * float64(time.Second)))
+
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+	t = t.In(loc)
+
+	if t.Before(time.Date(2000, 1, 1, 0, 0, 0, 0, loc)) {
+		t = nowTime
+	}
+
+	return t.Format("2006-01-02 15:04:05")
+}
 
 
 
 // 派车记录表
 type Produce struct {
-	ID        int     `json:"id"`         // 主键
+	ID        string     `json:"id"`         // 主键
 	Code      string  `json:"code"`       // 任务单编号
 	DatTim    string  `json:"datTim"`     // 创建日期
 	Attribute string  `json:"attribute"`  // 任务性质
@@ -343,6 +441,7 @@ type Produce struct {
 	Contacts   string  `json:"contacts"`   // 联系人
 	ContTel    string  `json:"contTel"`    // 联系电话
 	Bend       string  `json:"bend"`       // 弯沉
+	CreateTime     string  `json:"createTime"`
 }
 
 // 盘次记录表
@@ -362,6 +461,8 @@ type Piece struct {
 	Data     string  `json:"data"`      // 附加数据
 	Flag     string  `json:"flag"`      // 标识
 	Stamp    string  `json:"stamp"`     // 更新时间
+	BldDrOpenTim    string  `json:"bldDrOpenTim"`
+	CreateTime     string  `json:"createTime"`
 }
 
 
@@ -381,5 +482,9 @@ type Dosage struct {
 	Data      string  `json:"data"`       // 附加数据
 	Flag      string  `json:"flag"`       // 标识
 	Stamp     string  `json:"stamp"`      // 更新时间
+	Rate     string  `json:"rate"`
+	CRC     string  `json:"crc"`
+	Mask     string  `json:"mask"`
+	CreateTime     string  `json:"createTime"`
 }
 

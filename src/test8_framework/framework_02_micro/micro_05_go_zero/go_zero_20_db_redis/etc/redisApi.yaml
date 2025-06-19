@@ -1,0 +1,8 @@
+Name: RedisApi
+Host: 0.0.0.0
+Port: 8090
+
+Redis:
+  Host: "39.106.59.225:6379"
+  Type: node        # 单节点模式：node，集群模式：cluster
+  Pass: "root123"          # Redis 密码，空字符串表示无密码

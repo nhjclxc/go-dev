@@ -9,6 +9,7 @@
 
 ## 1.1、代码生成
 
+项目根目录下执行：
 ```shell
 goctl model mysql datasource -url="root:root123@tcp(127.0.0.1:3306)/test" -table="tab_user" -dir="./model"
 ```
