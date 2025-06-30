@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"crypto/tls"
 	"database/sql"
@@ -8,6 +7,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -18,6 +18,48 @@ import (
 	_ "github.com/alexbrainman/odbc"
 )
 
+type Config struct {
+	Uuid   string  `json:"uuid"`
+	Dbpath string  `json:"dbpath"`
+	Pwd    string  `json:"pwd"`
+	Fixed  int     `json:"fixed"`
+	Env    int     `json:"env"`
+	Tables []Table `json:"tables"`
+}
+
+type Table struct {
+	Table  string `json:"table"`
+	Fileds string `json:"fileds"`
+}
+
+func readConfig(filepath string) Config {
+	dir, _ := os.Getwd()
+	fmt.Println("当前工作目录:", dir)
+	// 打开文件
+	file, err := os.Open(dir + "\\" + filepath)
+	//file, err := os.Open(filepath)
+	if err != nil {
+		log.Fatalf("打开配置文件失败: %v", err)
+	}
+	defer file.Close()
+
+	// 读取文件内容
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		log.Fatalf("读取配置文件失败: %v", err)
+	}
+
+	// 解析 JSON
+	var config Config
+	if err := json.Unmarshal(bytes, &config); err != nil {
+		log.Fatalf("解析 JSON 失败: %v", err)
+	}
+
+	// 打印配置
+	fmt.Printf("应用名: %#v\n", config)
+
+	return config
+}
 
 func main() {
 	// 可执行文件构建命令
@@ -30,7 +72,11 @@ func main() {
 
 	// go build -ldflags="-s -w" -o MixingPlant72.exe MixingPlant.go
 
+	readConfig("config.json")
 
+	if true {
+		return
+	}
 	// 定义命令行参数
 	uuid := flag.String("uuid", "BSBHZ01", "全局唯一uuid")
 	path := flag.String("path", "./BCS7.2.mdb", "Access 数据库路径")
@@ -132,7 +178,6 @@ func doTask(fixed *int, db *sql.DB, domain string, uuid *string) {
 	}
 }
 
-
 func uploadToServer(body, url string, dataSize int) {
 	if dataSize <= 0 {
 		return
@@ -169,9 +214,7 @@ func uploadToServer(body, url string, dataSize int) {
 
 }
 
-
-
-func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce) {
+func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) []Produce {
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -232,8 +275,7 @@ func queryProduce(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Produce)
 	return results
 }
 
-
-func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
+func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) []Piece {
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -255,8 +297,8 @@ func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
 	for rows.Next() {
 		var piece Piece
 		err = rows.Scan(
-			&piece.ID,&piece.Produce,&piece.RecID,&piece.Recipe,&piece.Serial,&piece.Blender, &piece.DatTim,&piece.BldTim,
-			&piece.PieAmnt, &piece.Lands, &piece.Temper, &piece.PieErr, &piece.Data, &piece.Flag,&piece.Stamp,&piece.BldDrOpenTim,
+			&piece.ID, &piece.Produce, &piece.RecID, &piece.Recipe, &piece.Serial, &piece.Blender, &piece.DatTim, &piece.BldTim,
+			&piece.PieAmnt, &piece.Lands, &piece.Temper, &piece.PieErr, &piece.Data, &piece.Flag, &piece.Stamp, &piece.BldDrOpenTim,
 		)
 
 		piece.CreateTime = fromOADate(piece.Stamp)
@@ -270,8 +312,7 @@ func queryPiece(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Piece) {
 	return results
 }
 
-
-func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) ([]Dosage) {
+func queryDosage(db *sql.DB, now time.Time, oneMinuteAgo time.Time) []Dosage {
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -337,117 +378,113 @@ func fromOADate(oa string) string {
 	return t.Format("2006-01-02 15:04:05")
 }
 
-
-
 // 派车记录表
 type Produce struct {
-	ID        string     `json:"id"`         // 主键
-	Code      string  `json:"code"`       // 任务单编号
-	DatTim    string  `json:"datTim"`     // 创建日期
-	Attribute string  `json:"attribute"`  // 任务性质
-	Contract  string  `json:"contract"`   // 合同信息
-	Customer  string  `json:"customer"`   // 客户名称
-	ProjName  string  `json:"projName"`   // 工程名称
-	ProjType  string  `json:"projType"`   // 工程类别
-	ProjGrade string  `json:"projGrade"`  // 工程级别
-	ProjArea  float64 `json:"projArea"`   // 开工面积
-	ProjAdr   string  `json:"projAdr"`    // 施工地址
-	Distance  float64 `json:"distance"`   // 运输距离
-	ConsPos   string  `json:"consPos"`    // 施工部位
-	Pour      string  `json:"pour"`       // 浇筑方式
-	Variety   string  `json:"variety"`    // 产品种类
-	BetLev    string  `json:"betLev"`     // 强度等级
-	Filter    string  `json:"filter"`     // 抗渗等级
-	Freeze    string  `json:"freeze"`     // 抗冻等级
-	Lands     string  `json:"lands"`      // 坍落度
-	Cement    string  `json:"cement"`     // 水泥品种
-	Stone     string  `json:"stone"`      // 石子种类
+	ID        string  `json:"id"`        // 主键
+	Code      string  `json:"code"`      // 任务单编号
+	DatTim    string  `json:"datTim"`    // 创建日期
+	Attribute string  `json:"attribute"` // 任务性质
+	Contract  string  `json:"contract"`  // 合同信息
+	Customer  string  `json:"customer"`  // 客户名称
+	ProjName  string  `json:"projName"`  // 工程名称
+	ProjType  string  `json:"projType"`  // 工程类别
+	ProjGrade string  `json:"projGrade"` // 工程级别
+	ProjArea  float64 `json:"projArea"`  // 开工面积
+	ProjAdr   string  `json:"projAdr"`   // 施工地址
+	Distance  float64 `json:"distance"`  // 运输距离
+	ConsPos   string  `json:"consPos"`   // 施工部位
+	Pour      string  `json:"pour"`      // 浇筑方式
+	Variety   string  `json:"variety"`   // 产品种类
+	BetLev    string  `json:"betLev"`    // 强度等级
+	Filter    string  `json:"filter"`    // 抗渗等级
+	Freeze    string  `json:"freeze"`    // 抗冻等级
+	Lands     string  `json:"lands"`     // 坍落度
+	Cement    string  `json:"cement"`    // 水泥品种
+	Stone     string  `json:"stone"`     // 石子种类
 
-	EnSize     string  `json:"enSize"`     // 骨科粒径
-	AddLiq     string  `json:"addLiq"`     // 外加剂要求
-	Request    string  `json:"request"`    // 技术要求
-	Recipe     string  `json:"recipe"`     // 施工配合比
-	MixLast    string  `json:"mixLast"`    // 搅拌时间
-	MorRec     string  `json:"morRec"`     // 砂浆配比
-	Mete       float64 `json:"mete"`       // 任务方量
-	BegTim     string  `json:"begTim"`     // 浇筑日期
-	EndTim     string  `json:"endTim"`     // 截止日期
-	Attamper   string  `json:"attamper"`   // 任务调度
-	Data       string  `json:"data"`       // 附加数据
-	Flag       string  `json:"flag"`       // 标记
-	Notes      string  `json:"notes"`      // 备注
-	Vehicle    string  `json:"vehicle"`    // 车辆ID
-	Driver     string  `json:"driver"`     // 驾驶员
-	ProdTimB   string  `json:"prodTimB"`   // 开始生产时刻
-	ProdTimE   string  `json:"prodTimE"`   // 结束生产时刻
-	ProdMete   float64 `json:"prodMete"`   // 生产方量
-	MorMete    float64 `json:"morMete"`    // 砂浆方量
-	ProdErr    float64 `json:"prodErr"`    // 车误差
-	ProdCnt    int     `json:"prodCnt"`    // 生产盘数
-	MorCnt     int     `json:"morCnt"`     // 砂浆盘数
+	EnSize   string  `json:"enSize"`   // 骨科粒径
+	AddLiq   string  `json:"addLiq"`   // 外加剂要求
+	Request  string  `json:"request"`  // 技术要求
+	Recipe   string  `json:"recipe"`   // 施工配合比
+	MixLast  string  `json:"mixLast"`  // 搅拌时间
+	MorRec   string  `json:"morRec"`   // 砂浆配比
+	Mete     float64 `json:"mete"`     // 任务方量
+	BegTim   string  `json:"begTim"`   // 浇筑日期
+	EndTim   string  `json:"endTim"`   // 截止日期
+	Attamper string  `json:"attamper"` // 任务调度
+	Data     string  `json:"data"`     // 附加数据
+	Flag     string  `json:"flag"`     // 标记
+	Notes    string  `json:"notes"`    // 备注
+	Vehicle  string  `json:"vehicle"`  // 车辆ID
+	Driver   string  `json:"driver"`   // 驾驶员
+	ProdTimB string  `json:"prodTimB"` // 开始生产时刻
+	ProdTimE string  `json:"prodTimE"` // 结束生产时刻
+	ProdMete float64 `json:"prodMete"` // 生产方量
+	MorMete  float64 `json:"morMete"`  // 砂浆方量
+	ProdErr  float64 `json:"prodErr"`  // 车误差
+	ProdCnt  int     `json:"prodCnt"`  // 生产盘数
+	MorCnt   int     `json:"morCnt"`   // 砂浆盘数
 
-	TotVehs    int     `json:"totVehs"`    // 累计车次
-	TotMete    float64 `json:"totMete"`    // 累计方量
-	Qualitor   string  `json:"qualitor"`   // 质检员
-	Operator   string  `json:"operator"`   // 操作员
-	LeftTim    string  `json:"leftTim"`    // 出站时间
-	ArriveTim  string  `json:"arriveTim"`  // 到达时间
-	ChkLands   string  `json:"chkLands"`   // 检测坍落度
-	ChkTemp    string  `json:"chkTemp"`    // 卸砼温度
-	UnloadTim  string  `json:"unloadTim"`  // 卸料时间
-	OverTim    string  `json:"overTim"`    // 卸完时间
-	Acceptor   string  `json:"acceptor"`   // 现场验收
-	Mark       string  `json:"mark"`       // 总第n车
-	MISID      string  `json:"misId"`      // MIS系统ID
-	Stamp      string  `json:"stamp"`      // 时间戳
-	Task       string  `json:"task"`       // 任务标识
-	Contacts   string  `json:"contacts"`   // 联系人
-	ContTel    string  `json:"contTel"`    // 联系电话
-	Bend       string  `json:"bend"`       // 弯沉
-	CreateTime     string  `json:"createTime"`
+	TotVehs    int     `json:"totVehs"`   // 累计车次
+	TotMete    float64 `json:"totMete"`   // 累计方量
+	Qualitor   string  `json:"qualitor"`  // 质检员
+	Operator   string  `json:"operator"`  // 操作员
+	LeftTim    string  `json:"leftTim"`   // 出站时间
+	ArriveTim  string  `json:"arriveTim"` // 到达时间
+	ChkLands   string  `json:"chkLands"`  // 检测坍落度
+	ChkTemp    string  `json:"chkTemp"`   // 卸砼温度
+	UnloadTim  string  `json:"unloadTim"` // 卸料时间
+	OverTim    string  `json:"overTim"`   // 卸完时间
+	Acceptor   string  `json:"acceptor"`  // 现场验收
+	Mark       string  `json:"mark"`      // 总第n车
+	MISID      string  `json:"misId"`     // MIS系统ID
+	Stamp      string  `json:"stamp"`     // 时间戳
+	Task       string  `json:"task"`      // 任务标识
+	Contacts   string  `json:"contacts"`  // 联系人
+	ContTel    string  `json:"contTel"`   // 联系电话
+	Bend       string  `json:"bend"`      // 弯沉
+	CreateTime string  `json:"createTime"`
 }
 
 // 盘次记录表
 type Piece struct {
-	ID       string  `json:"id"`        // ID
-	Produce  string  `json:"produce"`   // 一次配方ID 对应Produce.ID
-	RecID    string  `json:"recId"`     // 配方ID
-	Recipe   string  `json:"recipe"`    // 配方
-	Serial   string  `json:"serial"`    // 序列号
-	Blender  string  `json:"blender"`   // 搅拌机
-	DatTim   string  `json:"datTim"`    // 生产时刻
-	BldTim   string  `json:"bldTim"`    // 搅拌时间
-	PieAmnt  float64 `json:"pieAmnt"`   // 盘方量
-	Lands    string  `json:"lands"`     // 盘坍落度
-	Temper   string  `json:"temper"`    // 盘温度
-	PieErr   float64 `json:"pieErr"`    // 盘误差
-	Data     string  `json:"data"`      // 附加数据
-	Flag     string  `json:"flag"`      // 标识
-	Stamp    string  `json:"stamp"`     // 更新时间
-	BldDrOpenTim    string  `json:"bldDrOpenTim"`
-	CreateTime     string  `json:"createTime"`
+	ID           string  `json:"id"`      // ID
+	Produce      string  `json:"produce"` // 一次配方ID 对应Produce.ID
+	RecID        string  `json:"recId"`   // 配方ID
+	Recipe       string  `json:"recipe"`  // 配方
+	Serial       string  `json:"serial"`  // 序列号
+	Blender      string  `json:"blender"` // 搅拌机
+	DatTim       string  `json:"datTim"`  // 生产时刻
+	BldTim       string  `json:"bldTim"`  // 搅拌时间
+	PieAmnt      float64 `json:"pieAmnt"` // 盘方量
+	Lands        string  `json:"lands"`   // 盘坍落度
+	Temper       string  `json:"temper"`  // 盘温度
+	PieErr       float64 `json:"pieErr"`  // 盘误差
+	Data         string  `json:"data"`    // 附加数据
+	Flag         string  `json:"flag"`    // 标识
+	Stamp        string  `json:"stamp"`   // 更新时间
+	BldDrOpenTim string  `json:"bldDrOpenTim"`
+	CreateTime   string  `json:"createTime"`
 }
-
 
 // 原料消耗表
 type Dosage struct {
-	ID        string  `json:"id"`         // 主键ID
-	Piece     string  `json:"piece"`      // 盘次ID 对应PieceID.ID
-	StorlD    string  `json:"storlId"`    // 原料ID
-	Storage   string  `json:"storage"`    // 原料料仓
-	MaterlD   string  `json:"materlId"`   // 原材料ID
-	Material  string  `json:"material"`   // 原材料
-	RecAmnt   float64 `json:"recAmnt"`    // 配方方量
-	PlanAmnt  float64 `json:"planAmnt"`   // 理论用量
-	FactAjnnt float64 `json:"factAjnnt"`  // 实际用量
-	Fall      float64 `json:"fall"`       // 当前落差
-	FinTim    string  `json:"finTim"`     // 完成时刻
-	Data      string  `json:"data"`       // 附加数据
-	Flag      string  `json:"flag"`       // 标识
-	Stamp     string  `json:"stamp"`      // 更新时间
-	Rate     string  `json:"rate"`
-	CRC     string  `json:"crc"`
-	Mask     string  `json:"mask"`
-	CreateTime     string  `json:"createTime"`
+	ID         string  `json:"id"`        // 主键ID
+	Piece      string  `json:"piece"`     // 盘次ID 对应PieceID.ID
+	StorlD     string  `json:"storlId"`   // 原料ID
+	Storage    string  `json:"storage"`   // 原料料仓
+	MaterlD    string  `json:"materlId"`  // 原材料ID
+	Material   string  `json:"material"`  // 原材料
+	RecAmnt    float64 `json:"recAmnt"`   // 配方方量
+	PlanAmnt   float64 `json:"planAmnt"`  // 理论用量
+	FactAjnnt  float64 `json:"factAjnnt"` // 实际用量
+	Fall       float64 `json:"fall"`      // 当前落差
+	FinTim     string  `json:"finTim"`    // 完成时刻
+	Data       string  `json:"data"`      // 附加数据
+	Flag       string  `json:"flag"`      // 标识
+	Stamp      string  `json:"stamp"`     // 更新时间
+	Rate       string  `json:"rate"`
+	CRC        string  `json:"crc"`
+	Mask       string  `json:"mask"`
+	CreateTime string  `json:"createTime"`
 }
-

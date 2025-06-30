@@ -1,0 +1,17 @@
+{
+  "uuid": "uuid",
+  "dbpath": "dbpath",
+  "pwd": "pwd",
+  "fixed": 5,
+  "env": 0,
+  "tables": [
+    {
+      "table": "table",
+      "fileds": "t,a,b,l,e"
+    },
+    {
+      "table": "table",
+      "fileds": "t,a,b,l,e"
+    }
+  ]
+}

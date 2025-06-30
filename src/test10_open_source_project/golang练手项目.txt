@@ -1,0 +1,13 @@
+https://www.zhihu.com/question/369863905
+
+
+https://www.zhihu.com/question/369863905
+
+
+
+https://www.zhihu.com/question/439107962
+
+https://www.zhihu.com/question/439107962/answer/3178845953
+
+【【【https://gitee.com/lybbn/golyadmin】】】
+### 项目介绍> golyadmin是一个基于 golang、 [vue](https://vuejs.org) 和 [gin](https://gin-gonic.com) 开发的全栈前后端分离的开发基础平台，集成jwt鉴权，动态路由，动态菜单，RBAC鉴权等功能，提供多种示例文件，让您的开发效率更高。前端admin部分依旧采用django-vue-lyadmin的前端，熟悉的权限设计和前端页面以及熟悉的代码。大大节省您多个不同语言项目切换时所花费的学习成本。[ 预览 ](https://golyadmin.lybbn.cn) |[ 官方文档 ](https://doc.lybbn.cn/) | [django-vue-lyadmin](https://gitee.com/lybbn/django-vue-lyadmin)## 在线体验* 演示地址：[https://golyadmin.lybbn.cn](https://golyadmin.lybbn.cn) 账号：admin 密码：123456![image-shouquan](https://gitee.com/lybbn/golyadmin/raw/master/web/src/assets/img/shouquan.png)## 源码地址* gitee地址(主推)：https://gitee.com/lybbn/golyadmin## 内置功能*  DashBoard： 数据分析查看*  CRUD： 面向配置的crud功能*  服务器监控面板（运维能力），支持windows和linux服务器的实时服务器资源状态监控*  部门管理：配置系统组织机构（公司、部门、角色），树结构展现支持数据权限。*  菜单管理：配置系统菜单，操作权限，按钮权限标识、后端接口权限等。*  角色管理：角色菜单权限、数据权限、设置角色按部门进行数据范围权限划分。*  权限管理：授权角色的权限范围。*  管理员管理：主要管理系统管理员账号。*  用户管理：主要管理前端用户。*  个人中心：主要设置登录系统的个人昵称、密码等账号信息。*  操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。特别鸣谢：本平台的一部分设计模式，部分参考[gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)

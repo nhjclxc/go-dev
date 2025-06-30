@@ -1,0 +1,27 @@
+{
+  "clientId": "BSBHZ01",
+  "path": "./BCS7.2.mdb",
+  "pwd": "BCS7.2_SDBS",
+  "fixed": 5,
+  "env": 0,
+  "win": 11,
+  "tables": [
+    {
+      "table": "Dosage",
+      "Stamp": "Stamp",
+      "fields": "ID,Piece,StorID,Storage,MaterID,Material,Rate,RecAmnt,PlanAmnt,FactAmnt,Fall,FinTim,Data,Flag,Stamp,CRC,Mask"
+    },
+    {
+      "table": "Produce",
+      "Stamp": "Stamp",
+      "fields": "ID,Code,DatTim,Attribute,Contract,Customer,ProjName,ProjType,ProjGrade,ProjArea,ProjAdr,Distance,ConsPos,Pour,Variety,BetLev,Filter,Freeze,Lands,Cement,Stone,BnSize,AddLiq,Request,Recipe,MixLast,MorRec,Mete,BegTim,EndTim,Attamper,Data,Flag,Notes,Vehicle,Driver,ProdTimB,ProdTimE,ProdMete,MorMete,ProdErr,ProdCnt,MorCnt,TotVehs,TotMete,Qualitor,Operator,LeftTim,ArriveTim,ChkLands,ChkTemp,UnloadTim,OverTim,Acceptor,Mark,MISID,Stamp,Task,Contacts,ContTel,Bend"
+    },
+    {
+      "table": "Piece",
+      "Stamp": "Stamp",
+      "fields": "ID,Produce,RecID,Recipe,Serial,Blender,DatTim,BldTim,PieAmnt,Lands,Temper,PieErr,Data,Flag,Stamp,BldDrOpenTim"
+    }
+  ]
+}
+
+

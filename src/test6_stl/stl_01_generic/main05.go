@@ -14,3 +14,8 @@ func PrintSlice[T any](s []T) {
 		fmt.Println(v)
 	}
 }
+
+
+type Queue[T interface{}] struct {
+	elements []T
+}

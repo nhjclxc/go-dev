@@ -1,0 +1,109 @@
+MixingPlant3.exe -uuid=BSBHZ01 -path=./BCS7.2.mdb -pwd=BCS7.2_SDBS -env=1 -fixed=5
+
+
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>D:
+
+D:\>cd BCS7-B12-DB
+
+D:\BCS7-B12-DB>MixingPlant3.exe -uuid=BSBHZ01 -path=./BCS7.2.mdb -pwd=BCS7.2_SDB
+S -env=1 -fixed=5
+Exception 0xc0000005 0x8 0x0 0x0
+PC=0x0
+
+runtime.asmstdcall(0x400)
+        D:/develop/go/src/runtime/sys_windows_amd64.s:76 +0x89 fp=0x32f850 sp=0x
+32f830 pc=0x1157529
+rax     0x0
+rbx     0x16be018
+rcx     0x1703da8
+rdx     0x20
+rdi     0x7fffffde000
+rsi     0x32fa48
+rbp     0x32f990
+rsp     0x32f828
+r8      0x16bdd20
+r9      0x17039cb
+r10     0x0
+r11     0x246
+r12     0x32faa8
+r13     0xc000004000
+r14     0x16bcea0
+r15     0x3
+rip     0x0
+rflags  0x10246
+cs      0x33
+fs      0x53
+gs      0x2b
+
+D:\BCS7-B12-DB>
+
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>D:
+
+D:\>cd BCS7-B12-DB
+
+D:\BCS7-B12-DB>MixingPlant_win7.exe -uuid=BSBHZ01 -path=./BCS7.2.mdb -pwd=BCS7.2
+_SDBS -env=1 -fixed=5
+运行参数如下:
+???全局唯一uuid: BSBHZ01
+???数据库路径: ./BCS7.2.mdb
+???数据库密码: BCS7.2_SDBS
+???固定参数 fixed: 5
+???启动环境: 1
+查询时间段：start: 2025-06-21 17:32:02.1942679 +0800 CST m=-4.985999199, end: 20
+25-06-21 17:32:07.1942679 +0800 CST m=+0.014000801
+2025/06/21 17:32:07 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Dosage 数据为空！
+2025/06/21 17:32:07 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Piece 数据为空！
+2025/06/21 17:32:07 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Produce 数据为空！
+查询时间段：start: 2025-06-21 17:32:07.1945539 +0800 CST m=+0.014286801, end: 20
+25-06-21 17:32:12.1945539 +0800 CST m=+5.014286801
+2025/06/21 17:32:12 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Dosage 数据为空！
+2025/06/21 17:32:12 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Piece 数据为空！
+2025/06/21 17:32:12 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Produce 数据为空！
+查询时间段：start: 2025-06-21 17:32:12.1948399 +0800 CST m=+5.014572801, end: 20
+25-06-21 17:32:17.1948399 +0800 CST m=+10.014572801
+2025/06/21 17:32:17 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Dosage 数据为空！
+2025/06/21 17:32:17 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Piece 数据为空！
+2025/06/21 17:32:17 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Produce 数据为空！
+查询时间段：start: 2025-06-21 17:32:17.1951259 +0800 CST m=+10.014858801, end: 2
+025-06-21 17:32:22.1951259 +0800 CST m=+15.014858801
+2025/06/21 17:32:22 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Dosage 数据为空！
+2025/06/21 17:32:22 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Piece 数据为空！
+2025/06/21 17:32:22 查询失败: SQLDriverConnect: {IM002} [Microsoft][ODBC 驱动程
+序管理器] 未发现数据源名称并且未指定默认驱动程序
+Produce 数据为空！
+^C
+D:\BCS7-B12-DB>
+
+D:\BCS7-B12-DB>
+
+D:\BCS7-B12-DB>
+
+
