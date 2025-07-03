@@ -2,6 +2,7 @@
   "clientId": "BSBHZ01",
   "path": "./BCS7.2.mdb",
   "pwd": "BCS7.2_SDBS",
+  "date": "2025-07-01",
   "fixed": 5,
   "env": 0,
   "win": 11,
