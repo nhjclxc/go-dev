@@ -1,0 +1,46 @@
+#表示 Compose 文件的版本号, 目前推荐使用 '3.9'（适用于 Docker 20.x+）
+version: '3.9'
+
+# 定义服务入口，所有你要运行的容器都定义在 services: 下
+#每一个 service 相当于一个容器定义（如 mysql、gin、vue）
+services:
+  # 定义后端 后端服务（Gin）服务
+  backend:
+    build:
+      context: ./backend   # 示使用 backend 目录下的 Dockerfile 构建镜像
+    container_name: gin-backend   # 容器名称（后台日志调试更方便）
+#    depends_on:   # 表示在启动当前服务之前，先确保 mysql 启动（但不等待就绪！）
+#      - mysql
+    ports:
+      - "38080:8080"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
+    # 将源码挂载进容器，便于开发时热更新（如使用 Gin 热编译工具）
+    volumes:
+      - ./backend:/app
+    # 保证 backend 能和 mysql、frontend 相互通信
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: vue-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+

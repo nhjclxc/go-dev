@@ -286,3 +286,13 @@ https://github.com/gphper/ginadmin.git
 
 https://github.com/quarkcloudio/quark-go.git
 
+
+https://github.com/hackstoic/golang-open-source-projects
+
+https://github.com/hyper0x/awesome-go-China/blob/master/zh_CN/README.md
+
+https://github.com/astaxie/build-web-application-with-golang
+
+
+https://github.com/chai2010/advanced-go-programming-book
+
