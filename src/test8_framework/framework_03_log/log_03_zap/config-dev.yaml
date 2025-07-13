@@ -1,0 +1,13 @@
+Name: log_03_zap-dev
+Port: 8080
+zap:
+  level: info
+  prefix: '[this-is-usually-the-project-name]'
+  format: console
+  director: log
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  show-line: true
+  log-in-console: true
+  retention-day: -1
+  max-size: 200

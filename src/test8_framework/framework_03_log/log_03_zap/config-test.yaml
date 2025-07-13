@@ -1,0 +1,12 @@
+Name: log_03_zap-test
+Port: 9090
+zap:
+  level: info
+  prefix: '[this-is-usually-the-project-name]'
+  format: console
+  director: log
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  show-line: true
+  log-in-console: true
+  retention-day: -1
