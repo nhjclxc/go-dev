@@ -1,0 +1,313 @@
+basePath: /
+definitions:
+  main.JsonResponse:
+    properties:
+      code:
+        description: 响应码
+        type: integer
+      data:
+        description: 响应数据
+      msg:
+        description: 失败消息
+        type: string
+      success:
+        description: 是否操作成功，操作成功返回true，否则返回false
+        type: boolean
+    type: object
+  main.LogoutVo:
+    properties:
+      foo:
+        description: 测试的字段
+        type: string
+    type: object
+  main.UserDto:
+    properties:
+      foo:
+        description: 测试的字段
+        type: string
+      password:
+        description: 密码
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: 使用 Swagger 演示 token 请求头设置
+  title: 示例 API
+  version: "1.0"
+paths:
+  /deleteUser/{userId}:
+    delete:
+      description: 删除用户-Description
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 更新用户信息-响应数据
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+        "401":
+          description: 未授权
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 删除用户-Summary
+      tags:
+      - 用户模块
+  /getUser:
+    get:
+      description: 获取用户详细-Description
+      parameters:
+      - description: 登录用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      responses:
+        "200":
+          description: 退出登录响应数据
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+        "401":
+          description: 未授权
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 获取用户详细-Summary
+      tags:
+      - 用户模块
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: 登录-Description
+      parameters:
+      - description: 登录用户名
+        in: path
+        name: username
+        required: true
+        type: string
+      - description: 登录密码
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: 登录-Summary
+      tags:
+      - 登录登出模块
+  /logout:
+    post:
+      consumes:
+      - application/json
+      description: 退出-Description
+      parameters:
+      - description: 登录用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 退出登录响应数据
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+        "401":
+          description: 未授权
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 退出-Summary
+      tags:
+      - 登录登出模块
+  /postUser:
+    post:
+      consumes:
+      - application/json
+      description: 提交用户信息创建用户-Description
+      parameters:
+      - description: 用户信息
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/main.UserDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 退出登录响应数据
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+        "401":
+          description: 未授权
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 创建用户-Summary
+      tags:
+      - 用户模块
+  /putUser/{userId}:
+    put:
+      consumes:
+      - application/json
+      description: 更新用户信息-Description
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新用户信息-响应数据
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+        "401":
+          description: 未授权
+          schema:
+            allOf:
+            - $ref: '#/definitions/main.JsonResponse'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/main.LogoutVo'
+                error:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 更新用户信息-Summary
+      tags:
+      - 用户模块
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
