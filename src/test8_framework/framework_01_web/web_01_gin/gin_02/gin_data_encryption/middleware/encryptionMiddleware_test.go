@@ -48,7 +48,7 @@ func TestDecrypt(t *testing.T) {
 	// 密钥（16字节 = 128位）
 	key := []byte("ZAQ12WSXCDE34RFV")
 
-	encStr := "22fd4876c6d60588d9af9e1511b07ab75467ff60e3a0dbb6f1902c3d0e5af0ff63339c3245900d8d17f63b0774e59151ce7d54107ddbee08ab298e0821db09c6651052c7b8adebf3ef2e045e1a21bc4d"
+	encStr := "ae0eb618d5f971a60bd40bc05d94d99fa883860685abf1fa1106087edf0611da651052c7b8adebf3ef2e045e1a21bc4d"
 
 	decrypted, _ := decryptSM4Hex(encStr, key)
 

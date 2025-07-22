@@ -15,14 +15,13 @@ import (
 )
 
 // ========== 响应包装器 ==========
-type bodyWriter struct {
+type wrapperResponseWriter struct {
 	gin.ResponseWriter
 	body *bytes.Buffer
 }
 
-func (w *bodyWriter) Write(b []byte) (int, error) {
-	w.body.Write(b) // 缓存响应体
-	return w.ResponseWriter.Write(b)
+func (w wrapperResponseWriter) Write(b []byte) (int, error) {
+	return w.body.Write(b) // 不写出，先缓存
 }
 
 func EncryptionMiddleware() gin.HandlerFunc {
@@ -85,28 +84,50 @@ func EncryptionMiddleware() gin.HandlerFunc {
 			}
 		}
 
-		// ========= 捕获响应 =========
-		wrapperWriter := &bodyWriter{
-			ResponseWriter: c.Writer,
-			body:           &bytes.Buffer{},
-		}
-		c.Writer = wrapperWriter // 替换默认的 Writer
+		// ========= 捕获响应：替换 ResponseWriter =========
+		writer := &wrapperResponseWriter{body: bytes.NewBuffer([]byte{}), ResponseWriter: c.Writer}
+		c.Writer = writer
+
 
 		// 2、进入实际请求
 		c.Next()
 
-		// 此时 c.Writer 就是你自己定义的 bw
-		fmt.Println("原始响应内容：", wrapperWriter.body.String())
 
 		// 3、加密响应数据
 
 		// 拦截响应数据
-		contentType := c.Writer.Header().Get("Content-Type")
-		originBody := wrapperWriter.body.Bytes()
+		originBody := writer.body.Bytes() // 获取原始响应体
+		c.Writer = writer.ResponseWriter // 防止写两次，此时 c.Writer 就是你自己定义的 bw
+		fmt.Println("原始响应内容：", originBody)
 
-		if enabled && c.Writer.Status() == http.StatusOK && strings.Contains(contentType, "application/json") {
+		if enabled && c.Writer.Status() == http.StatusOK && strings.Contains(c.Writer.Header().Get("Content-Type"), "application/json") {
 			// 加密响应
-			encryptedData, err := encryptSM4Hex(string(originBody), sm4Key)
+
+			// 情况1：直接加密返回的所有数据
+			//wrapped, err := encryptSM4Hex(string(originBody), sm4Key)
+
+			// 情况2：只加密返回结构的data字段
+			// 解析原始 JSON
+			var originalMap map[string]interface{}
+			if err := json.Unmarshal(originBody, &originalMap); err != nil {
+				c.Writer.WriteHeader(http.StatusInternalServerError)
+				c.Writer.Write([]byte(`{"code":500,"msg":"响应解析失败"}`))
+				return
+			}
+
+			marshal, err := json.Marshal(originalMap["data"])
+			//if err != nil {
+			//	return
+			//}
+			encryptedData, err := encryptSM4Hex(string(marshal), sm4Key)
+			// 重新包装
+			wrapped := gin.H{
+				"code": originalMap["code"],
+				"error": originalMap["error"],
+				"msg": originalMap["msg"],
+				"data": encryptedData,
+			}
+
 			if err != nil {
 				// 如果加密失败，返回错误
 				c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
@@ -123,10 +144,10 @@ func EncryptionMiddleware() gin.HandlerFunc {
 			// 清空响应体，重写加密后的数据（防止重复输出）
 			c.Writer.Header().Set("Content-Type", "application/json; charset=utf-8")
 			c.Writer.WriteHeaderNow()             // 手动设置状态码
-			c.Writer.Write([]byte(encryptedData)) // 返回加密内容
 
-			//// 清空原始响应并重写
-			c.Writer = wrapperWriter.ResponseWriter
+			// 返回新的响应
+			c.JSON(http.StatusOK, wrapped)
+
 		}
 
 	}
