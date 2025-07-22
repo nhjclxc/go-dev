@@ -26,6 +26,14 @@ go开发学习路线看 go-path.png
 
 [//]: # (![go-path.png]&#40;go-path.png&#41;)
 
+
+go的一些规范：
+- [go命名规范](https://go.dev/talks/2014/names.slide)
+- [](https://go.dev/doc/effective_go#names)
+- 
+
+
+
 # 学习资源
 
 [Go开发模式 go-patterns](https://github.com/tmrts/go-patterns.git)

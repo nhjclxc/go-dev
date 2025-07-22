@@ -1,0 +1,16 @@
+global:
+  # 抓取周期（多久抓一次指标）
+  scrape_interval: 10s
+  # 	规则评估周期（用于告警规则）
+  evaluation_interval: 10s
+  # 		每次抓取的超时时间 应 ≤ scrape_interval
+  scrape_timeout: 10s
+
+scrape_configs:
+  - job_name: 'track_02_gin_zipkin_prometheus'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['39.106.59.225:8080']
+        labels:
+          instance: 'track_02_gin_zipkin_prometheus instance'
+
