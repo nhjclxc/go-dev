@@ -1,0 +1,7 @@
+Name: gin_data_encryption
+Port: 18080
+
+Request:
+  Encrypt:
+    Key: ZAQ12WSXCDE34RFV
+    EncryptHeader: Encrypt-Flag

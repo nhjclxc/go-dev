@@ -1,0 +1,7 @@
+Name: gin_data_encryption
+Port: 19090
+
+Request:
+  Encrypt:
+    Key: ZAQ12WSXCDE34RFV
+    EncryptHeader: Encrypt-Flag
