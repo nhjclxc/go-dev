@@ -42,6 +42,10 @@ func main() {
 	// 启用跨域支持
 	r.Use(cors.Default())
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//// 以下配置可以开关的swagger，当前环境为dev时允许访问swagger，而当环境为prod时关闭swagger的访问权限
+	//if config.Env == "dev" {
+	//	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//}
 
 	r.POST("/login", login)
 

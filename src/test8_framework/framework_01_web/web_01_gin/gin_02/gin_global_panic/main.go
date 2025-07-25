@@ -38,6 +38,29 @@ func RecoveryMiddleware() gin.HandlerFunc {
 	}
 }
 
+
+// 以下方法只有在c中加入error时，才能触发。即：c.Error(errors.New("发送错误"))
+// ErrorHandler captures errors and returns a consistent JSON error response
+func ErrorHandler() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Next() // Step1: Process the request first.
+
+		// Step2: Check if any errors were added to the context
+		if len(c.Errors) > 0 {
+			// Step3: Use the last error
+			err := c.Errors.Last().Err
+
+			// Step4: Respond with a generic error message
+			c.JSON(http.StatusInternalServerError, map[string]any{
+				"success": false,
+				"message": err.Error(),
+			})
+		}
+
+		// Any other steps if no errors are found
+	}
+}
+
 func main() {
 
 	r := gin.Default()
