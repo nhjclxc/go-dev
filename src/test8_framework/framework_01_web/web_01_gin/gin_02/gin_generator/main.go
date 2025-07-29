@@ -32,6 +32,7 @@ func main() {
 	(&router.GenTableRouter{}).InitGenTableRouter(privateGroup, publicGroup)
 	(&router.SysJobRouter{}).InitSysJobRouter(privateGroup, publicGroup)
 	(&router.SysRoleRouter{}).InitSysRoleRouter(privateGroup, publicGroup)
+	(&router.SysCompanyRouter{}).InitSysCompanyRouter(privateGroup, publicGroup)
 
 	r.Run(":8080")
 }
