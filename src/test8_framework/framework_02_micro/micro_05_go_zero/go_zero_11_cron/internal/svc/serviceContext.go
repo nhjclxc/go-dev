@@ -11,7 +11,7 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	cronJob := cron.New() // 默认支持秒级调度从 v3 开始 cron.New(cron.WithSeconds())
+	cronJob := cron.New() // 默认支持秒级调度从 v3 开始 cron_task.New(cron_task.WithSeconds())
 
 	return &ServiceContext{
 		Config: c,

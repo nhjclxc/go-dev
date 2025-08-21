@@ -15,10 +15,10 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				// http:127.0.0.1:8080/cron/task1
+				// http:127.0.0.1:8080/cron_task/task1
 				// 获取用户信息
 				Method:  http.MethodGet,
-				Path:    "/cron/task1",
+				Path:    "/cron_task/task1",
 				Handler: cronTask1Handler(serverCtx),
 			},
 		},

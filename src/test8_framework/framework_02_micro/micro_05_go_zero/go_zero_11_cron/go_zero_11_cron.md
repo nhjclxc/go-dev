@@ -18,7 +18,7 @@
 ### 第一步：安装依赖
 
 ```bash
-go get github.com/robfig/cron/v3
+go get github.com/robfig/cron_task/v3
 ```
 
 ---
@@ -39,7 +39,7 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-    cronJob := cron.New() // 默认支持秒级调度从 v3 开始 cron.New(cron.WithSeconds())
+    cronJob := cron.New() // 默认支持秒级调度从 v3 开始 cron_task.New(cron_task.WithSeconds())
 
     return &ServiceContext{
         Config: c,
