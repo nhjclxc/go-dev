@@ -29,9 +29,7 @@ func NewGetCouponLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCoup
 func (l *GetCouponLogic) GetCoupon(req *types.GetCouponReq) (resp *types.GetCouponResp, err error) {
 	// todo: add your logic here and delete this line
 
-
 	fmt.Printf("\n\n GetCoupon.req: %#v \n\n", req)
-
 
 	// 调用微服务 grpc
 	userReq := user.GrpcGetUserReq{UserId: strconv.FormatInt(req.CouponId, 10)}
@@ -39,7 +37,7 @@ func (l *GetCouponLogic) GetCoupon(req *types.GetCouponReq) (resp *types.GetCoup
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("\n\n GRPC调用 user 返回成功：UserInfo.UserGRpcService.GetUserByName = %v \n\n", getUserByNameResp)
+	fmt.Printf("\n\n GRPC调用 anonymous_user 返回成功：UserInfo.UserGRpcService.GetUserByName = %v \n\n", getUserByNameResp)
 
 	return &types.GetCouponResp{
 		CouponId:   req.CouponId,

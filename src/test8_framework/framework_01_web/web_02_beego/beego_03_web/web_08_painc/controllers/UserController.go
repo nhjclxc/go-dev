@@ -13,7 +13,7 @@ type UserController struct {
 }
 
 // @Title Get
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
@@ -29,7 +29,6 @@ func (this *UserController) GetById() {
 		zero := 0
 		fmt.Println(111 / zero)
 	}
-
 
 	if userId != "" {
 		user, err := models.GetUser(userId)

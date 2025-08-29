@@ -119,7 +119,7 @@ import "net/http"
 注意：go-dev是go mod 那一步创建的模块
 ```go
 import (
-    "go-dev/src/test5_test/test57_package/user"
+    "go-dev/src/test5_test/test57_package/anonymous_user"
 )
 ```
 详细使用实例
@@ -194,7 +194,7 @@ package main
 
 import (
 	"fmt"
-	. "go-dev/src/test5_test/test57_package/user"
+	. "go-dev/src/test5_test/test57_package/anonymous_user"
 )
 
 func main() {
@@ -216,7 +216,7 @@ package main
 
 import (
 	"fmt"
-	_ "go-dev/src/test5_test/test57_package/user"
+	_ "go-dev/src/test5_test/test57_package/anonymous_user"
 )
 
 func main() {

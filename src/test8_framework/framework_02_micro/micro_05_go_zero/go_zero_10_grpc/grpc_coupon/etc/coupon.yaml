@@ -5,7 +5,7 @@ RestConf:
   Mode: dev
 
 
-# 当前服务（user）的 gRPC 服务端配置
+# 当前服务（anonymous_user）的 gRPC 服务端配置
 RpcConf:
   Name: coupon.rpc
   ListenOn: 0.0.0.0:9193  # grpc服务地址
@@ -22,5 +22,5 @@ RpcUserConf:
   Etcd:
     Hosts:
       - 39.106.59.225:2379
-    Key: user.rpc
+    Key: anonymous_user.rpc
   Timeout: 3000

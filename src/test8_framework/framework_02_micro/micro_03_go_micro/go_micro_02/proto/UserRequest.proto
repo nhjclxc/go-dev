@@ -6,7 +6,7 @@
 
 syntax = "proto3";
 
-option go_package = "user/micro";
+option go_package = "anonymous_user/micro";
 
 message UserRequest {
   string name = 1;

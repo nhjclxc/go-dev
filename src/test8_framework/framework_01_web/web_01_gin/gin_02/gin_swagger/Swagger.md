@@ -26,7 +26,7 @@
 // @Tags 用户模块
 // @Param id query int true "用户ID"
 // @Success 200 {object} UserResponse
-// @Router /user [get]
+// @Router /anonymous_user [get]
 ```
 
 ### 🔵 2. POST 示例（提交 JSON）
@@ -37,9 +37,9 @@
 // @Tags 用户模块
 // @Accept json
 // @Produce json
-// @Param user body CreateUserRequest true "用户信息"
+// @Param anonymous_user body CreateUserRequest true "用户信息"
 // @Success 200 {object} Response
-// @Router /user [post]
+// @Router /anonymous_user [post]
 ```
 
 ### 🔵 3. PUT 示例（更新数据）
@@ -51,9 +51,9 @@
 // @Accept json
 // @Produce json
 // @Param id path int true "用户ID"
-// @Param user body UpdateUserRequest true "用户信息"
+// @Param anonymous_user body UpdateUserRequest true "用户信息"
 // @Success 200 {object} Response
-// @Router /user/{id} [put]
+// @Router /anonymous_user/{id} [put]
 ```
 
 ### 🔵 4. DELETE 示例（通过路径参数）
@@ -64,7 +64,7 @@
 // @Tags 用户模块
 // @Param id path int true "用户ID"
 // @Success 200 {object} Response
-// @Router /user/{id} [delete]
+// @Router /anonymous_user/{id} [delete]
 ```
 
 ---

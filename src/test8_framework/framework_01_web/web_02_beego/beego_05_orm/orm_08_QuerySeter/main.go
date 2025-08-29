@@ -38,9 +38,9 @@ func main() {
 	//基本使用方法:
 	o := orm.NewOrm()
 
-	// 获取 QuerySeter 对象，user 为表名
+	// 获取 QuerySeter 对象，anonymous_user 为表名
 	qs := o.QueryTable("tab_user")
-	//qs = o.QueryTable(user.TableName()) // 返回 QuerySeter
+	//qs = o.QueryTable(anonymous_user.TableName()) // 返回 QuerySeter
 
 	// 也可以直接使用 Model 结构体作为表名
 	qs = o.QueryTable(&model.TabUser{})
@@ -55,12 +55,8 @@ func main() {
 	// 1、查询表达式
 	//test080101(qs)
 
-
 	// 2、中间方法
 	//test080102(qs)
-
-
-
 
 }
 
@@ -73,7 +69,6 @@ func test080102(qs orm.QuerySeter) {
 	qs.Filter("profile__isnull", true).Filter("name", "slene")
 	// WHERE profile_id IS NULL AND name = 'slene'
 
-
 	// 2.2、FilterRaw，不推荐使用，会出现sql注入威胁
 	// FilterRaw(string, string) QuerySeter
 	// 该方法会直接把输入当做是一个查询条件，因此如果输入有错误，那么拼接得来的 SQL 则无法运行。Beego 本身并不会执行任何的检查。
@@ -84,14 +79,12 @@ func test080102(qs orm.QuerySeter) {
 	qs.FilterRaw("user_id", " IN (SELECT id FROM profile WHERE age>=18)")
 	//sql-> WHERE user_id IN (SELECT id FROM profile WHERE age>=18)
 
-
 	// 2.3、Exclude，排除什么条件
 	//Exclude(string, ...interface{}) QuerySeter
 	//准确来说，Exclude表达的是NOT的语义：
 
 	qs.Filter("profile__age__in", 18, 20).Exclude("profile__age__in", 1000)
 	// WHERE profile.age IN (18, 20) AND profile.age NOT IN (1000)
-
 
 	// 2.4、SetCond
 	//SetCond(*Condition) QuerySeter
@@ -103,18 +96,13 @@ func test080102(qs orm.QuerySeter) {
 	num, err := qs.SetCond(cond1).Count()
 	fmt.Println(num, err)
 
-
 	// 2.5、
-
 
 	// 2.6、
 
-
 	// 2.7、
 
-
 	// 2.8、
-
 
 }
 

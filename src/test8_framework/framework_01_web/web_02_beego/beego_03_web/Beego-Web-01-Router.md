@@ -37,7 +37,7 @@ Beego 鼓励使用 **注解 + 自动生成** 的方式，更快更规范。
 比如你写了这个 Controller 方法：
 
 ```go
-// @router /user/info [get]
+// @router /anonymous_user/info [get]
 func (u *UserController) GetUserInfo() {
     ...
 }
@@ -47,7 +47,7 @@ func (u *UserController) GetUserInfo() {
 
 ```go
 func init() {
-    web.Router("/user/info", &controllers.UserController{}, "get:GetUserInfo")
+    web.Router("/anonymous_user/info", &controllers.UserController{}, "get:GetUserInfo")
 }
 ```
 

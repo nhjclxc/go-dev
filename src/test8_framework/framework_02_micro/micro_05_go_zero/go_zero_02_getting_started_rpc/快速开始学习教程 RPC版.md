@@ -35,12 +35,12 @@ Etcd 是本次的注册中心，
 注意：在此之前必须先安装ETCD服务发现，如果还没有安装ETCD，请看[ETCD安装.md](..%2F..%2Fmicro_04_service_discovery%2Fservice_discovery_01_etcd/ETCD安装.md)
 
 ```yaml
-Name: user-service
+Name: anonymous_user-service
 ListenOn: 0.0.0.0:8080
 Etcd:
   Hosts:
     - 39.106.59.225:2379
-  Key: user-service
+  Key: anonymous_user-service
 ```
 
 ## 2.4、在 `logic` 目录中填充业务逻辑。
@@ -76,7 +76,7 @@ UserService:
   Etcd:
     Hosts:
       - 39.106.59.225:2379
-    Key: user-service
+    Key: anonymous_user-service
 ```
 
 
@@ -112,7 +112,7 @@ package svc
 import (
 	"github.com/zeromicro/go-zero/zrpc"
 	"order-service/internal/config"
-	rpcUser "order-service/rpc/user"
+	rpcUser "order-service/rpc/anonymous_user"
 )
 
 type ServiceContext struct {
@@ -144,7 +144,7 @@ import (
 	"order-service/internal/svc"
 	"order-service/internal/types"
 
-	rpcUser "order-service/rpc/user"
+	rpcUser "order-service/rpc/anonymous_user"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -19,27 +19,27 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/class/add",
+				Path:    "/anonymous_user/class/add",
 				Handler: class.UserClassAddHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/class/delete",
+				Path:    "/anonymous_user/class/delete",
 				Handler: class.UserClassDeleteHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/class/info",
+				Path:    "/anonymous_user/class/info",
 				Handler: class.UserClassInfoHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/class/list",
+				Path:    "/anonymous_user/class/list",
 				Handler: class.UserClassListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/class/update",
+				Path:    "/anonymous_user/class/update",
 				Handler: class.UserClassUpdateHandler(serverCtx),
 			},
 		},
@@ -50,27 +50,27 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/role/add",
+				Path:    "/anonymous_user/role/add",
 				Handler: role.UserRoleAddHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/role/delete",
+				Path:    "/anonymous_user/role/delete",
 				Handler: role.UserRoleDeleteHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/role/info",
+				Path:    "/anonymous_user/role/info",
 				Handler: role.UserRoleInfoHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/role/list",
+				Path:    "/anonymous_user/role/list",
 				Handler: role.UserRoleListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/role/update",
+				Path:    "/anonymous_user/role/update",
 				Handler: role.UserRoleUpdateHandler(serverCtx),
 			},
 		},
@@ -81,22 +81,22 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/info",
+				Path:    "/anonymous_user/info",
 				Handler: user.UserInfoHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/info/update",
+				Path:    "/anonymous_user/info/update",
 				Handler: user.UserInfoUpdateHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/user/list",
+				Path:    "/anonymous_user/list",
 				Handler: user.UserListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/login",
+				Path:    "/anonymous_user/login",
 				Handler: user.UserLoginHandler(serverCtx),
 			},
 		},

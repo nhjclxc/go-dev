@@ -11,7 +11,6 @@ import (
 
 func main() {
 
-
 	content := "You are a helpful assistant"
 
 	//var msgChan chan []string = make(chan []string, 500)
@@ -19,7 +18,6 @@ func main() {
 	var exitChan chan bool = make(chan bool)
 	defer close(msgChan)
 	defer close(exitChan)
-
 
 	// 写数据
 	go SendDeepSeek(exitChan, msgChan, content)
@@ -33,10 +31,6 @@ func main() {
 			fmt.Println("读取:", msg)
 		}
 	}
-
-
-
-
 
 }
 
@@ -53,7 +47,7 @@ func SendDeepSeek(exitChan chan bool, msgChan chan string, content string) {
 				},
 				{
 				  "content": "Hi",
-				  "role": "user"
+				  "role": "anonymous_user"
 				}
 			  ],
 			  "model": "deepseek-chat",

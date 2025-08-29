@@ -20,7 +20,7 @@ func init() {
 
 	userController := controllers.UserController{}
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/user",
+		beego.NSNamespace("/anonymous_user",
 			beego.NSInclude(
 				&userController,
 			),
@@ -34,7 +34,7 @@ func init() {
 		),
 	)
 	// 不在某个命名空间内,则直接使用 xxx 注册路由
-	beego.Get("/v1/user/testLogout333", userController.TestLogout333)
+	beego.Get("/v1/anonymous_user/testLogout333", userController.TestLogout333)
 
 	//Get(rootpath string, f HandleFunc)
 	//Post(rootpath string, f HandleFunc)
@@ -46,11 +46,11 @@ func init() {
 	//Any(rootpath string, f HandleFunc)
 
 	// 过多与路由规则相关的知识,请看:https://beegodoc.com/zh/developing/web/router/router_rule.html
-	// * 匹配 , 如: /api/user/name/*
-	// /api/user/name
-	// /api/user/name/tom
-	// /api/user/name/jerry/home
-	// 即，只要前缀符合/api/user/name，那么就会命中。
+	// * 匹配 , 如: /api/anonymous_user/name/*
+	// /api/anonymous_user/name
+	// /api/anonymous_user/name/tom
+	// /api/anonymous_user/name/jerry/home
+	// 即，只要前缀符合/api/anonymous_user/name，那么就会命中。
 
 	// /api/*/name , 则匹配：/api/tom/name 、 /api/tom/jerry/name
 
@@ -96,8 +96,8 @@ func init() {
 		fmt.Printf("%s => %v\n", k, v)
 	}
 
-	// GET => [/user/getuserbyid/* map[*:GetUserById] controllers.UserController]
+	// GET => [/anonymous_user/getuserbyid/* map[*:GetUserById] controllers.UserController]
 	// GET 方法访问接口
-	// 接口路径是:/user/getuserbyid/*, * 表示任意的参数
+	// 接口路径是:/anonymous_user/getuserbyid/*, * 表示任意的参数
 	// 执行 controllers.UserController 里面的 GetUserById 方法
 }

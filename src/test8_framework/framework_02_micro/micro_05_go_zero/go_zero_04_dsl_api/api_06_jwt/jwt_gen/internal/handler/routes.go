@@ -17,7 +17,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/login",
+				Path:    "/anonymous_user/login",
 				Handler: loginHandler(serverCtx),
 			},
 		},
@@ -27,7 +27,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/info",
+				Path:    "/anonymous_user/info",
 				Handler: userInfoHandler(serverCtx),
 			},
 		},
@@ -35,7 +35,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		// 读取 token 信息的时候，使用 uuid := this.ctx.Value("uuid") 即可
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
-
 
 	// 以下是自定义读取权限认证的演示
 	server.AddRoutes(
@@ -47,7 +46,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
-					Path:    "/user/getUserById",
+					Path:    "/anonymous_user/getUserById",
 					Handler: getUserByIdHandler(serverCtx),
 				},
 			}..., // 使用 ... 将数组展开

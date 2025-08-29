@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	//user1 := &user.User{}
+	//user1 := &anonymous_user.User{}
 	user1 := &myUser.User{}
 	fmt.Println(user1)
 	user1.ID = 666

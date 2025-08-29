@@ -6,7 +6,7 @@ import (
 )
 
 func UserRoutesInit(router *gin.Engine) {
-	userRouter := router.Group("/user")
+	userRouter := router.Group("/anonymous_user")
 	{
 		userRouter.GET("/getById", func(context *gin.Context) {
 			context.String(http.StatusOK, context.FullPath())

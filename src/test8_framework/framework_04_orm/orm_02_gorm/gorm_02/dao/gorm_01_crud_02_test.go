@@ -39,7 +39,7 @@ func TestMyFunc0201(t *testing.T) {
 
 	// 检查 ErrRecordNotFound 错误
 	fmt.Println(errors.Is(result.Error, gorm.ErrRecordNotFound)) // false
-	// 如果你想避免ErrRecordNotFound错误，你可以使用Find，比如db.Limit(1).Find(&user)，Find方法可以接受struct和slice的数据。
+	// 如果你想避免ErrRecordNotFound错误，你可以使用Find，比如db.Limit(1).Find(&anonymous_user)，Find方法可以接受struct和slice的数据。
 
 }
 
@@ -142,7 +142,7 @@ func TestMyFunc0204(t *testing.T) {
 	// Get first matched record
 	db.DB.Where("name = ?", "WangWu").First(&user)
 	// SELECT * FROM `tab_user` WHERE name = 'WangWu' ORDER BY `tab_user`.`user_id` LIMIT 1
-	fmt.Println("user：", user)
+	fmt.Println("anonymous_user：", user)
 
 	// Get all matched records
 	db.DB.Where("name <> ?", "WangWu").Find(&users)
@@ -177,7 +177,7 @@ func TestMyFunc0204(t *testing.T) {
 	var user22 = model.TabUser{UserId: 10}
 	result := db.DB.Where("id = ?", 20).First(&user22)
 	// SELECT * FROM users WHERE id = 10 and id = 20 ORDER BY id ASC LIMIT 1
-	//这个查询将会给出record not found错误 所以，在你想要使用例如 user 这样的变量从数据库中获取新值前，需要将例如 id 这样的主键设置为nil。
+	//这个查询将会给出record not found错误 所以，在你想要使用例如 anonymous_user 这样的变量从数据库中获取新值前，需要将例如 id 这样的主键设置为nil。
 	// 即：将 user22 变量声明为：var user22 = model.TabUser{}
 	// 检查 ErrRecordNotFound 错误
 	fmt.Println("ErrRecordNotFound: ", errors.Is(result.Error, gorm.ErrRecordNotFound))
@@ -323,7 +323,7 @@ func TestMyFunc0209(t *testing.T) {
 func TestMyFunc02010(t *testing.T) {
 	//指定从数据库检索记录时的顺序
 
-	//user := model.TabUser{}
+	//anonymous_user := model.TabUser{}
 	users := []model.TabUser{}
 
 	db.DB.Order("age desc,name ").Find(&users)
@@ -344,7 +344,7 @@ func TestMyFunc02010(t *testing.T) {
 func TestMyFunc02011(t *testing.T) {
 	//Limit指定要检索的最大记录数，Offset指定在开始返回记录之前要跳过的记录数
 
-	//user := model.TabUser{}
+	//anonymous_user := model.TabUser{}
 	users := []model.TabUser{}
 	users2 := []model.TabUser{}
 
@@ -441,7 +441,7 @@ func TestMyFunc02013(t *testing.T) {
 
 	// 从模型中选择不同的值
 
-	//user := model.TabUser{}
+	//anonymous_user := model.TabUser{}
 	users := []model.TabUser{}
 
 	db.DB.Distinct("name", "age").Order("name, age desc").Find(&users)
@@ -470,6 +470,6 @@ func TestMyFunc02014(t *testing.T) {
 	db.DB.Table(user.TableName()).Select("tab_user.name, tab_user.email").Joins("left join tab_user_card on tab_user_card.user_id = users.user_id").Scan(&users)
 
 	// multiple joins with parameter
-	//db.DB.Joins("JOIN emails ON emails.user_id = users.id AND emails.email = ?", "jinzhu@example.org").Joins("JOIN credit_cards ON credit_cards.user_id = users.id").Where("credit_cards.number = ?", "411111111111").Find(&user)
+	//db.DB.Joins("JOIN emails ON emails.user_id = users.id AND emails.email = ?", "jinzhu@example.org").Joins("JOIN credit_cards ON credit_cards.user_id = users.id").Where("credit_cards.number = ?", "411111111111").Find(&anonymous_user)
 
 }

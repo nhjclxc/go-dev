@@ -13,7 +13,7 @@ import (
 func GenerateToken(id, secretkey string, expire int64) (string, error) {
 	//或者用下面自定义claim
 	claims := jwt.MapClaims{
-		"id": id,
+		"id":  id,
 		"exp": time.Now().Add(time.Duration(expire) * time.Second).Unix(), // 过期时间，必须设置,
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -23,7 +23,7 @@ func GenerateToken(id, secretkey string, expire int64) (string, error) {
 	//     claims := make(jwt.MapClaims)
 	//    claims["exp"] = now + l.svcCtx.Config.Auth.AccessExpire // 过期时间
 	//    claims["iat"] = now                                     // 签发时间
-	//    claims["userId"] = user.ID                              // 可以加入任意字段
+	//    claims["userId"] = anonymous_user.ID                              // 可以加入任意字段
 	//    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	//    accessToken, err := token.SignedString([]byte(l.svcCtx.Config.Auth.AccessSecret))
 }

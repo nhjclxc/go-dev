@@ -123,7 +123,7 @@ func connect() {
 		fmt.Println("连接成功：", c)
 
 		params := map[string]interface{}{
-			"http-user":                "root",
+			"http-anonymous_user":      "root",
 			"http-passwd":              "lambda3",
 			"max-concurrent-downloads": 40,
 			"dir":                      dst,

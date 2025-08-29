@@ -138,7 +138,7 @@ func main05() {
 			return
 		}
 
-		fmt.Printf("getQuery.user = %v \n", user)
+		fmt.Printf("getQuery.anonymous_user = %v \n", user)
 
 		context.JSON(http.StatusOK, map[string]any{"success": true})
 	})
@@ -151,7 +151,7 @@ func main05() {
 		if err != nil {
 			return
 		}
-		fmt.Printf("postJosn.user = %v \n", user)
+		fmt.Printf("postJosn.anonymous_user = %v \n", user)
 
 		context.JSON(http.StatusOK, map[string]any{"success": true})
 	})

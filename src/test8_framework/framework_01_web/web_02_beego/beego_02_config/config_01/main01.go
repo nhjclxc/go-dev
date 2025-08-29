@@ -9,7 +9,6 @@ import (
 	beego "github.com/beego/beego/v2/server/web"
 )
 
-
 // 如何读取配置文件
 func main01() {
 	if beego.BConfig.RunMode == "dev" {
@@ -38,7 +37,7 @@ func main01() {
 	}
 	fmt.Println("mysql.ip: ", section["ip"])
 	fmt.Println("mysql.port: ", section["port"])
-	fmt.Println("mysql.user: ", section["user"])
+	fmt.Println("mysql.anonymous_user: ", section["anonymous_user"])
 
 	fmt.Println("-----------------------")
 

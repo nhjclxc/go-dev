@@ -81,7 +81,7 @@ func main() {
 
 	// 有人连接
 	m.HandleConnect(func(s *melody.Session) {
-		println("New user connected")
+		println("New anonymous_user connected")
 	})
 
 	// 有人断开连接

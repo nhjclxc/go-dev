@@ -16,7 +16,6 @@ import (
 // go get go.etcd.io/etcd/clientv3
 func main() {
 
-
 	// etcd client put/get demo
 	// use etcd/clientv3
 
@@ -53,7 +52,7 @@ func main() {
 
 	// get
 	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
-	resp2, err := cli.Get(ctx, "user.rpc")
+	resp2, err := cli.Get(ctx, "anonymous_user.rpc")
 	cancel()
 	if err != nil {
 		fmt.Printf("get from etcd failed, err:%v\n", err)

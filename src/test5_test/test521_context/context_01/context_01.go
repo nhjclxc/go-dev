@@ -10,23 +10,23 @@ import (
 func main() {
 
 	/*
-	context 是 Go 中非常重要的标准库，主要用于：
-		控制 超时（timeout）
-		支持 取消操作（cancel）
-		在请求链中传递 请求范围的数据
+		context 是 Go 中非常重要的标准库，主要用于：
+			控制 超时（timeout）
+			支持 取消操作（cancel）
+			在请求链中传递 请求范围的数据
 
-	认识context包的所有常见方法
-	| 方法                                      | 说明                                 |
-	| --------------------------------------- | ---------------------------------- |
-	| `context.Background()`                  | 最顶层的 context，常用于 main 或测试，用于创建一个context实例          |
-	| `context.TODO()`                        | 占位符，表示“以后再补 context”，用于创建一个context实例               |
-	| `context.WithCancel(parent)`            | 返回可取消的子 context                    |
-	| `context.WithTimeout(parent, duration)` | 带超时取消的 context                     |
-	| `context.WithDeadline(parent, time)`    | 指定时间点取消的 context                   |
-	| `context.WithValue(parent, key, value)` | 向 context 中存储键值对数据                 |
-	| `ctx.Done()`                            | 返回一个 channel，表示 context 结束（被取消或超时） |
-	| `ctx.Err()`                             | 返回 context 被取消的原因                  |
-	| `ctx.Value(key)`                        | 获取 context 中的值                     |
+		认识context包的所有常见方法
+		| 方法                                      | 说明                                 |
+		| --------------------------------------- | ---------------------------------- |
+		| `context.Background()`                  | 最顶层的 context，常用于 main 或测试，用于创建一个context实例          |
+		| `context.TODO()`                        | 占位符，表示“以后再补 context”，用于创建一个context实例               |
+		| `context.WithCancel(parent)`            | 返回可取消的子 context                    |
+		| `context.WithTimeout(parent, duration)` | 带超时取消的 context                     |
+		| `context.WithDeadline(parent, time)`    | 指定时间点取消的 context                   |
+		| `context.WithValue(parent, key, value)` | 向 context 中存储键值对数据                 |
+		| `ctx.Done()`                            | 返回一个 channel，表示 context 结束（被取消或超时） |
+		| `ctx.Err()`                             | 返回 context 被取消的原因                  |
+		| `ctx.Value(key)`                        | 获取 context 中的值                     |
 
 	*/
 
@@ -47,8 +47,8 @@ func main() {
 func test06() {
 	// 6. 综合示例：结合 cancel + value + timeout
 
-	baseCtx := context.WithValue(context.Background(), "user", "Alice")
-	ctx, cancel := context.WithTimeout(baseCtx, 4*time.Second)  // 4s后超时取消
+	baseCtx := context.WithValue(context.Background(), "anonymous_user", "Alice")
+	ctx, cancel := context.WithTimeout(baseCtx, 4*time.Second) // 4s后超时取消
 	defer cancel()
 
 	go worker(ctx, "Worker1")
@@ -65,19 +65,18 @@ func worker(ctx context.Context, name string) {
 			fmt.Printf("[%s] 退出: %v\n", name, ctx.Err())
 			return
 		default:
-			fmt.Printf("[%s] 正在处理用户: %v\n", name, ctx.Value("user"))
+			fmt.Printf("[%s] 正在处理用户: %v\n", name, ctx.Value("anonymous_user"))
 			time.Sleep(500 * time.Millisecond)
 		}
 	}
 }
 
-
 func test05() {
 	background := context.Background()
-	ctx := context.WithValue(background, "user", "Luo Xianchao")
+	ctx := context.WithValue(background, "anonymous_user", "Luo Xianchao")
 	process(ctx)
 
-	fmt.Println("main.background.user: ", background.Value("user"))
+	fmt.Println("main.background.anonymous_user: ", background.Value("anonymous_user"))
 
 	go processPoint(&ctx)
 
@@ -88,7 +87,7 @@ func test05() {
 }
 
 func process(ctx context.Context) {
-	user := ctx.Value("user")
+	user := ctx.Value("anonymous_user")
 	if user != nil {
 		fmt.Println("当前用户是:", user)
 	} else {
@@ -97,7 +96,7 @@ func process(ctx context.Context) {
 }
 
 func processPoint(ctx *context.Context) {
-	user := (*ctx).Value("user")
+	user := (*ctx).Value("anonymous_user")
 	if user != nil {
 		fmt.Println("当前用户是:", user)
 	} else {
@@ -130,7 +129,6 @@ func test04() {
 	//context.WithDeadline 设置明确的截止时间点，到某个时间了关闭，如2025-07-05 15:00:00关闭，精确控制任务必须在某一时间点前完成
 	//context.WithTimeout 设置相对当前时间的超时时间，多久后关闭，如5s后关闭，通用超时控制（如接口请求 3s 超时）
 
-
 	// 为什么context.WithDeadline和context.WithTimeout要使用defer cancel()来关闭，而context.WithCancel不适应defer可以直接cancel()
 	//不管是 context.WithCancel、WithTimeout 还是 WithDeadline，都应该在使用完毕后调用 cancel()，并且推荐用 defer cancel() 来自动释放资源。
 	//
@@ -150,7 +148,6 @@ func test04() {
 	// 而对于WithTimeout和WithDeadline而言，他们是可以由go自动执行cancel()的，程序员可以不用执行cancle()方法，但是还是建议显示的执行cancel()方法
 
 	// 此外，⚠️ 超时后的自动取消 不会立即释放底层资源，只有调用 cancel() 才会真正清理。 "Code should call cancel even if the context is not needed any more, to avoid context leak."
-
 
 }
 
@@ -173,8 +170,6 @@ func test03() {
 			time.Sleep(500 * time.Millisecond)
 		}
 	}
-
-
 
 }
 
@@ -200,7 +195,6 @@ func test02() {
 	time.Sleep(1 * time.Second)
 
 	fmt.Println("主协程退出！！！")
-
 
 }
 

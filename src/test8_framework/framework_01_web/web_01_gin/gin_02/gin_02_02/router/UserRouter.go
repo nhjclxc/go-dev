@@ -10,10 +10,10 @@ import (
 func UserRouterInit(router *gin.Engine) {
 
 	// 注册路由分组中间件，方式一
-	//userGroup := router.Group("/user", middleware.UserMiddleware)
+	//userGroup := router.Group("/anonymous_user", middleware.UserMiddleware)
 
 	// 注册路由分组中间件，方式二
-	userGroup := router.Group("/user")
+	userGroup := router.Group("/anonymous_user")
 	userGroup.Use(middleware2.UserMiddleware)
 	{
 		userController := controller.UserController{}

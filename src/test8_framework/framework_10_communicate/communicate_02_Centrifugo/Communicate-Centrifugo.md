@@ -117,7 +117,7 @@ func main() {
 		Token: "<API密钥>",
 	})
 
-	client.Publish("chat", []byte(`{"user":"bob","text":"hello"}`))
+	client.Publish("chat", []byte(`{"anonymous_user":"bob","text":"hello"}`))
 }
 ```
 
@@ -126,7 +126,7 @@ func main() {
 ```bash
 curl -X POST http://localhost:8000/api \
   -H "Authorization: apikey <API_KEY>" \
-  -d '{"method": "publish", "params": {"channel": "chat", "data": {"user": "bob", "text": "hi"}}}'
+  -d '{"method": "publish", "params": {"channel": "chat", "data": {"anonymous_user": "bob", "text": "hi"}}}'
 ```
 
 ---

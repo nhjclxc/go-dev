@@ -7,11 +7,10 @@ import (
 	"log"
 )
 
-
 // go get github.com/lib/pq
 func main() {
 	// 配置连接参数
-	connStr := "host=127.0.0.1 port=5432 user=postgres password=pgsqldb123 dbname=pgsqldb sslmode=disable"
+	connStr := "host=127.0.0.1 port=5432 anonymous_user=postgres password=pgsqldb123 dbname=pgsqldb sslmode=disable"
 
 	// 连接数据库
 	db, err := sql.Open("postgres", connStr)

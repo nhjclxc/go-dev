@@ -30,7 +30,7 @@ type LoginResMes struct {
 
 // 消息种类: RegisterMes 注册用户信息, 是一个User实例
 type RegisterMes struct {
-	User User `json:"user"`
+	User User `json:"anonymous_user"`
 }
 
 // 消息种类: RegisterResMes 登录返回的消息包, 包含code(int)和错误信息(string)

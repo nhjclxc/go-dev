@@ -76,8 +76,8 @@ func (ud *UserDao) Login(id int, passwd string) (user *common.User, err error) {
 		return
 	}
 
-	//user.Status = common.UserStatusOnline
-	//user.LastLogin = fmt.Sprintf("%v", time.Now())
+	//anonymous_user.Status = common.UserStatusOnline
+	//anonymous_user.LastLogin = fmt.Sprintf("%v", time.Now())
 
 	return
 }

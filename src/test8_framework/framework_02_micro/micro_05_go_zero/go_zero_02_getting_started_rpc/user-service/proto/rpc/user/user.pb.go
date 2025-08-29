@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.31.0--rc2
-// source: user.proto
+// source: anonymous_user.proto
 
 package user
 
@@ -130,7 +130,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\"!\n" +
+	"anonymous_user.proto\"!\n" +
 	"\aUserReq\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\"H\n" +
 	"\bUserResp\x12\x16\n" +

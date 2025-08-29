@@ -185,7 +185,7 @@ func (up *UserProcessor) ServerProcessRegister(msg *common.Message) (err error) 
 
 	//userDao这个变量，在main函数运行就已经被初始化了，是一个全局变量
 	//Register如果成功，err == nil
-	//	var user *model.User
+	//	var anonymous_user *model.User
 	//	err = model.MyUserDao.Register(registerMes.User.Id,
 	//		registerMes.User.Name, registerMes.User.Pwd)
 

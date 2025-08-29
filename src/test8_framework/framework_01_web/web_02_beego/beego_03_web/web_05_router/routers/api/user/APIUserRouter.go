@@ -19,8 +19,8 @@ var (
 func init() {
 
 	userController := controllers.ApiUserController{}
-	APIUserRouterLinkNamespace = beego.NSNamespace("/user",
-		// /v1/api/user/getMyInfo
+	APIUserRouterLinkNamespace = beego.NSNamespace("/anonymous_user",
+		// /v1/api/anonymous_user/getMyInfo
 		beego.NSGet("/getMyInfo/:uid", userController.GetMyInfo),
 		// 后续还有更多的 API 要被注册 ...
 	)

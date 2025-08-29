@@ -52,7 +52,7 @@ func main() {
 	// 路由分组，所有需要鉴权的接口用 AuthMiddleware 包裹
 	authGroup := r.Group("/api", AuthMiddleware())
 	{
-		userGroup := authGroup.Group("/user")
+		userGroup := authGroup.Group("/anonymous_user")
 		{
 			userGroup.POST("/logout", logout)
 			userGroup.POST("/postUser", postUser)
@@ -61,7 +61,6 @@ func main() {
 			userGroup.GET("/getUser", getUser)
 		}
 	}
-
 
 	r.Run(":8080")
 }
@@ -126,7 +125,6 @@ func validateToken(token string) bool {
 	return true
 }
 
-
 /*
 	下面将介绍如何给接口加上请求投认证信息
     @Security BearerAuth：表示这个接口要加Bearer类型的认证信息
@@ -170,7 +168,7 @@ func getUser(c *gin.Context) {
 // @Security BearerAuth
 // @Accept json
 // @Produce json
-// @Param user body UserDto true "用户信息"
+// @Param anonymous_user body UserDto true "用户信息"
 // @Success 200 {object} JsonResponse{data=LogoutVo,msg=string,code=int,error=string}  "退出登录响应数据"
 // @Failure 401 {object} JsonResponse{data=LogoutVo,msg=string,code=int,error=string} "未授权"
 // @Router /postUser [post]
@@ -292,7 +290,6 @@ type UserDto struct {
 
 */
 
-
 /*
 
 Failed to fetch.
@@ -302,4 +299,4 @@ Possible Reasons:
 	URL scheme must be "http" or "https" for CORS request.
 
 如果出现上述原因是：
- */
+*/

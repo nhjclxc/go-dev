@@ -16,7 +16,6 @@ import (
 //go get go.opentelemetry.io/otel/exporters/zipkin
 //go get go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin
 
-
 // 启动一个zipkin实例
 // docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/openzipkin/zipkin:latest
 // docker run -d -p 9411:9411 swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/openzipkin/zipkin:latest
@@ -29,31 +28,23 @@ import (
 // 继续增加zap日志配合
 // go get go.uber.org/zap
 
-
-
-
 func main() {
 	// 初始化zipkin
 	shutdown := InitTracer("track_02_gin_zipkin_prometheus", "http://39.106.59.225:9411/api/v2/spans")
 	defer shutdown(context.Background())
 
-
 	r := gin.Default()
-
 
 	// 添加 OpenTelemetry 中间件（自动注入 traceId/spanId）
 	r.Use(otelgin.Middleware("track_02_gin_zipkin_prometheus"))
 
-
 	// 启用跨域支持
 	r.Use(cors.Default())
-
-
 
 	// 路由分组，所有需要鉴权的接口用 AuthMiddleware 包裹
 	authGroup := r.Group("/api", AuthMiddleware())
 	{
-		userGroup := authGroup.Group("/user")
+		userGroup := authGroup.Group("/anonymous_user")
 		{
 			userGroup.POST("/logout", logout)
 			userGroup.POST("/postUser", postUser)
@@ -62,7 +53,6 @@ func main() {
 			userGroup.GET("/getUser", getUser)
 		}
 	}
-
 
 	r.Run(":8080")
 }
@@ -127,7 +117,6 @@ func validateToken(token string) bool {
 	return true
 }
 
-
 // @Tags 用户模块
 // @Summary 获取用户详细-Summary
 // @Description 获取用户详细-Description
@@ -146,9 +135,9 @@ func getUser(c *gin.Context) {
 	Logger.Info(msg)
 
 	Logger.Info("getUser，authorization = %s, username = %s \n",
-			zap.String("authorization", authorization),
-			zap.String("username", username),
-		)
+		zap.String("authorization", authorization),
+		zap.String("username", username),
+	)
 
 	c.JSON(
 		http.StatusOK,
@@ -167,7 +156,7 @@ func getUser(c *gin.Context) {
 // @Security BearerAuth
 // @Accept json
 // @Produce json
-// @Param user body UserDto true "用户信息"
+// @Param anonymous_user body UserDto true "用户信息"
 // @Success 200 {object} JsonResponse{data=LogoutVo,msg=string,code=int,error=string}  "退出登录响应数据"
 // @Failure 401 {object} JsonResponse{data=LogoutVo,msg=string,code=int,error=string} "未授权"
 // @Router /postUser [post]

@@ -21,7 +21,7 @@ func TestMyFunc0101(t *testing.T) {
 	result := db.DB.Create(&user) // 通过数据的指针来创建
 	// INSERT INTO `tab_user` (`name`,`email`,`age`,`birthday`,`member_number`,`activated_at`,`created_at`,`updated_at`) VALUES ('Jinzhu','',18,'2025-04-25 21:41:33.473',NULL,'2025-04-25 21:41:33.474','2025-04-25 21:41:33.474','2025-04-25 21:41:33.474')
 
-	fmt.Println("user.UserId：", user.UserId)                 // 返回插入数据的主键
+	fmt.Println("anonymous_user.UserId：", user.UserId)       // 返回插入数据的主键
 	fmt.Println("result.Error：", result.Error)               // 返回 error
 	fmt.Println("result.RowsAffected：", result.RowsAffected) // 返回插入记录的条数
 }
@@ -138,16 +138,16 @@ func TestMyFunc0107(t *testing.T) {
 	// [1.056ms] [rows:1] INSERT INTO `tab_user_card` (`user_id`,`card_type_id`,`remark`,`status`,`created_at`,`updated_at`) VALUES (16,1,'这张卡是默认给张三创建的',0,'2025-04-26 09:26:14.064','2025-04-26 09:26:14.064') ON DUPLICATE KEY UPDATE `user_id`=VALUES(`user_id`)
 	//[15.968ms] [rows:1] INSERT INTO `tab_user` (`name`,`email`,`age`,`birthday`,`member_number`,`remark`,`activated_at`,`created_at`,`updated_at`) VALUES ('张三','zhangsan@zzz.com',18,'202  5-04-26 09:26:14.055',NULL,'e5fb0c89-cef0-4c32-a7b3-ab46197bc50b','2025-04-26 09:26:14.055','2025-04-26 09:26:14.055','2025-04-26 09:26:14.055')
 
-	fmt.Println("user.UserId：", tabUser.UserId)                    // 返回插入数据的主键
+	fmt.Println("anonymous_user.UserId：", tabUser.UserId)          // 返回插入数据的主键
 	fmt.Println("tabUserCard.UserCardId：", tabUserCard.UserCardId) // 返回插入数据的主键
 	fmt.Println("result.Error：", result.Error)                     // 返回 error
 	fmt.Println("result.RowsAffected：", result.RowsAffected)       // 返回插入记录的条数
 
 	// 有的时候，不想关联新增
 	//你可以通过Select, Omit方法来跳过关联更新，示例如下：
-	//db.Omit("CreditCard").Create(&user)
+	//db.Omit("CreditCard").Create(&anonymous_user)
 	// skip all associations
-	//db.Omit(clause.Associations).Create(&user)
+	//db.Omit(clause.Associations).Create(&anonymous_user)
 
 }
 

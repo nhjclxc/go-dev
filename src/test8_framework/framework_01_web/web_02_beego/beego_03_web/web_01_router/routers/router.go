@@ -24,9 +24,9 @@ func init() {
 	//这是因为 Go 语言特性，要求在接收器是指针的时候，如果你希望拿到这个方法，那么应该用(*YourController)的形式。
 
 	// get http://localhost:8080/api/user/helloworld
-	beego.CtrlGet("/api/user/helloworld22", (*controllers.UserController).HelloWorld)
-	beego.CtrlGet("/api/user/helloworld33", (*controllers.UserController).HelloWorld)
-	beego.CtrlGet("/api/user/helloworldNonePoint", (*controllers.UserController).HelloWorldNonePoint)
+	beego.CtrlGet("/api/anonymous_user/helloworld22", (*controllers.UserController).HelloWorld)
+	beego.CtrlGet("/api/anonymous_user/helloworld33", (*controllers.UserController).HelloWorld)
+	beego.CtrlGet("/api/anonymous_user/helloworldNonePoint", (*controllers.UserController).HelloWorldNonePoint)
 
 	/*
 		不是同一个实例！
@@ -51,27 +51,27 @@ func init() {
 	*/
 
 	// get http://localhost:8080/api/user/123
-	//beego.CtrlGet("api/user/:id", usercontroller.HelloWorld)
+	//beego.CtrlGet("api/anonymous_user/:id", usercontroller.HelloWorld)
 	//
 	//// post http://localhost:8080/api/user/update
-	//beego.CtrlPost("api/user/update", (*UserController).UpdateUser)
+	//beego.CtrlPost("api/anonymous_user/update", (*UserController).UpdateUser)
 	//
 	//// http://localhost:8080/api/user/home
-	//beego.CtrlAny("api/user/home", (*UserController).UserHome)
+	//beego.CtrlAny("api/anonymous_user/home", (*UserController).UserHome)
 	//
 	//// delete http://localhost:8080/api/user/delete
-	//beego.CtrlDelete("api/user/delete", (*UserController).DeleteUser)
+	//beego.CtrlDelete("api/anonymous_user/delete", (*UserController).DeleteUser)
 	//
 	//// head http://localhost:8080/api/user/head
-	//beego.CtrlHead("api/user/head", (*UserController).HeadUser)
+	//beego.CtrlHead("api/anonymous_user/head", (*UserController).HeadUser)
 	//
 	//// patch http://localhost:8080/api/user/options
-	//beego.CtrlOptions("api/user/options", (*UserController).OptionUsers)
+	//beego.CtrlOptions("api/anonymous_user/options", (*UserController).OptionUsers)
 	//
 	//// patch http://localhost:8080/api/user/patch
-	//beego.CtrlPatch("api/user/patch", (*UserController).PatchUsers)
+	//beego.CtrlPatch("api/anonymous_user/patch", (*UserController).PatchUsers)
 	//
 	//// put http://localhost:8080/api/user/put
-	//beego.CtrlPut("api/user/put", (*UserController).PutUsers)
+	//beego.CtrlPut("api/anonymous_user/put", (*UserController).PutUsers)
 
 }

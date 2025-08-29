@@ -25,7 +25,7 @@ func init() {
 	}
 
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/user",
+		beego.NSNamespace("/anonymous_user",
 			// http://localhost:8080/v1/user/insertUser
 			beego.NSPost("insertUser", userController.InsertUser),
 			// http://localhost:8080/v1/user/deleteUser/123

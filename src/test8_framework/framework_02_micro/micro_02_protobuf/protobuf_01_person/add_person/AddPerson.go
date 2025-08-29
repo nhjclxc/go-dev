@@ -89,7 +89,7 @@ func promptForAddress(r io.Reader) (*pb.Person, error) {
 }
 
 // Main reads the entire address book from a file, adds one person based on
-// user input, then writes it back out to the same file.
+// anonymous_user input, then writes it back out to the same file.
 func main() {
 	if len(os.Args) != 2 {
 		log.Fatalf("Usage:  %s ADDRESS_BOOK_FILE\n", os.Args[0])

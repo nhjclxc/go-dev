@@ -12,7 +12,7 @@ type ApiUserController struct {
 }
 
 // @Title Get
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Success 200 {object} models.User
 // @router /v1/api/goods/getNewstGoodsList [get]
 func (u *ApiUserController) GetNewstGoodsList(ctx *beecontext.Context) {

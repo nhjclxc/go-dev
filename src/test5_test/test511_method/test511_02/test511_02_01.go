@@ -9,7 +9,7 @@ func main1() {
 	user := User{id: 666, name: "zhangsan"}
 	m := Manager{user}
 
-	fmt.Printf("user: %p\n", &user)
+	fmt.Printf("anonymous_user: %p\n", &user)
 	user.ToString()
 	fmt.Printf("Manager: %p\n", &m)
 	m.ToString()

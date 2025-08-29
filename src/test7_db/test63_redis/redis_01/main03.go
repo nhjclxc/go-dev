@@ -24,7 +24,7 @@ func main03() {
 
 	// 先初始化一些key进去，以便下面的使用
 	for i := 0; i < 10; i++ {
-		redisClient.Set("go-user:"+strconv.Itoa(i), i, 60*time.Second)
+		redisClient.Set("go-anonymous_user:"+strconv.Itoa(i), i, 60*time.Second)
 	}
 
 	var cursor uint64
@@ -32,7 +32,7 @@ func main03() {
 	var err error
 
 	// 你可以自定义匹配模式和一次扫描的数量
-	matchPattern := "go-user:*"
+	matchPattern := "go-anonymous_user:*"
 	count := int64(20) // 表示扫描20个匹配到的key
 
 	for {
@@ -40,7 +40,7 @@ func main03() {
 		var scannedKeys []string
 		//🔍 参数说明
 		//		cursor: 游标，初始值为 0，Redis 会返回新的游标直到返回 0 表示遍历结束。
-		//		match: 匹配模式（支持通配符，比如 go-user:*）。
+		//		match: 匹配模式（支持通配符，比如 go-anonymous_user:*）。
 		//		count: 每次扫描返回的最大数量（只是 hint，实际可能少于这个数）。
 		scannedKeys, cursor, err = redisClient.Scan(cursor, matchPattern, count).Result()
 		if err != nil {

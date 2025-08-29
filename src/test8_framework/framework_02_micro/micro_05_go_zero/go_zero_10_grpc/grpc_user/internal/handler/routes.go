@@ -17,13 +17,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				// 获取用户信息
 				Method:  http.MethodGet,
-				Path:    "/user/info",
+				Path:    "/anonymous_user/info",
 				Handler: userInfoHandler(serverCtx),
 			},
 			{
 				// 新增用户
 				Method:  http.MethodPost,
-				Path:    "/user/info",
+				Path:    "/anonymous_user/info",
 				Handler: InsertUserInfoHandler(serverCtx),
 			},
 		},

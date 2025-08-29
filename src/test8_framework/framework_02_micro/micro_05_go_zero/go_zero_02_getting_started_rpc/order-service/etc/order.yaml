@@ -9,4 +9,4 @@ UserService:
   Etcd:
     Hosts:
       - 39.106.59.225:2379
-    Key: user-service
+    Key: anonymous_user-service

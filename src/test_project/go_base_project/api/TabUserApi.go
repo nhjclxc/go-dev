@@ -25,7 +25,7 @@ type TabUserApi struct {
 // @Success 200 {object} commonModel.JsonResult "新增用户响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user [post]
+// @Router /tab/anonymous_user [post]
 func (this *TabUserApi) InsertTabUser(c *gin.Context) {
 	var tabUser model.TabUser
 	c.ShouldBindJSON(&tabUser)
@@ -50,7 +50,7 @@ func (this *TabUserApi) InsertTabUser(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "修改用户响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user [put]
+// @Router /tab/anonymous_user [put]
 func (this *TabUserApi) UpdateTabUser(c *gin.Context) {
 	var tabUser model.TabUser
 	c.ShouldBindJSON(&tabUser)
@@ -75,7 +75,7 @@ func (this *TabUserApi) UpdateTabUser(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "删除用户响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user/:idList [delete]
+// @Router /tab/anonymous_user/:idList [delete]
 func (this *TabUserApi) DeleteTabUser(c *gin.Context) {
 	idListStr := c.Param("idList") // 例如: "1,2,3"
 	idList, err := commonUtils.ParseIds(idListStr)
@@ -104,7 +104,7 @@ func (this *TabUserApi) DeleteTabUser(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "获取用户详细信息"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user/:id [get]
+// @Router /tab/anonymous_user/:id [get]
 func (this *TabUserApi) GetTabUserById(c *gin.Context) {
 	idStr := c.Param("id") // 例如: "1"
 	id, err := commonUtils.ParseId(idStr)
@@ -133,7 +133,7 @@ func (this *TabUserApi) GetTabUserById(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "查询用户列表响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user/list [get]
+// @Router /tab/anonymous_user/list [get]
 func (this *TabUserApi) GetTabUserList(c *gin.Context) {
 	var tabUserDto dto.TabUserDto
 	c.ShouldBindQuery(&tabUserDto)
@@ -158,7 +158,7 @@ func (this *TabUserApi) GetTabUserList(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "分页查询用户列表响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user/pageList [get]
+// @Router /tab/anonymous_user/pageList [get]
 func (this *TabUserApi) GetTabUserPageList(c *gin.Context) {
 	var tabUserDto dto.TabUserDto
 	c.ShouldBindQuery(&tabUserDto)
@@ -183,7 +183,7 @@ func (this *TabUserApi) GetTabUserPageList(c *gin.Context) {
 // @Success 200 {object} commonModel.JsonResult "导出用户列表响应数据"
 // @Failure 401 {object} commonModel.JsonResult "未授权"
 // @Failure 500 {object} commonModel.JsonResult "服务器异常"
-// @Router /tab/user/export [get]
+// @Router /tab/anonymous_user/export [get]
 func (this *TabUserApi) ExportTabUser(c *gin.Context) {
 	var tabUserDto dto.TabUserDto
 	c.ShouldBindQuery(&tabUserDto)

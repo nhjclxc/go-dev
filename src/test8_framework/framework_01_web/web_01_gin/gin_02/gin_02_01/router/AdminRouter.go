@@ -8,8 +8,8 @@ import (
 func AdminRoutesInit(router *gin.Engine) {
 	adminRouter := router.Group("/admin")
 	{
-		adminRouter.GET("/user", func(c *gin.Context) {
-			c.String(http.StatusOK, "admin.user")
+		adminRouter.GET("/anonymous_user", func(c *gin.Context) {
+			c.String(http.StatusOK, "admin.anonymous_user")
 		})
 		adminRouter.GET("/news", func(c *gin.Context) {
 			c.String(http.StatusOK, "admin.news")

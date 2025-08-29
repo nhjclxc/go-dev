@@ -212,7 +212,7 @@ paths:
       parameters:
       - description: 用户信息
         in: body
-        name: user
+        name: anonymous_user
         required: true
         schema:
           $ref: '#/definitions/main.UserDto'

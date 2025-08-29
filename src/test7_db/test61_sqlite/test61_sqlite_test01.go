@@ -13,12 +13,12 @@ func main1() {
 	}
 	defer db.Close()
 
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, name TEXT)")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS anonymous_user (id INTEGER PRIMARY KEY, name TEXT)")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = db.Exec("INSERT INTO user(name) VALUES (?)", "Alice")
+	_, err = db.Exec("INSERT INTO anonymous_user(name) VALUES (?)", "Alice")
 	if err != nil {
 		log.Fatal(err)
 	}

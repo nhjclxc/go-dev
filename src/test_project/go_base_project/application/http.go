@@ -104,7 +104,7 @@ func (s *HTTPService) setupRoutes() {
 	privateRouter := s.engine.Group("/api/private")
 	privateRouter.Use(middleware.JWTAuthMiddleware())
 	{
-		privateUserRouter := privateRouter.Group("/user")
+		privateUserRouter := privateRouter.Group("/anonymous_user")
 		{
 			privateUserRouter.GET("", s.s)
 		}
@@ -117,7 +117,7 @@ func (s *HTTPService) setupRoutes() {
 
 	publicRouter := s.engine.Group("/api/public")
 	{
-		publicUserRouter := publicRouter.Group("/user")
+		publicUserRouter := publicRouter.Group("/anonymous_user")
 		{
 			publicUserRouter.GET("", s.streamController.ListStreams)
 		}

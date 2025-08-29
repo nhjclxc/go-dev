@@ -32,12 +32,10 @@ func (this *UserService) InsertUser(context context.Context, userRequest *user_m
 	return &response, nil
 }
 
-
 // go get go-micro.dev/v5
-//
 func main() {
 	service := micro.NewService(
-		micro.Name("user.service"),
+		micro.Name("anonymous_user.service"),
 	)
 
 	service.Init()

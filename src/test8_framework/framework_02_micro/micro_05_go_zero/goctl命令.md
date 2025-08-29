@@ -86,7 +86,7 @@
 * 快速生成 K8s 的 `deployment.yaml` 和 `service.yaml` 配置。
 
   ```bash
-  goctl kube deploy -name user-api -namespace dev -image user-api:v1 -o .
+  goctl kube deploy -name anonymous_user-api -namespace dev -image anonymous_user-api:v1 -o .
   ```
 
 #### 8. `plugin`

@@ -7,7 +7,7 @@ import (
 )
 
 func UserRoutesInit(router *gin.Engine) {
-	userRouter := router.Group("/user")
+	userRouter := router.Group("/anonymous_user")
 	{
 		userController := controller.UserController{}
 		// 路由绑定 handler 处理方法

@@ -16,7 +16,7 @@ func (u *User) PrintUser() {
 }
 
 func init() {
-	fmt.Println("user.init")
+	fmt.Println("anonymous_user.init")
 }
 
 // 以下称为一个函数

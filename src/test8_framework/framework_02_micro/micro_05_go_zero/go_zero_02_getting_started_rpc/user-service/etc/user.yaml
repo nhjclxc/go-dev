@@ -1,6 +1,6 @@
-Name: user-service
+Name: anonymous_user-service
 ListenOn: 0.0.0.0:8080
 Etcd:
   Hosts:
     - 39.106.59.225:2379
-  Key: user-service
+  Key: anonymous_user-service

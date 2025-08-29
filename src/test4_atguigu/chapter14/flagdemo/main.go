@@ -13,7 +13,7 @@ func main() {
 	var host string
 	var port int
 
-	//&user 就是接收用户命令行中输入的 -u 后面的参数值
+	//&anonymous_user 就是接收用户命令行中输入的 -u 后面的参数值
 	//"u" ,就是 -u 指定参数
 	//"" , 默认值
 	//"用户名,默认为空" 说明
@@ -25,7 +25,7 @@ func main() {
 	flag.Parse()
 
 	//输出结果
-	fmt.Printf("user=%v pwd=%v host=%v port=%v",
+	fmt.Printf("anonymous_user=%v pwd=%v host=%v port=%v",
 		user, pwd, host, port)
 
 }

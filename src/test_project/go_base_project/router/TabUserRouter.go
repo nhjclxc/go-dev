@@ -11,7 +11,7 @@ type TabUserRouter struct {
 
 // InitTabUserRouter 初始化 TabUserRouter 路由
 func (this *TabUserRouter) InitTabUserRouter(privateRouterOrigin *gin.RouterGroup, publicRouterOrigin *gin.RouterGroup) {
-	privateRouter := privateRouterOrigin.Group("/tab/user")
+	privateRouter := privateRouterOrigin.Group("/tab/anonymous_user")
 	{
 		// PrivateRouter 下是一些必须进行登录的接口
 		// http://localhost:8080/private
@@ -25,7 +25,7 @@ func (this *TabUserRouter) InitTabUserRouter(privateRouterOrigin *gin.RouterGrou
 		privateRouter.GET("/export", this.tabUserApi.ExportTabUser)        // 导出用户列表
 	}
 
-	publicRouter := publicRouterOrigin.Group("/tab/user")
+	publicRouter := publicRouterOrigin.Group("/tab/anonymous_user")
 	{
 		// PublicRouter 下是一些无需登录的接口，可以直接访问，无须经过授权操作
 		// http://localhost:8080/public

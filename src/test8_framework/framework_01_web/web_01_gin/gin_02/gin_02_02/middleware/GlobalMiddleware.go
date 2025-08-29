@@ -17,7 +17,7 @@ func Authentication(context *gin.Context) {
 	log.Println("context.FullPath() = ", context.FullPath())
 
 	// 放掉登录接口
-	if "/user/login" == context.FullPath() {
+	if "/anonymous_user/login" == context.FullPath() {
 		log.Println("登录接口不鉴权", context.FullPath())
 		return
 	}

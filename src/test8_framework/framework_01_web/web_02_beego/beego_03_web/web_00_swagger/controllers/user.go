@@ -15,7 +15,7 @@ type UserController struct {
 
 // @Title CreateUser
 // @Description create users
-// @Param	body		body 	models.User	true		"body for user content"
+// @Param	body		body 	models.User	true		"body for anonymous_user content"
 // @Success 200 {int} models.User.Id
 // @Failure 403 body is empty
 // @router / [post]
@@ -41,7 +41,7 @@ func (u *UserController) GetAll() {
 }
 
 // @Title Get
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
@@ -60,9 +60,9 @@ func (u *UserController) Get() {
 }
 
 // @Title Update
-// @Description update the user
+// @Description update the anonymous_user
 // @Param	uid		path 	string	true		"The uid you want to update"
-// @Param	body		body 	models.User	true		"body for user content"
+// @Param	body		body 	models.User	true		"body for anonymous_user content"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is not int
 // @router /:uid [put]
@@ -82,7 +82,7 @@ func (u *UserController) Put() {
 }
 
 // @Title Delete
-// @Description delete the user
+// @Description delete the anonymous_user
 // @Param	uid		path 	string	true		"The uid you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 uid is empty
@@ -95,11 +95,11 @@ func (u *UserController) Delete() {
 }
 
 // @Title Login
-// @Description Logs user into the system
+// @Description Logs anonymous_user into the system
 // @Param	username		query 	string	true		"The username for login"
 // @Param	password		query 	string	true		"The password for login"
 // @Success 200 {string} login success
-// @Failure 403 user not exist
+// @Failure 403 anonymous_user not exist
 // @router /login [get]
 func (u *UserController) Login() {
 	username := u.GetString("username")
@@ -107,13 +107,13 @@ func (u *UserController) Login() {
 	if models.Login(username, password) {
 		u.Data["json"] = "login success"
 	} else {
-		u.Data["json"] = "user not exist"
+		u.Data["json"] = "anonymous_user not exist"
 	}
 	u.ServeJSON()
 }
 
 // @Title logout
-// @Description Logs out current logged in user session
+// @Description Logs out current logged in anonymous_user session
 // @Success 200 {string} logout success
 // @router /logout [get]
 func (u *UserController) Logout() {

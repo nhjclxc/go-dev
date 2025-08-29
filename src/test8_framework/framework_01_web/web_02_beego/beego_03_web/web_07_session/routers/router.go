@@ -24,7 +24,7 @@ func init() {
 	}
 
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/user",
+		beego.NSNamespace("/anonymous_user",
 			// http://localhost:8080/v1/user/getById/123
 			beego.NSGet("getById/:userId", userController.GetById),
 		),

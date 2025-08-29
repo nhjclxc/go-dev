@@ -19,8 +19,8 @@ var (
 func init() {
 
 	adminUserController := controllers.AdminUserController{}
-	AdminUserRouterLinkNamespace = beego.NSNamespace("/user",
-		// /v1/admin/user/insertUser
+	AdminUserRouterLinkNamespace = beego.NSNamespace("/anonymous_user",
+		// /v1/admin/anonymous_user/insertUser
 		beego.NSPost("/insertUser", adminUserController.InsertUser),
 		beego.NSPut("/insertUser", adminUserController.UpdateUser),
 		// 后续还有更多的 API 要被注册 ...

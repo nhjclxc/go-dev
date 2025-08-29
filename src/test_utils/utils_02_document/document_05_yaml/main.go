@@ -43,7 +43,7 @@ func main() {
 		return
 	}
 
-	fmt.Printf("MySQL host : %s, port : %d, user : %s, password : %s, db_name : %s \n",
+	fmt.Printf("MySQL host : %s, port : %d, anonymous_user : %s, password : %s, db_name : %s \n",
 		y.MySQL.Host, y.MySQL.Port, y.MySQL.User, y.MySQL.Password, y.MySQL.DbName)
 
 	fmt.Printf("Redis host : %s, port %d, auth : %s\n",
@@ -61,7 +61,7 @@ func main() {
 }
 
 type MySQLConfig struct {
-	User     string `yaml:"user"`
+	User     string `yaml:"anonymous_user"`
 	Password string `yaml:"password"`
 	Host     string `yaml:"host"`
 	Port     int    `yaml:"port"`

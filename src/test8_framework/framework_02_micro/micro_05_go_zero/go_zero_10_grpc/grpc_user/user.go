@@ -18,7 +18,7 @@ import (
 	"github.com/zeromicro/go-zero/core/conf"
 )
 
-var configFile = flag.String("f", "etc/user.yaml", "the config file")
+var configFile = flag.String("f", "etc/anonymous_user.yaml", "the config file")
 
 func main() {
 
@@ -28,7 +28,6 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
-
 
 	// 启动grpc服务
 	go func() {
@@ -44,13 +43,12 @@ func main() {
 		fmt.Printf("Starting rpc server at %s...\n", c.RpcConf.ListenOn)
 		grpcServer.Start()
 
-		// 查看当前 user.rpc 是否注册到了etcd里面
-		// [root@iZ2zehmay1c73eaheydrpyZ /]# docker exec etcd etcdctl --endpoints=39.106.59.225:2379 get user.rpc --prefix
-		//user.rpc/3368577425648289896
+		// 查看当前 anonymous_user.rpc 是否注册到了etcd里面
+		// [root@iZ2zehmay1c73eaheydrpyZ /]# docker exec etcd etcdctl --endpoints=39.106.59.225:2379 get anonymous_user.rpc --prefix
+		//anonymous_user.rpc/3368577425648289896
 		//192.168.8.131:9190
 
 	}()
-
 
 	// 启动http服务
 	httpServer := rest.MustNewServer(c.RestConf)

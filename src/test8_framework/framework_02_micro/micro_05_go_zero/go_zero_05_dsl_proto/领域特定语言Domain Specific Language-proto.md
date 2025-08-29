@@ -32,7 +32,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/example/user";
+option go_package = "github.com/example/anonymous_user";
 
 message LoginReq{}
 message LoginResp{}
@@ -95,11 +95,11 @@ service UserService{
 
 ```shell
 ├── etc
-│   └── user.yaml
+│   └── anonymous_user.yaml
 ├── github.com
 │   └── example
-│       └── user
-│           ├── user.pb.go
+│       └── anonymous_user
+│           ├── anonymous_user.pb.go
 │           └── user_grpc.pb.go
 ├── go.mod
 ├── internal
@@ -124,8 +124,8 @@ service UserService{
 │   │   └── userserviceserver.go
 │   └── svc
 │       └── servicecontext.go
-├── user.go
-├── user.proto
+├── anonymous_user.go
+├── anonymous_user.proto
 └── userservice
     └── userservice.go
 ```
@@ -140,7 +140,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/example/user";
+option go_package = "github.com/example/anonymous_user";
 
 message LoginReq{}
 message LoginResp{}

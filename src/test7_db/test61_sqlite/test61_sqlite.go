@@ -25,7 +25,7 @@ func main() {
 // 📐 2. 创建表
 func createTable(db *sql.DB) {
 	sqlStmt := `
-	CREATE TABLE IF NOT EXISTS user (
+	CREATE TABLE IF NOT EXISTS anonymous_user (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		name TEXT,
 		age INTEGER
@@ -39,7 +39,7 @@ func createTable(db *sql.DB) {
 
 // ➕ 3. 插入数据
 func insertUser(db *sql.DB, name string, age int) {
-	stmt, err := db.Prepare("INSERT INTO user(name, age) VALUES (?, ?)")
+	stmt, err := db.Prepare("INSERT INTO anonymous_user(name, age) VALUES (?, ?)")
 	if err != nil {
 		panic(err)
 	}
@@ -54,7 +54,7 @@ func insertUser(db *sql.DB, name string, age int) {
 
 // 📋 4. 查询数据（全部）
 func queryAllUsers(db *sql.DB) {
-	rows, err := db.Query("SELECT id, name, age FROM user")
+	rows, err := db.Query("SELECT id, name, age FROM anonymous_user")
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +76,7 @@ func queryAllUsers(db *sql.DB) {
 func queryUserByID(db *sql.DB, id int) {
 	var name string
 	var age int
-	err := db.QueryRow("SELECT name, age FROM user WHERE id = ?", id).Scan(&name, &age)
+	err := db.QueryRow("SELECT name, age FROM anonymous_user WHERE id = ?", id).Scan(&name, &age)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			fmt.Println("没有找到数据")
@@ -89,7 +89,7 @@ func queryUserByID(db *sql.DB, id int) {
 
 // ✏️ 6. 更新数据
 func updateUserAge(db *sql.DB, id int, newAge int) {
-	stmt, err := db.Prepare("UPDATE user SET age = ? WHERE id = ?")
+	stmt, err := db.Prepare("UPDATE anonymous_user SET age = ? WHERE id = ?")
 	if err != nil {
 		panic(err)
 	}
@@ -105,7 +105,7 @@ func updateUserAge(db *sql.DB, id int, newAge int) {
 
 // ❌ 7. 删除数据
 func deleteUserByID(db *sql.DB, id int) {
-	stmt, err := db.Prepare("DELETE FROM user WHERE id = ?")
+	stmt, err := db.Prepare("DELETE FROM anonymous_user WHERE id = ?")
 	if err != nil {
 		panic(err)
 	}

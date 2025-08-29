@@ -27,7 +27,7 @@ func init() {
 				&controllers.ObjectController{},
 			),
 		),
-		beego.NSNamespace("/user",
+		beego.NSNamespace("/anonymous_user",
 			beego.NSInclude(
 				&controllers.UserController{},
 			),

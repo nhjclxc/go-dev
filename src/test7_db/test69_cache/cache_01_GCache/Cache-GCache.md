@@ -71,10 +71,10 @@ cache := gcache.New(20).
     }).
     Build()
 
-value, _ := cache.Get("user:123") // 第一次会触发 LoaderFunc
+value, _ := cache.Get("anonymous_user:123") // 第一次会触发 LoaderFunc
 fmt.Println(value)
 
-value2, _ := cache.Get("user:123") // 第二次从缓存中取
+value2, _ := cache.Get("anonymous_user:123") // 第二次从缓存中取
 fmt.Println(value2)
 ```
 

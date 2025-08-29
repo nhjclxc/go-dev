@@ -318,7 +318,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "用户信息",
-                        "name": "user",
+                        "name": "anonymous_user",
                         "in": "body",
                         "required": true,
                         "schema": {

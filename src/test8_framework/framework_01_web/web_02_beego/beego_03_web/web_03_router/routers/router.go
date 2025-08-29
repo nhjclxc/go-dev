@@ -29,14 +29,14 @@ func init() {
 				&controllers.ObjectController{},
 			),
 		),
-		beego.NSNamespace("/user",
+		beego.NSNamespace("/anonymous_user",
 			beego.NSInclude(
 				&controllers.UserController{},
 			),
 		),
 
 		beego.NSCtrlGet("/home", (*controllers.UserController).Logout),
-		beego.NSRouter("/user", &controllers.UserController{}),
+		beego.NSRouter("/anonymous_user", &controllers.UserController{}),
 
 		// 最建议的方法,函数式路由注册方法
 		beego.NSGet("/health", userController.Health),

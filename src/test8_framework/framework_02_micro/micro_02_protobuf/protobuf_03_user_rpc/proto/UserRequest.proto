@@ -6,7 +6,7 @@ syntax = "proto3";
 
 
 // 2、定义包
-option go_package = "grpc/user";
+option go_package = "grpc/anonymous_user";
 
 
 // 3、定义请求体

@@ -17,7 +17,7 @@ func main() {
 
 	result := db.DB.Create(&user) // 通过数据的指针来创建
 
-	fmt.Println("user.UserId：", user.UserId)                 // 返回插入数据的主键
+	fmt.Println("anonymous_user.UserId：", user.UserId)       // 返回插入数据的主键
 	fmt.Println("result.Error：", result.Error)               // 返回 error
 	fmt.Println("result.RowsAffected：", result.RowsAffected) // 返回插入记录的条数
 

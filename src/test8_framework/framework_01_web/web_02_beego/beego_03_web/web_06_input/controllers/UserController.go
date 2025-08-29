@@ -41,7 +41,7 @@ func (this *UserController) printUserList() {
 
 // @Title InsertUser
 // @Description 新增用户操作
-// @Param	body		body 	models.User	true		"body for user content"
+// @Param	body		body 	models.User	true		"body for anonymous_user content"
 // @Success 200 {int} models.User.Id
 // @Failure 403 body is empty
 // @router /insertUser [post]
@@ -74,7 +74,7 @@ func (this *UserController) InsertUser(ctx *beecontext.Context) {
 }
 
 // @Title Delete
-// @Description delete the user
+// @Description delete the anonymous_user
 // @Param	uid		path 	string	true		"The uid you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 uid is empty
@@ -83,15 +83,15 @@ func (this *UserController) DeleteUser(ctx *beecontext.Context) {
 
 	//ctx.JSONResp(map[string]any{
 	//	"code": 200,
-	//	"data": user.Id,
+	//	"data": anonymous_user.Id,
 	//})
 
 }
 
 // @Title Update
-// @Description update the user
+// @Description update the anonymous_user
 // @Param	uid		path 	string	true		"The uid you want to update"
-// @Param	body		body 	models.User	true		"body for user content"
+// @Param	body		body 	models.User	true		"body for anonymous_user content"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is not int
 // @router /:uid [put]
@@ -108,7 +108,7 @@ func (this *UserController) UpdateUser(ctx *beecontext.Context) {
 	ctx.BindJSON(&user2)
 
 	fmt.Printf("userId = %v \n", userId)
-	fmt.Printf("user = %v \n", user)
+	fmt.Printf("anonymous_user = %v \n", user)
 	fmt.Printf("user2 = %v \n", user2)
 
 	// 执行修改
@@ -154,7 +154,7 @@ func (this *UserController) GetAll(ctx *beecontext.Context) {
 }
 
 // @Title GetById
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
@@ -212,7 +212,7 @@ func (this *UserController) GetById2() {
 }
 
 // @Title GetList
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
@@ -222,7 +222,7 @@ func (this *UserController) GetList(ctx *beecontext.Context) {
 }
 
 // @Title GetListPage
-// @Description get user by uid
+// @Description get anonymous_user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty

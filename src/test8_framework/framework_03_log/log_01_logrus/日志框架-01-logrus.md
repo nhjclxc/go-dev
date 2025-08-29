@@ -181,7 +181,7 @@ func Init() {
 
 ```go
 logger.Log.WithFields(logrus.Fields{
-    "user": "jack",
+    "anonymous_user": "jack",
     "op":   "login",
 }).Info("User operation")
 ```
