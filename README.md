@@ -304,3 +304,17 @@ https://github.com/astaxie/build-web-application-with-golang
 
 https://github.com/chai2010/advanced-go-programming-book
 
+
+https://github.com/xxjwxc/uber_go_guide_cn
+
+
+https://go.dev/wiki/CodeReviewComments#interfaces
+
+
+https://lailin.xyz/post/go-training-week4-project-layout.html
+
+
+https://threedots.tech/post/common-anti-patterns-in-go-web-applications/
+
+
+https://cloud.google.com/apis/design?hl=zh-cn

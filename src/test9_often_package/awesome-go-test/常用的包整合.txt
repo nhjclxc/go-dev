@@ -1,1 +1,0 @@
-[go项目资源整合awesome-go](https://github.com/avelino/awesome-go)
