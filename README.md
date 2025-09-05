@@ -27,10 +27,13 @@ go开发学习路线看 go-path.png
 [//]: # (![go-path.png]&#40;go-path.png&#41;)
 
 
-go的一些规范：
+
+# go编码规范
+
+- [uber_go_guide_cn](https://github.com/xxjwxc/uber_go_guide_cn)，一些规则测试的代码看[test10_go_guide](src%2Ftest9_often_package%2Ftest10_go_guide)
 - [go命名规范](https://go.dev/talks/2014/names.slide)
 - [](https://go.dev/doc/effective_go#names)
-- 
+
 
 
 
@@ -305,7 +308,6 @@ https://github.com/astaxie/build-web-application-with-golang
 https://github.com/chai2010/advanced-go-programming-book
 
 
-https://github.com/xxjwxc/uber_go_guide_cn
 
 
 https://go.dev/wiki/CodeReviewComments#interfaces
