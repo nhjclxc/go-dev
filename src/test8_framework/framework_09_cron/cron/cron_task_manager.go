@@ -1,0 +1,148 @@
+package cron
+
+import (
+	"context"
+	"log/slog"
+	"sync"
+	"time"
+)
+
+// CronTask 定义一个定时任务接口
+type CronTask interface {
+
+	// Name 返回任务名称
+	Name() string
+
+	// Execute 执行任务
+	Execute(ctx context.Context) error
+
+	// GetInterval 返回任务执行间隔
+	GetInterval() time.Duration
+
+	// Enable 是否启用
+	Enable() bool
+}
+
+// CronTaskManager 定时任务管理器
+type CronTaskManager struct {
+	stopCh    chan struct{}
+	isRunning bool
+	tasks     []CronTask
+	mu        sync.Mutex
+}
+
+func NewCronTaskManager() *CronTaskManager {
+	return &CronTaskManager{
+		stopCh: make(chan struct{}),
+		tasks:  make([]CronTask, 0),
+	}
+}
+
+// Name 返回服务名称
+func (tm *CronTaskManager) Name() string {
+	return "cron_task_manager"
+}
+
+// AddTask 向管理器添加一个定时任务
+func (tm *CronTaskManager) AddTask(task CronTask) {
+
+	if !task.Enable() {
+		slog.Info("CronTask is disabled", "task", task.Name())
+		return
+	}
+
+	tm.mu.Lock()
+	defer tm.mu.Unlock()
+	tm.tasks = append(tm.tasks, task)
+	slog.Info("Added task to manager", "task", task.Name(), "interval", task.GetInterval())
+}
+
+// Start 启动任务管理器服务
+func (tm *CronTaskManager) Start(ctx context.Context) error {
+	if tm.isRunning {
+		return nil
+	}
+
+	tm.isRunning = true
+
+	// 启动所有定时任务
+	tm.startAllTasks(ctx)
+
+	slog.Info("TaskManager started")
+	return nil
+}
+
+// Stop 停止任务管理器服务
+func (tm *CronTaskManager) Stop() error {
+	if !tm.isRunning {
+		return nil
+	}
+
+	// 发送停止信号
+	close(tm.stopCh)
+	tm.isRunning = false
+
+	// 取消订阅所有事件
+	tm.mu.Lock()
+	defer tm.mu.Unlock()
+
+	slog.Info("TaskManager stopped")
+	return nil
+}
+
+// 启动所有定时任务
+func (tm *CronTaskManager) startAllTasks(ctx context.Context) {
+	tm.mu.Lock()
+	tasks := make([]CronTask, len(tm.tasks))
+	copy(tasks, tm.tasks)
+	tm.mu.Unlock()
+
+	for _, task := range tasks {
+		// 为每个任务启动一个独立的goroutine
+		go tm.runTask(ctx, task)
+	}
+}
+
+// 运行单个定时任务
+func (tm *CronTaskManager) runTask(ctx context.Context, task CronTask) {
+	ticker := time.NewTicker(task.GetInterval())
+	defer ticker.Stop()
+
+	taskName := task.Name()
+	slog.Info("Starting task", "task", taskName, "interval", task.GetInterval())
+
+	tm.executeTask(ctx, task)
+
+	for {
+		select {
+		case <-ticker.C:
+			tm.executeTask(ctx, task)
+		case <-tm.stopCh:
+			slog.Info("CronTask stopped", "task", taskName)
+			return
+		case <-ctx.Done():
+			slog.Info("Context canceled, stopping task", "task", taskName)
+			return
+		}
+	}
+}
+
+// 执行单个任务并处理错误
+func (tm *CronTaskManager) executeTask(ctx context.Context, task CronTask) {
+	taskName := task.Name()
+
+	// 创建一个带超时的上下文
+	// 为每个任务设置一个默认的超时时间，防止任务执行时间过长
+	taskCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	slog.Info("Executing task", "task", taskName)
+
+	// 执行任务
+	err := task.Execute(taskCtx)
+	if err != nil {
+		slog.Error("CronTask execution failed", "task", taskName, "error", err)
+	} else {
+		slog.Info("CronTask executed successfully", "task", taskName)
+	}
+}

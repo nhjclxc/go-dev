@@ -216,7 +216,7 @@ GoSearch 是一个第三方 Go 模块搜索引擎，它会定期爬取 GitHub、
 
 [http://mian.topgoer.com/](http://mian.topgoer.com/)
 [Go 入门面试题汇总](https://golangguide.top/golang/%E9%9D%A2%E8%AF%95%E9%A2%98/1.Go%E5%85%A5%E9%97%A8.html)
-[]()
+[interview-go](https://github.com/lifei6671/interview-go)
 []()
 []()
 []()
