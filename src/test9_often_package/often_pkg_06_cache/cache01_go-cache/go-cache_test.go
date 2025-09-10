@@ -2,7 +2,7 @@ package cache01_go_cache
 
 import (
 	"fmt"
-	"github.com/patrickmn/go-cache"
+	cache "github.com/patrickmn/go-cache"
 	"testing"
 	"time"
 )
@@ -102,5 +102,58 @@ func Test2(t *testing.T) {
 	fmt.Println("expiration1 ", expiration1)
 	fmt.Println("t21 ", t21)
 	fmt.Println("b1 ", b1)
+
+}
+
+func Test03(t *testing.T) {
+	c := cache.New(5*time.Second, 10*time.Second)
+
+	c.Set("foo", "bar", cache.DefaultExpiration)
+
+	fooCache, fooOk := c.Get("foo")
+	if fooOk {
+		fooVal := fooCache.(string)
+		fmt.Println("fooVal", fooVal)
+	}
+
+	time.Sleep(8 * time.Second)
+
+	fooCache2, fooOk2 := c.Get("foo")
+	if fooOk2 {
+		fooVal2 := fooCache2.(string)
+		fmt.Println("fooVal2", fooVal2)
+	} else {
+		fmt.Println("fooVal2没数据了")
+	}
+
+}
+
+func Test05(t *testing.T) {
+	var c *cache.Cache = cache.New(5*time.Second, 10*time.Second)
+
+	c.SetDefault("foo", "bar")
+
+	fooCache, fooOk := c.Get("foo")
+	if fooOk {
+		fooVal := fooCache.(string)
+		fmt.Println("fooVal", fooVal)
+	}
+
+	time.Sleep(3 * time.Second)
+	c.SetDefault("foo", "bar11111")
+	fmt.Println(time.Now())
+	time.Sleep(4 * time.Second)
+	expiration, t2, b := c.GetWithExpiration("foo")
+	fmt.Println("expiration ", expiration)
+	fmt.Println("t2 ", t2)
+	fmt.Println("b ", b)
+
+	fooCache2, fooOk2 := c.Get("foo")
+	if fooOk2 {
+		fooVal2 := fooCache2.(string)
+		fmt.Println("fooVal2", fooVal2)
+	} else {
+		fmt.Println("fooVal2没数据了")
+	}
 
 }

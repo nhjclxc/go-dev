@@ -11,6 +11,7 @@ import (
 func main() {
 	// "github.com/jordan-wright/email"
 	// go get github.com/jordan-wright/email
+	// https://pkg.go.dev/github.com/jordan-wright/email
 
 	e := email.NewEmail()
 	//设置发送方的邮箱
