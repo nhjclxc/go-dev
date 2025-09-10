@@ -2,7 +2,7 @@ package fingerprint_test
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-dev/src/test_best_practice/bp_09_remote_login_notice/utils"
+	"go-dev/src/test_best_practice/bp09_remote_login_notice/utils"
 	"testing"
 )
 
