@@ -46,36 +46,32 @@ type Task struct {
 
 func (t *TimeWheel) do() {
 	go func() {
-		for {
-			select {
-			case ti := <-t.ticker.C:
-				fmt.Println("time: ", ti.Format("2006-01-02 15:04:05"))
-				//slot, _ := strconv.Atoi(fmt.Sprintf("%2d", ti.Second()))
-				//slot /= 10
-				slot := ti.Second()
-				fmt.Println("slot = ", slot)
+		defer t.ticker.Stop() // 程序退出时停止 ticker
 
-				t.mu.Lock()
-				tasks := copyList(&t.slots[slot])
-				t.mu.Unlock()
+		for ti := range t.ticker.C {
+			fmt.Println("time: ", ti.Format("2006-01-02 15:04:05"))
+			slot := ti.Second()
+			fmt.Println("slot = ", slot)
 
-				for e := tasks.Front(); e != nil; e = e.Next() {
-					tt, ok := e.Value.(*Task)
-					if ok {
-						go func(task *Task) {
-							if task.times >= task.circle {
-								t.removeTask(task.ID)
-								return
-							}
+			t.mu.Lock()
+			tasks := copyList(&t.slots[slot])
+			t.mu.Unlock()
 
-							time.Sleep(task.delay)
-							fmt.Println("时间轮执行器：", task.ID)
-						}(tt)
-					}
+			for e := tasks.Front(); e != nil; e = e.Next() {
+				tt, ok := e.Value.(*Task)
+				if ok {
+					go func(task *Task) {
+						if task.times >= task.circle {
+							t.removeTask(task.ID)
+							return
+						}
+
+						time.Sleep(task.delay)
+						fmt.Println("时间轮执行器：", task.ID)
+					}(tt)
 				}
 			}
 		}
-
 	}()
 }
 

@@ -44,6 +44,14 @@ func main() {
 		context.String(http.StatusOK, "我是 news 页面【【【2.0.0需求页面】】】，当前环境是：%#v，现在请求的文章id = %v, name = %v， \n", config.GlobalConfig, id, name)
 	})
 
+	router.GET("/", func(context *gin.Context) {
+		Authorization := context.GetHeader("Authorization")
+		fmt.Println("Authorization = ", Authorization)
+		context.JSON(200, gin.H{
+			"Authorization": Authorization,
+		})
+	})
+
 	// go run main8.go
 	// go run main8.go -c config/config-dev.yaml
 	// go run main8.go -c config/config-test.yaml
