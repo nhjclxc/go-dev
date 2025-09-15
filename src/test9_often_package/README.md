@@ -46,7 +46,10 @@
  - 
 
 
-## 基础功能
+## 开源包
+1. [samber/lo](https://github.com/samber/lo)：类似于 Java 中的 Stream API
+2. [go-funk](https://github.com/thoas/go-funk)：类似于 Java 中的 Stream API，允许你在 Go 中进行更简洁的链式操作
+3. [aws-lambda-go](https://github.com/aws/aws-lambda-go)：提供类似 Java Stream 的 map 和 filter 等功能
  - z
 
 
