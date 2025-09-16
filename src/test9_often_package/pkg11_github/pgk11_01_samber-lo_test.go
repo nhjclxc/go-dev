@@ -3,6 +3,7 @@ package pkg11_github
 import (
 	"fmt"
 	"github.com/samber/lo"
+	"reflect"
 	"testing"
 )
 
@@ -65,6 +66,9 @@ func init() {
 	})
 }
 
+var nums []int = []int{1, 2, 3, 2, 5, 6, 2}
+var strs []string = []string{"a", "b", "c", "d", "e", "f"}
+
 func Test01_01(t *testing.T) {
 	// 将某个结构体的某个属性提取成[]string
 
@@ -77,6 +81,13 @@ func Test01_01(t *testing.T) {
 
 	fmt.Println("idList", idList)
 	fmt.Println("usernameList", usernameList)
+
+	ints := lo.Map(nums, func(item int, index int) int {
+		return item * 3
+	})
+
+	fmt.Println(ints)
+
 }
 
 func Test01_02(t *testing.T) {
@@ -101,6 +112,11 @@ func Test01_02(t *testing.T) {
 	fmt.Printf("users2[0] %#v  \n\n", users2[0])
 	fmt.Printf("users2[1] %#v  \n\n", users2[1])
 
+	ints := lo.Filter(nums, func(item int, index int) bool {
+		return item%2 == 0
+	})
+	fmt.Println(ints)
+
 }
 
 func Test01_03(t *testing.T) {
@@ -112,7 +128,7 @@ func Test01_03(t *testing.T) {
 }
 
 func Test01_05(t *testing.T) {
-	// sum
+	// sum reduce
 
 	ints := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 	fmt.Println("sum = ", lo.Sum(ints))
@@ -122,6 +138,25 @@ func Test01_05(t *testing.T) {
 	})
 
 	fmt.Printf("sum = %d \n", by)
+
+	reduce := lo.Reduce(ints, func(res int, item int, index int) int {
+		return res + item
+	}, 0)
+	fmt.Println("reduce = ", reduce)
+
+	right := lo.ReduceRight(ints, func(res int, item int, index int) int {
+		return res + item
+	}, 0)
+	fmt.Println("right = ", right)
+
+	reduce2 := lo.Reduce(strs, func(res string, item string, index int) string {
+		return res + item
+	}, "")
+	fmt.Println("reduce2 = ", reduce2)
+	right2 := lo.ReduceRight(strs, func(res string, item string, index int) string {
+		return res + item
+	}, "")
+	fmt.Println("right2 = ", right2)
 
 }
 
@@ -216,6 +251,9 @@ func Test01_10(t *testing.T) {
 	})
 	fmt.Printf("uniqBy = %#v \n\n", uniqBy)
 
+	chunk := lo.Chunk(nums, 2)
+	fmt.Println("chunk = ", chunk)
+
 }
 
 func Test01_11(t *testing.T) {
@@ -231,5 +269,49 @@ func Test01_11(t *testing.T) {
 		return item.UserName
 	})
 	fmt.Printf("by2 = %#v \n\n", by2)
+}
+
+func Test01_12(t *testing.T) {
+	// lo.Take 取出前k个
+	// lo.Drop 取出后k个
+	drop := lo.Drop(nums, 2)
+	fmt.Println("drop = ", drop)
+	fmt.Println("nums = ", nums)
+	drop2 := lo.DropRight(nums, 2)
+	fmt.Println("drop2 = ", drop2)
+	fmt.Println("nums = ", nums)
+
+}
+
+func Test01_13(t *testing.T) {
+	//lo.Flatten → 多维展开
+
+	ints := [][]int{{1, 2}, {3, 5}, {6, 8}}
+	flatten := lo.Flatten(ints)
+	fmt.Println("ints = ", ints)
+	fmt.Println("flatten = ", flatten)
+
+	userList22 := [][]*User{{userList[0], userList[1]}, {userList[2], userList[3]}, {userList[4]}}
+	users := lo.Flatten(userList22)
+	fmt.Println("users = ", users)
+	fmt.Println(reflect.DeepEqual(userList, userList22))
+
+}
+
+func Test01_15(t *testing.T) {
+	// 结合 Map + Flatten 提取字段
+
+	userList22 := [][]*User{{userList[0], userList[1]}, {userList[2], userList[3]}, {userList[4]}}
+	ids := lo.Map(lo.Flatten(userList22), func(item *User, index int) int {
+		return item.UserId
+	})
+	fmt.Println("ids = ", ids)
+
+	flatten := lo.Flatten(lo.Map(userList22, func(item []*User, index int) []int {
+		return lo.Map(item, func(item2 *User, index int) int {
+			return item2.UserId
+		})
+	}))
+	fmt.Println("flatten = ", flatten)
 
 }

@@ -1,0 +1,6 @@
+[
+  {
+    "id": "hello",
+    "translation": "你好, {{.Name}}!，欢迎来到 {{.Addr}}, 今年是 {{.Year}}"
+  }
+]

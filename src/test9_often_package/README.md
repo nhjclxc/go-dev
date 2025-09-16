@@ -47,9 +47,16 @@
 
 
 ## 开源包
-1. [samber/lo](https://github.com/samber/lo)：类似于 Java 中的 Stream API
+
+github上别人整理的：https://github.com/shockerli/go-awesome
+
+
+1. [samber/lo](https://github.com/samber/lo)：类似于 Java 中的 Stream API， https://pkg.go.dev/github.com/samber/lo
 2. [go-funk](https://github.com/thoas/go-funk)：类似于 Java 中的 Stream API，允许你在 Go 中进行更简洁的链式操作
 3. [aws-lambda-go](https://github.com/aws/aws-lambda-go)：提供类似 Java Stream 的 map 和 filter 等功能
+4. [panjf2000/ants](https://github.com/panjf2000/ants)：高性能 goroutine 池，解决并发资源控制。
+5. [validator](https://github.com/go-playground/validator)：结构体验证，常用于 Web API 入参校验。
+6. [go-i18n](https://github.com/nicksnyder/go-i18n)：go实现多语言系统
  - z
 
 

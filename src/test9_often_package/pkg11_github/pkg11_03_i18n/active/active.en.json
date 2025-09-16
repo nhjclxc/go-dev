@@ -1,0 +1,6 @@
+[
+  {
+    "id": "hello",
+    "translation": "Hello, {{.Name}}!，Welcome to {{.Addr}}, This year is {{.Year}}"
+  }
+]
