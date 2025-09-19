@@ -1,0 +1,4 @@
+Name: gin_kubelet-test
+Port: 18090
+Env: gin_kubelet-test
+Version: test-1.1.1

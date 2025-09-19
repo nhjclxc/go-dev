@@ -1,0 +1,4 @@
+Name: gin_kubelet-dev
+Port: 18080
+Env: gin_kubelet-dev
+Version: dev-1.1.1

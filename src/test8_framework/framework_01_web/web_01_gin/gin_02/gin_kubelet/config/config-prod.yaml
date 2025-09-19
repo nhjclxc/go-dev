@@ -1,0 +1,4 @@
+Name: gin_kubelet-prod
+Port: 19090
+Env: gin_docker-prod
+Version: prod-1.1.1
