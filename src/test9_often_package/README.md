@@ -60,6 +60,10 @@ github上别人整理的：https://github.com/shockerli/go-awesome
  - z
 
 
+[Go 每日一库](https://darjun.github.io/2022/07/18/godailylib/gore/)
+
+[go-daily-lib](https://github.com/darjun/go-daily-lib)
+
 ## 基础功能
  - z
 

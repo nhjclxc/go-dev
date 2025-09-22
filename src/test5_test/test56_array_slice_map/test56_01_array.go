@@ -1,6 +1,6 @@
 package main
 
-func main() {
+func main1() {
 
 	// Go 语言中的数组（Array）
 	//Go 语言中的数组（Array）是一种固定长度的同类型数据集合。虽然在实际开发中切片（Slice）更常用，

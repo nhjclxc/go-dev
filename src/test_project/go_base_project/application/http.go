@@ -40,11 +40,11 @@ func NewHTTPService(res *resource.Resource) *HTTPService {
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 
-	// 添加 CORS 中间件
+	// 添加 CORS 中间件 跨域 gin实现跨域 gin跨域
 	engine.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "android-device-id", "Content-Type", "Accept", "Authorization", "X-Token", "Device-Id", "request-time", "X-Requested-With"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,

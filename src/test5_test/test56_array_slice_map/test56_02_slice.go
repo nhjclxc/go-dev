@@ -1,6 +1,6 @@
 package main
 
-func main() {
+func main2() {
 	/*
 					   	Go 语言切片（Slice）详解
 					      在 Go 语言中，切片（Slice）是比数组更强大的数据结构，它提供了更灵活的存储方式，可动态扩容，同时引用相同的底层数组。

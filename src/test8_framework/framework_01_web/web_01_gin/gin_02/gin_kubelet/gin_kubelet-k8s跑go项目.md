@@ -51,7 +51,7 @@ Kubernetes 的工作方式是：
 
 ## 编写golang代码
 
-详细看[gin_kubectl](https://github.com/nhjclxc/go-dev/tree/main/src/test8_framework/framework_01_web/web_01_gin/gin_02/gin_kubectl)
+详细看[gin_kubectl](https://github.com/nhjclxc/go-dev/tree/main/src/test8_framework/framework_01_web/web_01_gin/gin_02/gin_kubelet)
 
 ## 编写Dockerfile
 ```dockerfile

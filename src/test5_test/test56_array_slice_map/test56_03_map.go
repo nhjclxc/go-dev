@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-func main() {
+func main3() {
 	/*
 		Go 语言映射（Map）详解
 		map 是 Go 语言内置的数据结构，用于存储 键值对（key-value）。与数组和切片不同，map 允许使用 非整数索引，常用于快速查找和存储数据。
