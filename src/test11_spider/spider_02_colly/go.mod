@@ -10,7 +10,9 @@ require (
 	github.com/antchfx/htmlquery v1.3.4 // indirect
 	github.com/antchfx/xmlquery v1.4.4 // indirect
 	github.com/antchfx/xpath v1.3.5 // indirect
+	github.com/go-redis/redis v6.15.9+incompatible // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
+	github.com/gocolly/redisstorage v0.0.0-20190812112800-1745c5e6d0ba // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect

@@ -57,6 +57,9 @@ github上别人整理的：https://github.com/shockerli/go-awesome
 4. [panjf2000/ants](https://github.com/panjf2000/ants)：高性能 goroutine 池，解决并发资源控制。
 5. [validator](https://github.com/go-playground/validator)：结构体验证，常用于 Web API 入参校验。
 6. [go-i18n](https://github.com/nicksnyder/go-i18n)：go实现多语言系统
+7. [dateparse](https://github.com/araddon/dateparse)：自动解析各种格式的日期/时间字符串，把它们转换成 Go 的 time.Time 类型。【解析任意时间格式】
+8. 
+8. 
  - z
 
 

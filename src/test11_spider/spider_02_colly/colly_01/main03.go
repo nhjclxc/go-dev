@@ -5,7 +5,7 @@ import (
 	"github.com/gocolly/colly"
 )
 
-func main() {
+func main03() {
 	// https://github.com/trending
 
 	// 拉取 github trending 页面每一项的数据

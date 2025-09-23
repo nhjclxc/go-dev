@@ -12,6 +12,9 @@
 
 [教程案例](https://darjun.github.io/2021/06/30/godailylib/colly/)
 
+[Go-Colly 中文教程](https://m.w3cschool.cn/colly/)
+
+[Colly 官方文档学习从入门到入土](https://www.ulovecode.com/2020/04/28/Go/Colly%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/)
 
 
 
