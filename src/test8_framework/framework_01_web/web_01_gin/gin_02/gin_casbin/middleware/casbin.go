@@ -39,6 +39,8 @@ func CasbinMiddleware(e *casbin.Enforcer) gin.HandlerFunc {
 			if role == "" {
 				continue
 			}
+			// 用内存中的策略判断是否允许
+			// 检查某个人角色role是否有资源obj的act权限
 			ok, err := e.Enforce(role, obj, act)
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
