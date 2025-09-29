@@ -1,4 +1,6 @@
 
+https://www.liwenzhou.com/posts/Go/go-elasticsearch/
+
 
 【【【文件来源：https://github.com/guyan0319/golang_development_notes/blob/master/zh/4.6.md】】】
 

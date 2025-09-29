@@ -16,7 +16,7 @@ https://gobyexample-cn.github.io/
 
 [go中文在线文档](https://studygolang.com/pkgdoc)
 
-https://word.topgoer.com/
+[Golang标准库文档(中文)](https://word.topgoer.com/)
 
 https://www.bookstack.cn/read/golang_development_notes/zh-preface.md
 https://github.com/guyan0319/golang_development_notes/blob/master/zh/preface.md

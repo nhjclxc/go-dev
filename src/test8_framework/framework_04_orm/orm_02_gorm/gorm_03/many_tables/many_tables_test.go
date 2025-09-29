@@ -210,3 +210,58 @@ func test111(db *gorm.DB) {
 	fmt.Printf("user1s err %s \n", tx2.Error)
 	fmt.Printf("user1s %v \n", user1s)
 }
+
+/*
+
+1、Preload加条件
+
+db.Preload("User2.User3", "status = ?", 1).Find(&list)
+
+db.Preload("User2.User3", func(db *gorm.DB) *gorm.DB {
+        return db.Where("status IN (?)", []int{1, 2})
+    }).
+    Find(&list)
+
+db.Preload("User2.User3", func(db *gorm.DB) *gorm.DB {
+        return db.Where("status = ?", 1).Order("id desc").Limit(5)
+    }).
+    Find(&list)
+
+
+
+
+
+2、Preload取指定字段
+
+db.Preload("User2.User3", func(db *gorm.DB) *gorm.DB {
+        return db.Select("id", "status")
+    }).
+    Find(&list)
+
+
+db.Preload("User2.User3", func(db *gorm.DB) *gorm.DB {
+        return db.Select("id", "status", "device_id") // 取User3的这三个字段
+    }).
+    Preload("User2.User3.User666", func(db *gorm.DB) *gorm.DB {
+        return db.Select("id", "title") // 只取User666的这两个字段
+    }).
+    Find(&list)
+
+
+
+
+
+3、Preload取指定字段 + 条件
+Preload指定字段 + 条件
+
+db.Preload("User2.User3", func(db *gorm.DB) *gorm.DB {
+        return db.Select("id", "status", "device_id").
+                  Where("status IN (?)", []int{1, 2}).
+                  Order("id DESC")
+    }).
+    Preload("User2.User3.User666", func(db *gorm.DB) *gorm.DB {
+        return db.Select("id", "title").Where("deleted_at IS NULL")
+    }).
+    Find(&live)
+
+*/
