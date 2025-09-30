@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>分片视频上传 - 断点续传</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #progress { width: 100%; height: 20px; background: #f0f0f0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        #progress-bar { height: 100%; width: 0; background: #2196f3; transition: width 0.2s; }
+        #log { margin-top: 15px; font-size: 14px; color: #333; white-space: pre-line; }
+    </style>
+</head>
+<body>
+<h2>分片上传视频 (支持断点续传)</h2>
+<!--<input type="file" id="fileInput" accept="video/*"><br><br>-->
+<input type="file" id="fileInput"><br><br>
+<button onclick="uploadFile()">开始上传</button>
+<button onclick="resetUpload()">清除断点记录</button>
+
+<div id="progress">
+    <div id="progress-bar"></div>
+</div>
+<div id="log"></div>
+
+<script>
+    const CHUNK_SIZE = 5 * 1024 * 1024; // 每片 5MB
+    const UPLOAD_URL = "http://localhost:8080/upload";
+
+    function log(msg) {
+        document.getElementById("log").textContent += msg + "\n";
+    }
+
+    // 获取已上传的分片记录
+    function getUploadedChunks(fileName) {
+        const data = localStorage.getItem("upload_" + fileName);
+        return data ? JSON.parse(data) : [];
+    }
+
+    // 保存已上传的分片记录
+    function saveUploadedChunk(fileName, index) {
+        let uploaded = getUploadedChunks(fileName);
+        if (!uploaded.includes(index)) {
+            uploaded.push(index);
+            localStorage.setItem("upload_" + fileName, JSON.stringify(uploaded));
+        }
+    }
+
+    // 清除记录
+    function resetUpload() {
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            localStorage.removeItem("upload_" + file.name);
+            log("已清除断点记录: " + file.name);
+        } else {
+            alert("请先选择文件再清除记录。");
+        }
+    }
+
+    async function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        if (!fileInput.files.length) {
+            alert("请选择一个视频文件！");
+            return;
+        }
+
+        const file = fileInput.files[0];
+        const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+        let uploadedChunks = getUploadedChunks(file.name);
+
+        log(`开始上传: ${file.name}, 大小: ${(file.size/1024/1024).toFixed(2)} MB, 分片数: ${totalChunks}`);
+        log(`已上传的分片: ${uploadedChunks.join(", ") || "无"}`);
+
+        for (let i = 0; i < totalChunks; i++) {
+            if (uploadedChunks.includes(i)) {
+                log(`跳过分片 ${i+1}/${totalChunks} (已上传)`);
+                document.getElementById("progress-bar").style.width = ((i+1)/totalChunks*100) + "%";
+                continue;
+            }
+
+            const start = i * CHUNK_SIZE;
+            const end = Math.min(file.size, start + CHUNK_SIZE);
+            const chunk = file.slice(start, end);
+
+            const formData = new FormData();
+            formData.append("file", chunk, file.name);
+            formData.append("fileName", file.name);
+            formData.append("chunkIndex", i);
+            formData.append("totalChunks", totalChunks);
+
+            try {
+                const res = await fetch(UPLOAD_URL, { method: "POST", body: formData });
+                const data = await res.json();
+                log(`分片 ${i+1}/${totalChunks} 上传完成: ${JSON.stringify(data)}`);
+
+                saveUploadedChunk(file.name, i); // 记录已上传的分片
+                document.getElementById("progress-bar").style.width = ((i+1)/totalChunks*100) + "%";
+            } catch (err) {
+                log(`分片 ${i+1} 上传失败: ${err}`);
+                return; // 遇到失败时中断，方便下次续传
+            }
+        }
+
+        log("✅ 所有分片上传完成！");
+        localStorage.removeItem("upload_" + file.name); // 上传完成后清除记录
+    }
+</script>
+</body>
+</html>

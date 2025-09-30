@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>分片视频上传</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #progress { width: 100%; height: 20px; background: #f0f0f0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        #progress-bar { height: 100%; width: 0; background: #4caf50; transition: width 0.2s; }
+        #log { margin-top: 15px; font-size: 14px; color: #333; white-space: pre-line; }
+    </style>
+</head>
+<body>
+<h2>分片上传视频 (HTML+JS 原生实现)</h2>
+<!--<input type="file" id="fileInput" accept="video/*"><br><br>-->
+<input type="file" id="fileInput"><br><br>
+<button onclick="uploadFile()">开始上传</button>
+
+<div id="progress">
+    <div id="progress-bar"></div>
+</div>
+<div id="log"></div>
+
+<script>
+    const CHUNK_SIZE = 5 * 1024 * 1024; // 每片 5MB
+    const UPLOAD_URL = "http://localhost:8080/upload"; // 后端接口地址
+
+    function log(msg) {
+        document.getElementById("log").textContent += msg + "\n";
+    }
+
+    async function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        if (!fileInput.files.length) {
+            alert("请选择一个视频文件！");
+            return;
+        }
+
+        const file = fileInput.files[0];
+        const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+        log(`开始上传: ${file.name}, 大小: ${(file.size/1024/1024).toFixed(2)} MB, 分片数: ${totalChunks}`);
+
+        for (let i = 0; i < totalChunks; i++) {
+            const start = i * CHUNK_SIZE;
+            const end = Math.min(file.size, start + CHUNK_SIZE);
+            const chunk = file.slice(start, end);
+
+            const formData = new FormData();
+            formData.append("file", chunk, file.name);
+            formData.append("fileName", file.name);
+            formData.append("chunkIndex", i);
+            formData.append("totalChunks", totalChunks);
+
+            try {
+                const res = await fetch(UPLOAD_URL, { method: "POST", body: formData });
+                const data = await res.json();
+                log(`分片 ${i+1}/${totalChunks} 上传完成: ${JSON.stringify(data)}`);
+
+                // 更新进度条
+                document.getElementById("progress-bar").style.width = ((i+1)/totalChunks*100) + "%";
+            } catch (err) {
+                log(`分片 ${i+1} 上传失败: ${err}`);
+                return;
+            }
+        }
+
+        log("✅ 所有分片上传完成！");
+    }
+</script>
+</body>
+</html>
