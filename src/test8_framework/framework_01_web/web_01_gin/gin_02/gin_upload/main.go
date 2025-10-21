@@ -74,7 +74,7 @@ func Download(ctx *gin.Context) {
 	//if end == 0 || end >= fileSize {
 	//	end = fileSize - 1
 	//}
-	if end == 0 {
+	if start == 0 && end == 0 {
 		// 前端第一次请求是：bytes=0-0，表示这个是为了获取文件大小的请求，实际开发中，这个可以不要，文件实际大小可有其他前置接口返回
 		ctx.Header("Content-Range", fmt.Sprintf("bytes %d-%d/%d", start, end, fileSize))
 		ctx.Status(206) // Partial Content

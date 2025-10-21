@@ -1,0 +1,7 @@
+service androidjlink /data/local/tmp/androidjlink-client -server 192.168.203.182:2222
+    class main
+    user root
+    group root
+    seclabel u:r:su:s0
+    stdout /data/local/tmp/androidjlink.log
+    stderr /data/local/tmp/androidjlink.log
