@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+// 定义枚举消息
+enum Color {
+  // 定义枚举消息时，编号0作为枚举的默认值，一般使用无意义的值代替，且必须保证至少有一个编号为 0 的枚举项。
+  UNKNOWN = 0;
+  RED = 11;
+  GREEN = 2;
+  BLUE = 3;
+}
+
+// 项目目录下执行：protoc --go_out=./proto --go-grpc_out=./proto ./proto/base2.proto

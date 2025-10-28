@@ -1,0 +1,38 @@
+
+
+HYLive，com.feedying.live.mix
+咪视界，cn.miguvideo.migutv
+测速网tv，cn.juqing.cesuwang_tv
+
+查看盒子的网络流量统计：cat /proc/net/dev
+
+查看某个app的网络流量：
+
+cat /proc/uid_stat/<UID>/tcp_rcv
+cat /proc/uid_stat/23605/tcp_rcv
+cat /proc/uid_stat/23605/tcp_snd
+cat /proc/net/xt_qtaguid/stats/23605/tcp_rcv
+cat /proc/net/xt_qtaguid/stats/23605/tcp_snd
+
+
+网线➕wifi的网络流量
+cat /proc/net/dev | grep -E 'eth0|wlan0'
+
+
+
+获取某个app的uid
+dumpsys package com.feedying.live.mix | grep -E "userId=|uid=|appId="
+dumpsys package cn.miguvideo.migutv | grep -E "userId=|uid=|appId="
+dumpsys package cn.juqing.cesuwang_tv | grep -E "userId=|uid=|appId="
+
+com.feedying.live.mix的uid：10032
+cn.miguvideo.migutv的uid：10106
+cn.juqing.cesuwang_tv的uid：10096
+
+
+配合 App 包名映射（UID ↔ 包名）
+cmd := exec.Command("sh", "-c", "dumpsys package com.feedying.live.mix | grep userId=")
+
+
+根据uid获取流量
+dumpsys netstats | grep 10106

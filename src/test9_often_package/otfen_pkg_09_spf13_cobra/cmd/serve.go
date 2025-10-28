@@ -7,12 +7,13 @@ import (
 	"os"
 	"os/signal"
 	"otfen_pkg_09_spf13_cobra/app"
+	"otfen_pkg_09_spf13_cobra/config"
 	"syscall"
 )
 
 // serveCmd 用于启动 所有 服务
-// go run main.go http-cmd -c ./config/config.yaml
-// go run main.go http-cmd --config ./config/config.yaml
+// go run main.go serve-cmd -c ./config/config.yaml
+// go run main.go serve-cmd --config ./config/config.yaml
 
 var serveCmd = &cobra.Command{
 	Use: "serve-cmd",
@@ -46,5 +47,7 @@ var serveCmd = &cobra.Command{
 }
 
 func init() {
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "config/config.yaml", "配置文件路径")
+
 	rootCmd.AddCommand(serveCmd)
 }

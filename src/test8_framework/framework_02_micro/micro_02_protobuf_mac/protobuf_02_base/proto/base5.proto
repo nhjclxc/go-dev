@@ -1,0 +1,30 @@
+
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+// 定义任意数据类型
+import "google/protobuf/any.proto";
+
+// 嵌套的消息定义
+message Outer {
+  message Inner1{
+    message Inner12 {
+      string hello = 1;
+      string world = 2;
+    }
+    int32 you = 1;
+    int32 are = 2;
+  }
+  message Inner2{
+    int32 hhh = 1;
+    int32 aaa = 2 [deprecated = true];
+  }
+  bool ok = 2;
+
+  // 定义任意数据类型
+  repeated google.protobuf.Any details = 8;
+}
+
+// 项目目录下执行：protoc --go_out=./proto --go-grpc_out=./proto ./proto/base5.proto
+

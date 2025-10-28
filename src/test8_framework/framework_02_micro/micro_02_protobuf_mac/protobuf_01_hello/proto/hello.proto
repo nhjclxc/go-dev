@@ -1,0 +1,44 @@
+syntax = "proto3";
+// 说明是proto3的语法模式，并且每一行后面都必须要有一个分号;
+
+
+package proto;
+
+//作用：指定 Go 语言生成代码的包路径和包名。
+//语法：<导出路径>;<Go包名>
+// "./;proto"   ./ → 生成的 Go 文件放在当前目录下, proto → 生成 Go 文件的包名叫 proto
+option go_package = "./;proto";
+
+// 定义一个叫 HelloService 的grpc服务
+service HelloService {
+  // 在grpc服务里面定义一个方法SayHello，请求数据类型是HelloRequest，响应数据类型是HelloResponse
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+  rpc SayMorning (MorningRequest) returns (MorningResponse);  // ✅ 新增
+}
+
+// 定义一个为HelloRequest的消息类型
+message HelloRequest {
+  // 定义一个字段 name，类型是 string，后面的"=1"是必须的，是一个字段编号（tag），并且在同一个消息类型中字段编号不可重复，用于 Protobuf 序列化/反序列化
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
+
+//⚠️ 注意：
+//每个 message 内部的字段号（= 1、= 2 等）不能冲突，但不同 message 之间互不影响。
+message MorningRequest {// ✅ 新增
+  string name = 1;
+}
+
+message MorningResponse {// ✅ 新增
+  string greeting = 1;
+}
+
+// 项目目录[protobuf_01_hello]下执行：protoc --go_out=./proto --go-grpc_out=./proto ./proto/hello.proto
+// go_out=./proto：表示 生成普通的 protobuf（message）代码，生成的.pb.go文件在./proto目录下，
+//    里面包含：所有 message（结构体定义）、枚举（enum）、序列化/反序列化方法
+// go-grpc_out=./proto：表示 生成 gRPC 专用代码，生成 .pb.go 的配套文件（通常叫 _grpc.pb.go），
+//    里面包含：服务接口（Service Interface）、服务注册函数（Register 方法）、客户端调用 Stub
+// ./proto/hello.proto：表示当前定义proto的文件是哪一个

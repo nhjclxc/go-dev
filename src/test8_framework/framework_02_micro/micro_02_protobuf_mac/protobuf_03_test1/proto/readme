@@ -1,0 +1,3 @@
+多个proto相互依赖的时候，要使用：
+    protoc --proto_path=./proto --go_out=./proto --go-grpc_out=./proto ./proto/*.proto
+这个编译命令来编译所有的proto文件， *.proto：编译所有 proto 文件，保证依赖顺序正确

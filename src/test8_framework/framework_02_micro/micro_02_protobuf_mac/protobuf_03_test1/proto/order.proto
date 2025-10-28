@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "common.proto";
+
+option go_package="./;proto";
+
+service OrderService {
+  rpc GetOrderList(GetOrderListRequest) returns (CommonResponse) ;
+}
+
+message GetOrderListRequest {
+  int64 userId = 1;
+  int64 orderId = 2;
+  int32 startTimestamp = 3;
+  int32 endTimestamp = 4;
+  string search = 5;
+}
+
+message GetUserOrderListResponse {
+  int64 userId = 1;
+  int64 orderId = 2;
+  string orderName = 3;
+}

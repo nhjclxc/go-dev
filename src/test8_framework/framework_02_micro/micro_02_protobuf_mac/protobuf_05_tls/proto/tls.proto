@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./;proto";
+
+service TlsService {
+  rpc TlsInterface (TlsRequest) returns (TlsResponse);
+}
+
+message TlsRequest {
+  string name = 1;
+}
+
+message TlsResponse {
+  string message = 1;
+}
+// protoc --go_out=./proto --go-grpc_out=./proto ./proto/tls.proto

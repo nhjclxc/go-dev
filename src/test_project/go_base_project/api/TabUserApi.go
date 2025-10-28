@@ -1,12 +1,8 @@
 package api
 
 import (
-	"errors"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"strconv"
-	"strings"
 )
 
 // TabUserApi 用户 api 层

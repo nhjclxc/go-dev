@@ -47,8 +47,8 @@ var httpCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(httpCmd)
-
 	httpCmd.Flags().StringVarP(&cfgFile, "config", "c", "", "Config file path")
 	httpCmd.MarkFlagRequired("config")
+
+	rootCmd.AddCommand(httpCmd)
 }

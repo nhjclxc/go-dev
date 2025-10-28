@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package="./;proto";
+
+import "common.proto";
+
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (CommonResponse) ;
+}
+
+message GetUserRequest {
+  int64 userId = 1;
+}
+
+message GetUserResponse {
+  int64 userId = 1;
+  int32 age = 2;
+  string userName = 3;
+}

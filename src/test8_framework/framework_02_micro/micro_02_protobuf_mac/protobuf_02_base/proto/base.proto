@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+service BaseService {
+  rpc GetBase (GetBaseRequest) returns (GetBaseResponse);
+}
+
+message GetBaseRequest{
+  string name = 1;
+  string msg = 2;
+//  使用 repeated 来表示这个字段是一个数组
+  repeated GetBaseRequestInner innerList = 3;
+//  使用 map<string, GetBaseRequestMap> 来定义key-val的数据结构
+  map<string, GetBaseRequestMap> mapData = 5;
+
+  // 当某个字段不需要在使用时，不要删除该字段，保留在那里，防止出现编码解析问题，https://protobuf.com.cn/programming-guides/proto3/#deleting
+  // 或者可以删除该字段，但是该字段的编号必须保留或者该字段名称必须保留，防止在次使用导致编码问题，如下
+  reserved 15, 9 to 11;
+  reserved "foo", "bar";
+}
+
+message GetBaseRequestInner {
+  string foo = 1;
+  string bar = 2;
+}
+message GetBaseRequestMap {
+  string foo1 = 1;
+  string bar2 = 2;
+}
+
+message GetBaseResponse{
+  string res = 1;
+  string data = 2;
+  string data3 = 12;
+}
+
+// 项目目录下执行：protoc --go_out=./proto --go-grpc_out=./proto ./proto/base.proto
+// protoc --proto_path=IMPORT_PATH --go_out=DST_DIR path/to/file.proto

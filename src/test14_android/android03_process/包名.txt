@@ -1,0 +1,49 @@
+
+HYLive，com.feedying.live.mix
+咪视界，cn.miguvideo.migutv
+测速网tv，cn.juqing.cesuwang_tv
+
+
+com.feedying.live.mix,cn.miguvideo.migutv,cn.juqing.cesuwang_tv
+
+
+获取所有安装的app：pm list packages
+
+方式1: ps
+ps -A | grep -E "com\.feedying\.live\.mix"
+ps -A | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv"
+ps -A | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+
+
+方式2: top
+top -n 1 -b | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+
+
+
+方式3:
+dumpsys activity processes | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+
+
+当前前台app检测
+dumpsys activity activities | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+
+
+
+ps含义
+FY928X-K:/data/local/tmp $ ps -A | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+u0_a32        2035   506    1509740 167232 0                   0 S com.feedying.live.mix:webview_process
+u0_a106      28359   506    2015508 151928 0                   0 S cn.miguvideo.migutv
+u0_a106      28479   506    1751512  85256 0                   0 S cn.miguvideo.migutv:MiguSsoService
+u0_a106      28710   506    1762228  89540 0                   0 S cn.miguvideo.migutv:pushservice
+u0_a96       29548   506    1945244 316752 0                   0 R cn.juqing.cesuwang_tv
+
+| 列号 | 含义                | 说明                                            | 示例                                                    |
+| -- | ----------------- | --------------------------------------------- | ----------------------------------------------------- |
+| 1  | **用户/进程名**        | 显示进程的用户和进程名称，格式通常为 `u0_aXX`（用户 ID）+ 应用名称或进程名称 | `u0_a32        com.feedying.live.mix:webview_process` |
+| 2  | **进程 ID (PID)**   | 进程的唯一标识符，操作系统用它来识别和管理进程                       | `2035`                                                |
+| 3  | **父进程 ID (PPID)** | 当前进程的父进程 ID，即启动当前进程的进程 ID                     | `506`                                                 |
+| 4  | **虚拟内存大小 (VSS)**  | 进程占用的虚拟内存大小（单位：KB）                            | `1507020` (约 1507 MB)                                 |
+| 5  | **驻留内存 (RSS)**    | 进程实际占用的物理内存大小（单位：KB）                          | `165988` (约 166 MB)                                   |
+| 6  | **共享内存 (SHR)**    | 进程与其他进程共享的内存大小（单位：KB）                         | `0`                                                   |
+| 7  | **进程状态**          | 进程当前的状态，常见状态包括 `S`（睡眠）、`R`（运行）、`Z`（僵尸）等       | `S`（睡眠状态）                                             |
+| 8  | **命令行/进程名**       | 进程名称或正在运行的命令                                  | `com.feedying.live.mix:webview_process`               |

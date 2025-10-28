@@ -1,4 +1,4 @@
-module bp13_shh_proxy
+module android01_ssh
 
 go 1.24.3
 

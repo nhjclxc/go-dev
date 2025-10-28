@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+// 定义任意数据类型
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
+
+// 嵌套的消息定义
+message Outer {
+  bool ok = 2;
+
+  // 定义任意数据类型
+  repeated google.protobuf.Any details = 8;
+}
+service OrderService {
+  rpc AddOrder(Outer) returns (Outer) {
+    option (google.api.http) = {
+      post: "/v1/addorder"
+      body: "*"
+    };
+  };
+}
+
+// 项目目录下执行：protoc --go_out=./proto --go-grpc_out=./proto ./proto/base6.proto

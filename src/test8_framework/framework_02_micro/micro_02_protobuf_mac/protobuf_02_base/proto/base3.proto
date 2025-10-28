@@ -1,0 +1,17 @@
+
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+// 在一个proto文件中，使用其他proto文件所定义的内容，使用import语句进行导入
+// ""里面的路径是当前文件的一个相对路径，如下两个示例
+// public表示：当前 .proto 文件中导入的 x.proto，会自动对外暴露给任何 导入本文件的其他 proto 文件。
+// public表示：也就是说，其他导入当前proto的proto文件，也可以使用“base.proto”定义的相关内容，可以链式的向前查找，public 就像是“透传导入”，让依赖关系可以层层传递下去。
+import public "base.proto";
+import  "base2.proto";
+//import "common/common.proto";
+
+
+// 如果有使用import导入其他包的时候，在编译删除pb文件的时候必须使用--proto_path=./proto来指明要导入proto文件所在的路径
+
+// 项目目录下执行：protoc --go_out=./proto --go-grpc_out=./proto --proto_path=./proto ./proto/base3.proto
