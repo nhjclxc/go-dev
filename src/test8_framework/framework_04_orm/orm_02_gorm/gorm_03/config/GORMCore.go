@@ -14,7 +14,7 @@ func init() {
 	// https://gorm.io/zh_CN/docs/connecting_to_the_database.html
 	// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
 	// dsn := "用户名:密码@tcp(IP:Port)/数据库名?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := "root:root123@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:root123@tcp(127.0.0.1:3306)/test1?charset=utf8mb4&parseTime=True&loc=Local"
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		// 打印所有日志
 		Logger: logger.Default.LogMode(logger.Info),

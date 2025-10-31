@@ -85,7 +85,7 @@ func getTraffic(uid string) (rxTotal, txTotal int64, err error) {
 	}
 
 	if err := scanner.Err(); err != nil {
-		return 0, 0, err
+		return 0, 0, fmt.Errorf("failed to run scanner : %v", err)
 	}
 
 	return rxTotal, txTotal, nil
@@ -109,10 +109,8 @@ func reportTraffic(reportURL string, data []*TrafficData) {
 		return
 	}
 
-	// 打印原始响应
 	fmt.Printf("[INFO] 上报完成，HTTP %d, 响应: %s\n", resp.StatusCode, string(body))
 
-	// 可选：解析 JSON
 	var result struct {
 		Code  int    `json:"code"`
 		Msg   string `json:"msg"`
@@ -134,7 +132,7 @@ func main() {
 	flag.Parse()
 
 	if *pkgList == "" {
-		fmt.Println("Usage: ./netmon --pkgs=com.feedying.live.mix,cn.miguvideo.migutv [--server=http://127.0.0.1:8080]")
+		fmt.Println("Usage: ./appflow --pkgs=com.feedying.live.mix,cn.miguvideo.migutv [--server=http://192.168.201.167:8080]")
 		return
 	}
 
@@ -175,11 +173,12 @@ func main() {
 			app := &apps[i]
 			// 获取这个app的总计流量
 			rx, tx, err := getTraffic(app.UID)
-			fmt.Printf("[INFO] [%s] now traffic total, ↓ %v Byte  ↑ %v Byte. \n", app.Package, rx, tx)
 			if err != nil {
 				fmt.Printf("[ERR] getTraffic error %s: %v\n", app.Package, err)
 				continue
 			}
+			fmt.Printf("[INFO] [%s] now traffic total, ↓ %v Byte  ↑ %v Byte. \n", app.Package, rx, tx)
+
 			// 记录第一次的值，便于下次计算差值
 			if first {
 				app.RxPrev = rx

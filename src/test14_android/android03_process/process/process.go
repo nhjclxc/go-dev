@@ -102,21 +102,51 @@ func main() {
 
 }
 
+// joinPkgs 安全拼接 pkgs 和 frontPkg，避免多余逗号或空值
+func joinPkgs(pkgs, frontPkg string) string {
+	pkgs = strings.Trim(pkgs, ",") // 去掉首尾多余的逗号
+	frontPkg = strings.Trim(frontPkg, ",")
+	if pkgs == "" {
+		return frontPkg
+	}
+	if frontPkg == "" {
+		return pkgs
+	}
+	return pkgs + "," + frontPkg
+}
+
+// getRunningProcess 获取正在运行的进程信息
 func getRunningProcess(pkgs string, frontPkg string) ([]*ProcessStatus, error) {
 	//   ps -A | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
 	//cmd := exec.Command("sh", "-c", fmt.Sprintf("ps -A | grep -E '%s'", *pkgs))
+	pkgs = joinPkgs(pkgs, frontPkg)
 	pattern := strings.ReplaceAll(pkgs, ",", "|")
 	cmd := exec.Command("sh", "-c", fmt.Sprintf("ps -A | grep -E '%s'", pattern))
 
+	res := make([]*ProcessStatus, 0)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = os.Stderr // 显示标准错误
 	if err := cmd.Run(); err != nil {
-		fmt.Printf("failed to run shell command [ps -A]: %w \n", err)
-		return nil, fmt.Errorf("failed to run shell command [ps -A]: %w ", err)
+		//if _, ok := err.(*exec.ExitError); ok {
+		//	// 只是没找到进程
+		//	fmt.Println("未找到匹配进程，指定进程不在执行")
+		//	// 直接把当前的前台程序返回
+		//	res = append(res, &ProcessStatus{
+		//		Package:      frontPkg,
+		//		Status:       processPool[status],
+		//		ProcessFlag:  processFlag,
+		//		FrontAppFlag: pkg == frontPkg,
+		//	})
+		//	return res, nil
+		//} else {
+		//	// 真正执行异常
+		//	fmt.Printf("执行失败: %v\n", err)
+		//	return nil, fmt.Errorf("failed to run shell command [ps -A]: %w ", err)
+		//}
+		//fmt.Printf("failed to run shell command [ps -A]: %w \n", err)
+		//return nil, fmt.Errorf("failed to run shell command [ps -A]: %w ", err)
 	}
-
-	res := make([]*ProcessStatus, 0)
 
 	scanner := bufio.NewScanner(&out)
 	for scanner.Scan() {
@@ -147,10 +177,13 @@ func getRunningProcess(pkgs string, frontPkg string) ([]*ProcessStatus, error) {
 }
 
 /*
-ps -A | grep -E 'com.feedying.live.mix,cn.miguvideo.migutv,cn.juqing.cesuwang_tv'
-
+ps -A | grep -E "com\.feedying\.live\.mix|cn\.miguvideo\.migutv|cn\.juqing\.cesuwang_tv"
+u0_a32        1934   502    1533464 231980 0                   0 S com.feedying.live.mix:webview_process
 
 ./process --pkgs=com.feedying.live.mix,cn.miguvideo.migutv,cn.juqing.cesuwang_tv
 
+
+
+CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o process process.go
 
 */
