@@ -14,8 +14,6 @@ import (
 	"time"
 )
 
-// go get github.com/eclipse/paho.mqtt.golang
-
 // MqttClient mqtt客户端
 type MqttClient struct {
 	client mqtt.Client

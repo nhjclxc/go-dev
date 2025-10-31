@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"message_02_mqtt/mqttcore"
 	"net/http"
 )
 
@@ -12,18 +11,18 @@ func main() {
 	// 创建一个默认的路由引擎
 	router := gin.Default()
 
-	// Broker 地址（tcp://host:port）
-	mqttCfg := mqttcore.MqttConfig{
-		Broker:    "tcp://localhost:1883",
-		ClientId:  "go-client-",
-		Username:  "admin",
-		Password:  "public",
-		SubTopics: []string{"/test/sub"},
-	}
-
-	client := mqttcore.NewMqttClient(&mqttCfg)
-
-	client.Publish("/test/send", 0, "who are you?")
+	//// Broker 地址（tcp://host:port）
+	//mqttCfg := mqttcore.MqttConfig{
+	//	Broker:    "tcp://localhost:1883",
+	//	ClientId:  "go-client-",
+	//	Username:  "admin",
+	//	Password:  "public",
+	//	SubTopics: []string{"/test/sub"},
+	//}
+	//
+	//client := mqttcore.NewMqttClient(&mqttCfg)
+	//
+	//client.Publish("/test/send", 0, "who are you?")
 
 	// 路由绑定
 	router.GET("/", func(context *gin.Context) {
