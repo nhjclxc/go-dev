@@ -86,7 +86,7 @@ func main() {
 	// Broker 地址（tcp://host:port）
 	mqttCfg := mqttcore.MqttConfig{
 		Broker:          "tcp://192.168.201.167:1883",
-		ClientId:        "killapp-client-",
+		ClientId:        "killapp-client-" + deviceId,
 		Username:        "admin",
 		Password:        "public",
 		SubscribeTopics: subscribeTopics,

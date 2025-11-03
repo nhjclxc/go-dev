@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+	"time"
 )
 
 // GetForegroundApp 检测当前属于前台的app的包名
@@ -36,10 +37,14 @@ func GetForegroundApp() (string, error) {
 }
 
 func main() {
-	pkg, err := GetForegroundApp()
-	if err != nil {
-		fmt.Println("检测失败:", err)
-		return
+
+	for range time.Tick(2 * time.Second) {
+		pkg, err := GetForegroundApp()
+		if err != nil {
+			fmt.Println("检测失败:", err)
+			return
+		}
+		fmt.Println("当前前台应用包名:", pkg)
 	}
-	fmt.Println("当前前台应用包名:", pkg)
+
 }
