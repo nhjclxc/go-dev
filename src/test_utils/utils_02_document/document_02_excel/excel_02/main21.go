@@ -1,12 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/xuri/excelize/v2"
 	"go-dev/src/test_utils/utils_02_document/document_02_excel/excel_02/excelUtils"
 	"math/big"
+	"net/http"
 	"time"
 )
-
 
 type TestObject struct {
 	LocalDateTime time.Time  // 对应 Java 的 LocalDateTime
@@ -55,6 +58,48 @@ func doExportTest111() {
 
 }
 
+// 如何将excelize.File数据返回给gin响应
+func ExportExcel(c *gin.Context) {
+	f := excelize.NewFile()
+	sheetName := "Sheet1"
+
+	// 写一些示例数据
+	f.SetCellValue(sheetName, "A1", "Name")
+	f.SetCellValue(sheetName, "B1", "Score")
+	f.SetCellValue(sheetName, "A2", "Alice")
+	f.SetCellValue(sheetName, "B2", 95)
+
+	// 将 Excel 写入内存缓冲区
+	var buf bytes.Buffer
+	if err := f.Write(&buf); err != nil {
+		c.String(http.StatusInternalServerError, "生成Excel失败: %v", err)
+		return
+	}
+
+	// 设置下载响应头
+	c.Header("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	c.Header("Content-Disposition", `attachment; filename="report.xlsx"`)
+	c.Header("Content-Transfer-Encoding", "binary")
+	c.Header("Cache-Control", "no-cache")
+
+	// 写入响应体
+	c.Data(http.StatusOK, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", buf.Bytes())
+
+	// f.Write(&buf) 是把 Excel 文件内容写进内存；
+	//c.Data(...) 是把内存中的 Excel 数据发送给客户端。
+
+	// 以下是简写
+
+	c.Header("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	c.Header("Content-Disposition", `attachment; filename="report.xlsx"`)
+	c.Header("Content-Transfer-Encoding", "binary")
+	c.Header("Cache-Control", "no-cache")
+	if err := f.Write(c.Writer); err != nil {
+		c.Status(http.StatusInternalServerError)
+		return
+	}
+
+}
 func doImportTest111() {
 
 	headerKeys := []string{"LocalDateTime", "LocalDate", "LocalTime", "Date",
@@ -69,7 +114,6 @@ func doImportTest111() {
 	}
 
 }
-
 
 //func doImportTest() {
 //

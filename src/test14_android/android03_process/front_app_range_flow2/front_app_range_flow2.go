@@ -3,8 +3,11 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"os/exec"
 	"regexp"
@@ -175,13 +178,15 @@ func removePkgList(originList, deleteList []string) []string {
 }
 
 // 监控指定pkg对应app进入app和离开app这一段时间内的流量
-// CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o front_app_range_flow front_app_range_flow.go
-// adb -s 192.168.200.55:5555 push front_app_range_flow /data/local/tmp
+// CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o front_app_range_flow2 front_app_range_flow2.go
+// adb -s 192.168.200.55:5555 push front_app_range_flow2 /data/local/tmp
 
 func main() {
 
 	// ./front_app_range_flow
 	pkgs := flag.String("pkgs", "com.feedying.live.mix,cn.miguvideo.migutv,cn.juqing.cesuwang_tv", "Comma-separated package names (e.g. com.feedying.live.mix,cn.miguvideo.migutv)")
+	reportURL := flag.String("server", "http://192.168.201.167:8080/client/traffic", "Server base URL for reporting")
+
 	flag.Parse()
 
 	if *pkgs == "" {
@@ -217,21 +222,16 @@ func main() {
 
 	// 每隔1s进行一个前台app监测，
 	// 如果进入了要监测的app则记录该app当前流量作为开始节点，如果离开了要监测的app则该app当前流量为离开节点的流量，两者之差即为这个app这次使用的流量
-	count := 0
 	lastPackage := ""
-	pkgStatusMapList := make(map[string][]*AppFlowStatus)
+	// 每一个app只保留最新的一次数据，离开app之后立即上报数据
+	pkgStatusMap := make(map[string]*AppFlowStatus) // pkg -> *AppFlowStatus
 	for range time.Tick(1 * time.Second) {
 		pkg, err := GetForegroundApp()
 		if err != nil {
 			fmt.Println("前台app检测失败:", err)
 			continue
 		}
-		fmt.Println("当前前台应用包名:", pkg)
-
-		count++
-		if count%10 == 0 {
-			printMap(pkgStatusMapList)
-		}
+		//fmt.Println("当前前台应用包名:", pkg)
 
 		if lastPackage == pkg {
 			continue
@@ -250,27 +250,23 @@ func main() {
 		}
 
 		t := NowInCST()
-		if statusList, ok := pkgStatusMapList[dealPkg]; ok {
-			lastStatus := statusList[len(statusList)-1]
-
-			if flag1 {
-				// 进入app 记录当前流量
-				pkgStatusMapList[dealPkg] = append(statusList, entryAppFlow(appUidMap, dealPkg, t))
-			} else if flag2 {
+		if status, ok := pkgStatusMap[dealPkg]; ok {
+			if flag2 {
 				// 离开app 停止这一次的流量监控
-				leaveAppFlow(appUidMap, dealPkg, t, lastStatus)
+				leaveAppFlow(appUidMap, dealPkg, t, status, *reportURL)
+				// 处理完毕之后删除这个记录
+				delete(pkgStatusMap, dealPkg)
 			}
 		} else {
-			pkgStatusMapList[dealPkg] = append(make([]*AppFlowStatus, 0), entryAppFlow(appUidMap, dealPkg, t))
+			pkgStatusMap[dealPkg] = entryAppFlow(appUidMap, dealPkg, t)
 		}
 		lastPackage = pkg
-
 	}
 
 }
 
 // leaveAppFlow 离开app时记录app流量
-func leaveAppFlow(appUidMap map[string]string, dealPkg string, t time.Time, status *AppFlowStatus) {
+func leaveAppFlow(appUidMap map[string]string, dealPkg string, t time.Time, status *AppFlowStatus, reportURL string) {
 	appUid := ""
 	if uid, ok := appUidMap[dealPkg]; ok {
 		appUid = uid
@@ -291,11 +287,46 @@ func leaveAppFlow(appUidMap map[string]string, dealPkg string, t time.Time, stat
 	status.RxAccum = status.LeaveRxTotal - status.EntryRxTotal
 	status.TxAccum = status.LeaveTxTotal - status.EntryTxTotal
 
-	fmt.Printf("离开时流量情况，rxTotal=%d, txTotal=%d, status=%v \n", rxTotal, txTotal, status)
+	fmt.Printf("离开[%s]时流量情况，rxTotal=%d, txTotal=%d, status=%v \n", dealPkg, rxTotal, txTotal, status)
 
 	fmt.Printf("Rx 总byte差值%d Byte, %d KB, %d MB  \n", status.RxAccum, status.RxAccum/1024, status.RxAccum/1024/1024)
 	fmt.Printf("Tx 总byte差值%d Byte, %d KB, %d MB  \n", status.TxAccum, status.TxAccum/1024, status.TxAccum/1024/1024)
 
+	// 一次进出记录完毕之后上报数据
+	go reportTraffic(reportURL, status)
+}
+
+// reportTraffic 上报流量数据到服务器
+func reportTraffic(reportURL string, status *AppFlowStatus) {
+	jsonData, _ := json.Marshal(status)
+	fmt.Printf("[INFO] 上报参数: jsonData=%s\n", string(jsonData))
+	resp, err := http.Post(reportURL, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		fmt.Printf("[ERROR] 上报失败: %v", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	// 读取响应内容
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("[ERROR] 读取响应失败: %v\n", err)
+		return
+	}
+
+	fmt.Printf("[INFO] 上报完成，HTTP %d, 响应: %s\n", resp.StatusCode, string(body))
+
+	var result struct {
+		Code  int    `json:"code"`
+		Msg   string `json:"msg"`
+		Count int    `json:"count"`
+	}
+	if err := json.Unmarshal(body, &result); err != nil {
+		fmt.Printf("[WARN] JSON解析失败: %v\n", err)
+		return
+	}
+
+	fmt.Printf("[INFO] 上报结果: code=%d msg=%s count=%d \n", result.Code, result.Msg, result.Count)
 }
 
 // entryAppFlow 进入app时记录当前流量
@@ -313,7 +344,7 @@ func entryAppFlow(appUidMap map[string]string, dealPkg string, t time.Time) *App
 		fmt.Printf("[ERR] getTraffic error %s: %v\n", dealPkg, err)
 		//continue
 	}
-	fmt.Printf("进入时流量情况，rxTotal=%d, txTotal=%d \n", rxTotal, txTotal)
+	fmt.Printf("进入[%s]时流量情况，rxTotal=%d, txTotal=%d \n", dealPkg, rxTotal, txTotal)
 
 	newStatus := &AppFlowStatus{
 		Package:      dealPkg,
@@ -324,19 +355,4 @@ func entryAppFlow(appUidMap map[string]string, dealPkg string, t time.Time) *App
 	return newStatus
 }
 
-// 进入时流量情况，rxTotal=435575925, txTotal=64319105
-// 离开时流量情况，rxTotal=781434505, txTotal=112308629, status=&{cn.juqing.cesuwang_tv  2025-11-03 16:11:13.220943535 +0800 CST 435575925 64319105 2025-11-03 16:12:00.861480516 +0800 CST 781434505 112308629 345858580 47989524}
-//status.RxAccum = status.LeaveRxTotal - status.EntryRxTotal = 781434505 - 435575925 = 345858580 byte
-//status.TxAccum = status.LeaveTxTotal - status.EntryTxTotal = 112308629 - 64319105 = 47989524 byte
-
-//rxdiff := 781434505 - 435575925
-//txdiff := 112308629 - 64319105
-//fmt.Printf("Rx 总byte差值%d byte, %d B, %d KB, %d MB  \n", rxdiff, rxdiff, rxdiff/1024, rxdiff/1024/1024)
-//fmt.Printf("Tx 总byte差值%d byte, %d B, %d KB, %d MB  \n", txdiff, txdiff, txdiff/1024, txdiff/1024/1024)
-// Rx 总byte差值345858580 byte, 345858580 B, 337752 KB, 329 MB
-//Tx 总byte差值47989524 byte, 47989524 B, 46864 KB, 45 MB
-
-//进入时流量情况，rxTotal=2905428864, txTotal=324380359
-//离开时流量情况，rxTotal=3365454840, txTotal=384190911, status=&{cn.juqing.cesuwang_tv  2025-11-03 16:39:02.004132914 +0800 CST 2905428864 324380359 2025-11-03 16:39:55.990965857 +0800 CST 3365454840 384190911 460025976 59810552}
-//Rx 总byte差值460025976 Byte, 449244 KB, 438 MB
-//Tx 总byte差值59810552 Byte, 58408 KB, 57 MB
+// [ERR] getTraffic error cn.juqing.cesuwang_tv: failed to run dumpsys netstats: exit status 1

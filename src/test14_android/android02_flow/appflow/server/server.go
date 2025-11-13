@@ -17,6 +17,27 @@ type TrafficData struct {
 	ReportTime time.Time `json:"reportTime"` // 上报时间（可选）
 }
 
+/*
+create table android_app_flow
+(
+    id                bigint auto_increment comment '主键ID' primary key,
+    proprietarycoding varchar(255) not null comment '专资',
+    cinema_id         int          not null comment '影院id',
+    hall_id           int          not null comment '影厅id',
+    android_device_id varchar(100) not null comment '设备id',
+    package           varchar(64)  not null comment '应用包名',
+    app_name          varchar(64)  not null comment '应用名称',
+    rx_total          bigint       not null comment '接收总计 rx',
+    tx_total          bigint       not null comment '发送总计 tx',
+    report_time       timestamp    null comment '上报时间',
+    create_at         timestamp    null comment '创建时间'
+)
+    comment '安卓app流量监控';
+
+安卓流量监控
+android-traffic-monitor
+*/
+
 func main() {
 	router := gin.Default()
 

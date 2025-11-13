@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+
+package proto;
+
+option go_package = "./;proto";
+
+// 定义一个叫 Pay2Service 的grpc服务
+service Pay2Service {
+  rpc Charge (PayChargeRequest) returns (PayChargeResponse);
+  rpc QueryStatus (PayQueryStatusRequest) returns (PayQueryStatusResponse);
+}
+
+// 定义一个为PayChargeRequest的消息类型
+message PayChargeRequest {
+  string userID = 1;
+  int64 amount = 2;
+}
+message PayChargeResponse {
+  string message = 1;
+}
+
+message PayQueryStatusRequest {
+  string orderID = 1;
+}
+message PayQueryStatusResponse {
+  string message = 1;
+}
+
+
+// protoc --go_out=./proto --go-grpc_out=./proto ./proto/pay.proto

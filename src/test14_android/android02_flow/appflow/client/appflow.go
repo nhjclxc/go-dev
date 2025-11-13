@@ -35,7 +35,9 @@ type TrafficData struct {
 	ReportTime time.Time `json:"reportTime"` // 上报时间（可选）
 }
 
-// getUID根据app package name 获取这个app对应的应用id（唯一id）用于查询流量
+// getUID 根据app package name 获取这个app对应的应用id（唯一id）用于查询流量
+// Param
+//   - pkg： pkg应用包名
 func getUID(pkg string) (string, error) {
 	cmd := exec.Command("sh", "-c", fmt.Sprintf("dumpsys package %s | grep -E 'userId=|appId=|uid='", pkg))
 	out, err := cmd.Output()
@@ -51,8 +53,14 @@ func getUID(pkg string) (string, error) {
 }
 
 // getTraffic 根据 UID 获取总接收字节数和总发送字节数
-// rxTotal 接收总字节数 Byte
-// txTotal 发送总字节数 Byte
+//
+// Param
+//   - uid： pkg的唯一标识
+//
+// Returns
+//
+//   - rxTotal： 接收总字节数 Byte
+//   - txTotal： 发送总字节数 Byte
 func getTraffic(uid string) (rxTotal, txTotal int64, err error) {
 	// 直接过滤 UID，减少输出
 	//cmd := exec.Command("sh", "-c", fmt.Sprintf("dumpsys netstats | grep 'uid=%s'", uid))

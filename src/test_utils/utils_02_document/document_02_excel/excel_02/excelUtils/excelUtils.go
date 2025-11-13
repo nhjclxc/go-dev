@@ -182,6 +182,9 @@ func ExportExcel[T any](data []T, firstColAxis int32, firstRowAxis int, headerKe
 // 泛型通用方法：通过字段名获取任意结构体的字段值
 func getFieldByName[T any](obj *T, fieldName string) interface{} {
 	v := reflect.ValueOf(obj).Elem()
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem() // 解引用指针
+	}
 	f := v.FieldByName(fieldName)
 	if !f.IsValid() {
 		return nil
