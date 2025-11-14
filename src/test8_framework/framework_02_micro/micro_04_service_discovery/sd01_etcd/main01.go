@@ -13,7 +13,7 @@ import (
 
 // https://pkg.go.dev/go.etcd.io/etcd/client/v3?utm_source=chatgpt.com
 
-// go get go.etcd.io/etcd/clientv3
+// go get go.etcd.io/etcd/client/v3
 func main() {
 
 	// etcd client put/get demo

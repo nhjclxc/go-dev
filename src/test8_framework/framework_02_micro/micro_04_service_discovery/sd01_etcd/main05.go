@@ -15,7 +15,6 @@ func main05() {
 
 	// 基于etcd实现的分布式锁示例
 
-
 	cli, err := clientv3.New(clientv3.Config{
 		Endpoints:   []string{"39.106.59.225:2379"},
 		DialTimeout: time.Second * 5,

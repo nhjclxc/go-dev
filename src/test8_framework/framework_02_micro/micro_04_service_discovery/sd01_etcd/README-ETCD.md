@@ -1,6 +1,8 @@
 
 ## 7、ETCD
 
+etcd 的默认端口只有两个：2379（客户端）和 2380（集群内部通信）
+
 `go get go.etcd.io/etcd/client/v3`
 
 https://topgoer.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/go%E6%93%8D%E4%BD%9Cetcd/etcd%E4%BB%8B%E7%BB%8D.html

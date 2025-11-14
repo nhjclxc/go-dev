@@ -14,7 +14,6 @@ import (
 // go get go.etcd.io/etcd/clientv3
 func main() {
 
-
 	// etcd client put/get demo
 	// use etcd/clientv3
 
