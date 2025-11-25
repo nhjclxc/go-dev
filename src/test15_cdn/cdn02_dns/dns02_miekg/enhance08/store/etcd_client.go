@@ -1,4 +1,4 @@
-package sd02_etcd
+package store
 
 import (
 	"context"
@@ -8,11 +8,9 @@ import (
 	"time"
 )
 
-// clientv3.Client内部有状态，因此clientv3.Client可以被多次使用，也可以被多个go协程并发使用
-var etcdClient *clientv3.Client
+// EtcdClient clientv3.Client内部有状态，因此clientv3.Client可以被多次使用，也可以被多个go协程并发使用
 var EtcdClient *clientv3.Client
 
-// go get go.etcd.io/etcd/client/v3
 func init() {
 	cli, err := clientv3.New(clientv3.Config{
 		Endpoints:   []string{"127.0.0.1:2379"},
@@ -30,6 +28,5 @@ func init() {
 	}
 	fmt.Println("connect to etcd success")
 
-	etcdClient = cli
 	EtcdClient = cli
 }

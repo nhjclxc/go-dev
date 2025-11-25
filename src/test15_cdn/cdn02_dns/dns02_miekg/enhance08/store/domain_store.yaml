@@ -1,0 +1,62 @@
+# 本地 DNS 权威记录
+records:
+  # 普通域名
+  - domain: "local.com"
+    ttl: 300
+    answers:
+      - qtype: "A"
+        value: "127.0.0.1"
+      - qtype: "A"
+        value: "127.0.0.2"
+      - qtype: "A"
+        value: "127.0.0.2"
+      - qtype: "AAAA"
+        value: "::1"
+      - qtype: "TXT"
+        value: "hello=world"
+      - qtype: "CNAME"
+        value: "target.local.com."
+
+  - domain: "api.local.com"
+    ttl: 120
+    answers:
+      - qtype: "A"
+        value: "127.10.0.1"
+      - qtype: "A"
+        value: "127.10.0.2"
+
+  # 通配符域名
+  - domain: "*.local.com"
+    ttl: 300
+    answers:
+      - qtype: "A"
+        value: "127.222.222.222"
+
+  # IPv6 示例
+  - domain: "ipv6.local.com"
+    ttl: 300
+    answers:
+      - qtype: "AAAA"
+        value: "::1"
+
+  # TXT 记录
+  - domain: "txt.local.com"
+    ttl: 60
+    answers:
+      - qtype: "TXT"
+        value: "hello=world"
+
+  # CNAME 示例
+  - domain: "alias.local.com"
+    ttl: 60
+    answers:
+      - qtype: "CNAME"
+        value: "target.local.com."
+
+# 是否允许上游递归
+upstream:
+  enable: true
+  servers:
+    - "144.144.144.144:53"
+    - "8.8.8.8:53"
+    - "8.8.8.4:53"
