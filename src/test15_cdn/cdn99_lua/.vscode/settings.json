@@ -1,0 +1,15 @@
+{
+    "launch": {
+        "configurations": [
+        {
+            "name": "Lua Debug333",
+            "type": "lua",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}"
+        }
+        ],
+        "compounds": []
+    },
+    "git-graph.dialog.rebase.launchInteractiveRebase": false
+}

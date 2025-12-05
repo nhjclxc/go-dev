@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "address": "127.0.0.1:4278",
+            "name": "attach",
+            "request": "attach",
+            "stopOnEntry": true,
+            "type": "lua"
+        },
+        {
+            "name": "Lua Debug222",
+            "type": "lua",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

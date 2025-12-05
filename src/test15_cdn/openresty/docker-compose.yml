@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  openresty:
+    image: openresty/openresty:alpine
+    container_name: cdn-gateway
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./lua:/usr/local/openresty/nginx/lua
+      - ./logs:/usr/local/openresty/nginx/logs
+    depends_on:
+      - backend
+    networks:
+      - cdn-network
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: cdn-backend
+    networks:
+      - cdn-network
+    restart: unless-stopped
+
+networks:
+  cdn-network:
+    driver: bridge

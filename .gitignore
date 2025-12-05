@@ -65,3 +65,8 @@ pkg/mod/
 ###########################   过滤 Beego 生成的 swagger 相关文件   ###########################################
 **/swagger.zip
 **/swagger/
+
+
+.vscode
+**/lua/resty/openssl/*
+src/test15_cdn/cdn05_openresty/resty01_test/openresty/lua/aa.lua

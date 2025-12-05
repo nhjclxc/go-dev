@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  openresty:
+    image: openresty/openresty:alpine
+    container_name: cdn-gateway1
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    networks:
+      - cdn-network
+    restart: unless-stopped
+
+networks:
+  cdn-network:
+    driver: bridge
