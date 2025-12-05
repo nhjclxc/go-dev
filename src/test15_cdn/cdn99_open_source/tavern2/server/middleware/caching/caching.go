@@ -1,0 +1,108 @@
+package caching
+
+import (
+	"net/http"
+	"net/url"
+
+	configv1 "github.com/omalloc/tavern/api/defined/v1/middleware"
+	"github.com/omalloc/tavern/api/defined/v1/storage/object"
+	"github.com/omalloc/tavern/contrib/log"
+	"github.com/omalloc/tavern/proxy"
+	"github.com/omalloc/tavern/server/middleware"
+)
+
+type cachingOption struct{}
+
+func init() {
+	middleware.Register("caching", Middleware)
+}
+
+func Middleware(c *configv1.Middleware) (middleware.Middleware, func(), error) {
+	var opts cachingOption
+	if err := c.Unmarshal(&opts); err != nil {
+		return nil, middleware.EmptyCleanup, err
+	}
+
+	processor := NewProcessorChain(
+		NewStateProcessor(),
+	).fill()
+
+	return func(origin http.RoundTripper) http.RoundTripper {
+
+		proxyClient := proxy.GetProxy()
+
+		return middleware.RoundTripperFunc(func(req *http.Request) (resp *http.Response, err error) {
+			// find indexdb cache-key has hit/miss.
+			caching, err := processor.preCacheProcessor(proxyClient, req)
+			// err to BYPASS caching
+			if err != nil {
+				caching.log.Warnf("caching find failed: %v BYPASS", err)
+				return caching.doProxy(req)
+			}
+
+			// cache HIT
+			if caching.hit {
+				resp, err = caching.responseCache(req)
+				return
+			}
+
+			// full MISS
+			resp, err = caching.doProxy(req)
+
+			processor.postCacheProcessor(caching, req, resp)
+
+			return
+		})
+
+	}, middleware.EmptyCleanup, nil
+}
+
+type Caching struct {
+	log         *log.Helper
+	processor   *ProcessorChain
+	req         *http.Request
+	md          *object.Metadata
+	proxyClient proxy.Proxy
+
+	hit         bool
+	refresh     bool
+	fileChanged bool
+}
+
+func (c *Caching) responseCache(req *http.Request) (*http.Response, error) {
+	// find disk cache file and return Body
+	return nil, nil
+}
+
+func (c *Caching) doProxy(req *http.Request) (*http.Response, error) {
+	proxyReq := cloneRequest(req)
+
+	c.log.Infof("doPorxy with %s", proxyReq.URL.String())
+
+	resp, err := c.proxyClient.Do(proxyReq, false)
+
+	// TODO: write to cache file if needed
+
+	return resp, err
+}
+
+func cloneRequest(req *http.Request) *http.Request {
+	proxyURL, _ := url.Parse(req.URL.String())
+	if proxyURL.Host == "" {
+		proxyURL.Host = req.Host
+	}
+	if proxyURL.Scheme == "" {
+		// proxyURL.Scheme = xhttp.Scheme(req)
+	}
+	proxyReq := &http.Request{
+		ProtoMajor: 1,
+		ProtoMinor: 1,
+		Host:       req.Host,
+		Proto:      req.Proto,
+		Method:     req.Method,
+		URL:        proxyURL,
+		Header:     make(http.Header),
+	}
+
+	return proxyReq
+}

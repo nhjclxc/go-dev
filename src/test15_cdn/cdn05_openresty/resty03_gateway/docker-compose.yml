@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  resty03_gateway-openresty:
+    image: openresty/openresty:alpine
+    container_name: resty03_gateway-openresty
+    ports:
+      - "8880:8880"
+    volumes:
+      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./conf/conf.d/:/usr/local/openresty/nginx/conf/conf.d/
+      - ./lua:/usr/local/openresty/nginx/lua
+      - ./logs:/usr/local/openresty/nginx/logs
+    networks:
+      - resty03_gateway-network
+    restart: unless-stopped
+    depends_on:
+      - resty03_gateway-backend
+
+  resty03_gateway-backend:
+    build: ./backend # 用指定目录的 Dockerfile 构建一个新的镜像来作为当前container的image
+    container_name: resty03_gateway-backend
+    networks:
+      - resty03_gateway-network
+    restart: unless-stopped
+
+networks:
+  resty03_gateway-network:
+    driver: bridge

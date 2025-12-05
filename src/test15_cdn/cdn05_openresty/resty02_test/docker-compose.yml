@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  resty02_test-openresty:
+    image: openresty/openresty:alpine
+    container_name: resty02_test-openresty
+    ports:
+      - "8899:8899"
+    volumes:
+      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./conf/conf.d/:/usr/local/openresty/nginx/conf/conf.d/
+      - ./lua:/usr/local/openresty/nginx/lua
+      - ./logs:/usr/local/openresty/nginx/logs
+    networks:
+      - resty02_test-network
+    restart: unless-stopped
+    depends_on:
+      - resty02_test-backend
+
+  resty02_test-backend:
+    build: ./backend # 用指定目录的 Dockerfile 构建一个新的镜像
+    container_name: resty02_test-backend
+    networks:
+      - resty02_test-network
+    restart: unless-stopped
+
+networks:
+  resty02_test-network:
+    driver: bridge
