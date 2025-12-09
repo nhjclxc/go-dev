@@ -5,7 +5,7 @@ services:
     image: openresty/openresty:alpine
     container_name: resty03_gateway-openresty
     ports:
-      - "8880:8880"
+      - "8989:8989"
     volumes:
       - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
       - ./conf/conf.d/:/usr/local/openresty/nginx/conf/conf.d/
