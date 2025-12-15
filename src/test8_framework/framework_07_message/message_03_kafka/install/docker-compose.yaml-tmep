@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka
+    ports:
+      - "9092:9092" # 客户端 PLAINTEXT
+      - "9093:9093" # 客户端 SASL_PLAINTEXT
+    environment:
+      # 基本 KRaft 配置
+      KAFKA_NODE_ID: 1
+      KAFKA_KRAFT_MODE: "true"
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9094
+
+      # listeners，
+      # 9092和9093供外部使用，其中9092无需密码，9093要密码
+      # 9094内部使用，不向外暴露。
+      # 192.168.200.222 是本机ip，将这个ip广播出去，其他设备就能发现了
+      KAFKA_LISTENERS: PLAINTEXT://:9092,SASL_PLAINTEXT://:9093,CONTROLLER://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.200.222:9092,SASL_PLAINTEXT://192.168.200.222:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      # SASL 配置
+      KAFKA_SASL_ENABLED_MECHANISMS: SCRAM-SHA-256
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: SCRAM-SHA-256
+      KAFKA_LISTENER_NAME_SASL_PLAINTEXT_SCRAM_SHA_256_SASL_SERVER_CALLBACK_HANDLER_CLASS: "org.apache.kafka.common.security.scram.ScramServerCallbackHandler"
+      KAFKA_LISTENER_NAME_SASL_PLAINTEXT_SCRAM_SHA_256_SASL_MECHANISM_INTER_BROKER_PROTOCOL: SCRAM-SHA-256
+
+
+      # 加上这段，否则9093无法认证！
+      KAFKA_LISTENER_NAME_SASL_PLAINTEXT_SCRAM_SHA_256_SASL_JAAS_CONFIG: |
+        org.apache.kafka.common.security.scram.ScramLoginModule required
+        username="user1"
+        password="pwd123";
+
+      # 底层库 JAAS 文件
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/opt/kafka/config/kafka_server_jaas.conf"
+
+      # 日志级别
+      KAFKA_LOG4J_LOGGERS: "kafka.authorizer.logger=INFO"
+
+    volumes:
+#      - ./kafka-data:/var/lib/kafka/data
+      - ./kafka-data:/var/lib/kafka/data
+      - ./server.properties:/opt/kafka/config/server.properties
+      - ./kafka_server_jaas.conf:/opt/kafka/config/kafka_server_jaas.conf
+      - ./logs:/tmp/kraft-logs
+    networks:
+      - kafka-network
+    restart: always
+
+networks:
+  kafka-network:
+    driver: bridge

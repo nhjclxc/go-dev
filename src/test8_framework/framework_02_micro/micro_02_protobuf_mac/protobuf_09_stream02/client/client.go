@@ -14,15 +14,15 @@ import (
 )
 
 func main() {
-	// 1、创建客户端
-	// 2、设置客户端
+	// 1、创建连接
+	// 2、创建客户端
 	// 3、调用接口
 
 	ctx, cancel := context.WithTimeout(context.Background(), 50*time.Second)
 	defer cancel()
 	_ = ctx
 
-	// 1、创建客户端
+	// 1、创建连接
 	conn, err := grpc.NewClient(
 		"localhost:50051",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -33,7 +33,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	// 2、设置客户端
+	// 2、创建客户端
 	client := stream02.NewStreamServiceClient(conn)
 
 	// 3、调用接口

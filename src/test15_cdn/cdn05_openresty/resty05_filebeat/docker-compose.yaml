@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka
+    ports:
+      - "9092:9092" # 客户端 PLAINTEXT
+      - "9093:9093" # 客户端 SASL_PLAINTEXT
+    environment:
+      # 基本 KRaft 配置
+      KAFKA_NODE_ID: 1
+      KAFKA_KRAFT_MODE: "true"
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9094
+
+      # listeners，9094内部使用，不暴露
+      KAFKA_LISTENERS: PLAINTEXT://:9092,SASL_PLAINTEXT://:9093,CONTROLLER://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.203.182:9092,SASL_PLAINTEXT://192.168.203.182:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,SASL_PLAINTEXT:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      # SASL 配置
+      KAFKA_SASL_ENABLED_MECHANISMS: SCRAM-SHA-256
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: SCRAM-SHA-256
+
+
+      # 加上这段，否则9093无法认证！
+      KAFKA_LISTENER_NAME_SASL_PLAINTEXT_SCRAM_SHA_256_SASL_JAAS_CONFIG: |
+        org.apache.kafka.common.security.scram.ScramLoginModule required
+        username="test"
+        password="test123";
+
+      # 底层库 JAAS 文件
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/opt/kafka/config/kafka_server_jaas.conf"
+
+      # 日志级别
+      KAFKA_LOG4J_LOGGERS: "kafka.authorizer.logger=INFO"
+
+    volumes:
+      - ./kafka-data:/var/lib/kafka/data
+      - ./kafka_server_jaas.conf:/opt/kafka/config/kafka_server_jaas.conf
+      - ./logs:/tmp/kraft-logs
+    networks:
+      - filebeat-network
+    restart: always
+
+  filebeat:
+    image: elastic/filebeat:8.12.0
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      #      - /home/lxc/cdn/cdn-gateway/logs:/var/log/nginx:ro      # 挂载日志
+      - /home/lxc/cdn/cdn-gateway/scripts/logs:/var/log/nginx:ro      # 挂载日志
+      - ./filebeat-data:/usr/share/filebeat/data   # 保存状态
+      - ./logs:/usr/share/filebeat/logs
+    networks:
+      - filebeat-network
+    restart: always
+
+networks:
+  filebeat-network:
+    driver: bridge

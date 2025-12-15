@@ -1,0 +1,25 @@
+filebeat.inputs:
+  - type: filestream
+    id: nginx_error
+    enabled: true
+    paths:
+      - /var/log/nginx/pcdn-access-*.log    # 匹配所有切分后的日志，这个是容器内的目录，不是宿主机的目录
+      - /var/log/nginx/pcdn-access.log      # 当前正在写的文件
+    prospector.scanner.check_interval: 5s
+    file_identity:  # 防止 logrotate 重命名导致丢日志
+      inode: true
+      device: true
+      inode_mac: true
+    ignore_older: 72h                 # 3 天前的日志不采集
+
+output.kafka:
+  hosts: ["kafka:9092"]         # Kafka 地址
+  topic: "nginx_error"          # 日志写入的 topic
+
+  # SASL + SCRAM AUTH
+#  sasl.mechanism: SCRAM-SHA-256
+#  sasl.username: "admin"
+#  sasl.password: "admin123"
+#  security_protocol: sasl_plaintext
+
+logging.level: info
