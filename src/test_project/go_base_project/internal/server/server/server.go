@@ -1,38 +1,69 @@
-package admin
+package server
 
 import (
 	"context"
 	"fmt"
-	"net/http"
-
-	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-
+	"github.com/redis/go-redis/v9"
 	"go_base_project/config"
 	"go_base_project/internal/controller"
-	"go_base_project/internal/repository"
-	"go_base_project/internal/service"
+	"go_base_project/internal/server/server/middleware"
 	"go_base_project/pkg/database"
 	"go_base_project/pkg/logger"
-	"go_base_project/server/admin/middleware"
+	redisPkg "go_base_project/pkg/redis"
+	"gorm.io/gorm"
+	"log/slog"
+	"net/http"
+
+	"go_base_project/internal/repository"
+	"go_base_project/internal/service"
 )
 
-// Server 管理服务器
+// Server HTTP 服务器
 type Server struct {
-	server *http.Server
-	cfg    *config.AdminConfig
-	ctx    context.Context
+	server   *http.Server
+	cfg      *config.ServerConfig
+	ctx      context.Context
+	db       *gorm.DB
+	redisCli *redis.Client
 }
 
-// NewServer 创建管理服务器实例
-func NewServer(ctx context.Context, cfg *config.AdminConfig) *Server {
-	return &Server{cfg: cfg, ctx: ctx}
+// NewHTTPServer 创建 HTTP 服务器实例
+func NewServer(cfg *config.ServerConfig) (*Server, error) {
+	s := Server{
+		cfg: cfg,
+	}
+
+	// 注册数据库检查器
+	if cfg.Database != nil {
+		db0, err := database.NewMySQL(cfg.Database)
+		if err != nil {
+			logger.Info("Server.NewServer.NewMySQL err:", err)
+			return nil, err
+		}
+		s.db = db0
+	}
+
+	// 注册 Redis 检查器
+	if cfg.RedisConfig != nil {
+		redis0, err := redisPkg.NewRedis(cfg.RedisConfig)
+		if err != nil {
+			logger.Info("Server.NewServer.NewRedis err:", err)
+			return nil, err
+		}
+		s.redisCli = redis0
+	}
+
+	return &s, nil
 }
 
-// Start 启动管理服务器
-func (s *Server) Start() error {
+// Start 启动 HTTP 服务器
+func (s *Server) Start(ctx context.Context) error {
+	s.ctx = ctx
+	cfg := s.cfg
+
 	// 设置 Gin 模式
-	if !s.cfg.App.Debug {
+	if !cfg.App.Debug {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
@@ -44,41 +75,36 @@ func (s *Server) Start() error {
 	r.Use(middleware.Recovery())
 	r.Use(middleware.Logger())
 
-	// 启用 pprof
-	if s.cfg.App.Debug {
-		pprof.Register(r)
-	}
-
 	// 健康检查接口
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"status": "ok"})
 	})
 
-	// 注册路由
+	// 注册业务路由
 	s.registerRoutes(r)
 
 	// 创建 HTTP 服务器
 	s.server = &http.Server{
-		Addr:         fmt.Sprintf(":%d", s.cfg.HTTP.Port),
+		Addr:         fmt.Sprintf(":%d", cfg.HTTP.Port),
 		Handler:      r,
-		ReadTimeout:  s.cfg.HTTP.ReadTimeout,
-		WriteTimeout: s.cfg.HTTP.WriteTimeout,
-		IdleTimeout:  s.cfg.HTTP.IdleTimeout,
+		ReadTimeout:  cfg.HTTP.ReadTimeout,
+		WriteTimeout: cfg.HTTP.WriteTimeout,
+		IdleTimeout:  cfg.HTTP.IdleTimeout,
 	}
 
-	logger.Info("管理服务器启动", "port", s.cfg.HTTP.Port)
+	slog.Info("HTTP 服务器启动", "port", cfg.HTTP.Port)
 
 	// 启动服务器
 	if err := s.server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-		return fmt.Errorf("管理服务器启动失败: %w", err)
+		return fmt.Errorf("HTTP 服务器启动失败: %w", err)
 	}
 
 	return nil
 }
 
-// Stop 停止管理服务器
+// Stop 停止 HTTP 服务器
 func (s *Server) Stop(ctx context.Context) error {
-	logger.Info("正在关闭管理服务器...")
+	slog.Info("正在关闭 HTTP 服务器...")
 	if s.server != nil {
 		return s.server.Shutdown(ctx)
 	}
@@ -87,8 +113,7 @@ func (s *Server) Stop(ctx context.Context) error {
 
 // registerRoutes 注册路由
 func (s *Server) registerRoutes(r *gin.Engine) {
-	// 初始化依赖
-	db := database.Get()
+	db := s.db
 
 	// API 路由组
 	api := r.Group("/api/v1", middleware.AdminAuthMiddleware(s.cfg.Login.JWT))

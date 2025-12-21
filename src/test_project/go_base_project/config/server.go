@@ -7,18 +7,19 @@ import (
 	"github.com/spf13/viper"
 )
 
-// AdminConfig 服务端配置
-type AdminConfig struct {
-	App      *AdminAppConfig `mapstructure:"app"`
-	Log      *LogConfig      `mapstructure:"log"`
-	HTTP     HTTPConfig      `mapstructure:"http"`
-	Database DatabaseConfig  `mapstructure:"database"`
-	Cron     CronConfig      `mapstructure:"cron"`
-	Login    LoginConfig     `mapstructure:"login"`
+// ServerConfig 服务端配置
+type ServerConfig struct {
+	App         *ServerAppConfig `mapstructure:"app"`
+	Log         *LogConfig       `mapstructure:"log"`
+	HTTP        *HTTPConfig      `mapstructure:"http"`
+	Database    *DatabaseConfig  `mapstructure:"database"`
+	RedisConfig *RedisConfig     `mapstructure:"redis"`
+	Cron        *CronConfig      `mapstructure:"cron"`
+	Login       *LoginConfig     `mapstructure:"login"`
 }
 
-// AdminAppConfig 应用配置
-type AdminAppConfig struct {
+// ServerAppConfig 应用配置
+type ServerAppConfig struct {
 	Name   string `mapstructure:"name"`
 	Env    string `mapstructure:"env"`
 	Debug  bool   `mapstructure:"debug"`
@@ -53,6 +54,14 @@ type DatabaseConfig struct {
 	ConnMaxLifetime time.Duration `mapstructure:"conn_max_lifetime"`
 }
 
+// RedisConfig Redis 配置
+type RedisConfig struct {
+	Addr     string `mapstructure:"addr"`
+	Password string `mapstructure:"password"`
+	DB       int    `mapstructure:"db"`
+	PoolSize int    `mapstructure:"pool_size"`
+}
+
 // LoginConfig 登录相关配置
 type LoginConfig struct {
 	JWT *JWTConfig `mapstructure:"jwt"`
@@ -64,14 +73,14 @@ type JWTConfig struct {
 	ExpiresIn int    `mapstructure:"expires_in"` // 过期时间(小时)
 }
 
-// LoadAdminConfig 加载管理服务配置
+// LoadServerConfig 加载管理服务配置
 // 参数:
 //   - configPath: 配置文件路径
 //
 // 返回值:
-//   - *AdminConfig: 管理服务配置实例
+//   - *ServerConfig: 管理服务配置实例
 //   - error: 错误信息
-func LoadAdminConfig(configPath string) (*AdminConfig, error) {
+func LoadServerConfig(configPath string) (*ServerConfig, error) {
 	v := viper.New()
 	v.SetConfigFile(configPath)
 	v.SetConfigType("yaml")
@@ -82,7 +91,7 @@ func LoadAdminConfig(configPath string) (*AdminConfig, error) {
 	}
 
 	// 解析配置
-	var cfg AdminConfig
+	var cfg ServerConfig
 	if err := v.Unmarshal(&cfg); err != nil {
 		return nil, fmt.Errorf("解析配置文件失败: %w", err)
 	}

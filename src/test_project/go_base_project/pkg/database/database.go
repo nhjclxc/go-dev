@@ -11,10 +11,8 @@ import (
 	"go_base_project/config"
 )
 
-var globalDB *gorm.DB
-
 // Init 初始化数据库连接
-func Init(cfg *config.DatabaseConfig) error {
+func NewMySQL(cfg *config.DatabaseConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		cfg.Username,
 		cfg.Password,
@@ -27,12 +25,12 @@ func Init(cfg *config.DatabaseConfig) error {
 		Logger: gormlogger.Default.LogMode(gormlogger.Info),
 	})
 	if err != nil {
-		return fmt.Errorf("连接数据库失败: %w", err)
+		return nil, fmt.Errorf("连接数据库失败: %w", err)
 	}
 
 	sqlDB, err := db.DB()
 	if err != nil {
-		return fmt.Errorf("获取数据库实例失败: %w", err)
+		return nil, fmt.Errorf("获取数据库实例失败: %w", err)
 	}
 
 	// 设置连接池参数
@@ -40,22 +38,16 @@ func Init(cfg *config.DatabaseConfig) error {
 	sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
 	sqlDB.SetConnMaxLifetime(cfg.ConnMaxLifetime * time.Second)
 
-	globalDB = db
-	return nil
-}
-
-// Get 获取全局数据库实例
-func Get() *gorm.DB {
-	return globalDB
+	return db, nil
 }
 
 // Close 关闭数据库连接
-func Close() error {
-	if globalDB == nil {
+func Close(db *gorm.DB) error {
+	if db == nil {
 		return nil
 	}
 
-	sqlDB, err := globalDB.DB()
+	sqlDB, err := db.DB()
 	if err != nil {
 		return err
 	}

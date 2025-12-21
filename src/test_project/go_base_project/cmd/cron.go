@@ -6,13 +6,13 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"go_base_project/internal/server/scheduler"
 
 	"github.com/spf13/cobra"
 
 	"go_base_project/config"
 	"go_base_project/pkg/database"
 	"go_base_project/pkg/logger"
-	"go_base_project/server/scheduler"
 )
 
 var (
@@ -27,7 +27,7 @@ var cronCmd = &cobra.Command{
 	Long:  `启动定时任务服务，管理和执行所有定时任务`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// 加载管理服务配置（定时任务使用与 admin 相同的配置）
-		cfg, err := config.LoadAdminConfig(cfgFile)
+		cfg, err := config.LoadServerConfig(cfgFile)
 		if err != nil {
 			return fmt.Errorf("加载配置失败: %w", err)
 		}

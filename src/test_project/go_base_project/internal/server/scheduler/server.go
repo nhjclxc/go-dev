@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/robfig/cron/v3"
 	"go_base_project/config"
+	"go_base_project/internal/server/scheduler/tasks"
 	"go_base_project/pkg/logger"
-	"go_base_project/server/scheduler/tasks"
 )
 
 // Server 定时任务服务器
