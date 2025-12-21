@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  go_base_project-admin:
+    image: registry.xxxx.net:9191/project-name/go_base_project:latest
+    container_name: go_base_project-admin
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./admin.yaml:/app/admin.yaml
+      - ./logs/admin:/app/logs/admin
+    command: ["/app/go_base_project", "admin", "-c", "/app/admin.yaml"]

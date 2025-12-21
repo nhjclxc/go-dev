@@ -1,0 +1,50 @@
+package controller
+
+import (
+	"fmt"
+	"net/http"
+	"strconv"
+	"strings"
+
+	"github.com/gin-gonic/gin"
+)
+
+func SuccessResponse(ctx *gin.Context, data interface{}) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "success",
+		"data":    data,
+	})
+}
+
+func ErrorResponse(ctx *gin.Context, code int, message string) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    code,
+		"message": message,
+	})
+}
+
+// ParseId 将 string 类型数据转化为 int64 类型数据
+func ParseId(idStr string) (int64, error) {
+	return strconv.ParseInt(strings.TrimSpace(idStr), 10, 64)
+}
+
+// ParseIds 将形如 "1,2,3" 的字符串解析为 []int64
+func ParseIds(idListStr string) ([]int64, error) {
+	if idListStr == "" {
+		return nil, fmt.Errorf("idListStr 为空")
+	}
+
+	parts := strings.Split(idListStr, ",")
+	ids := make([]int64, 0, len(parts))
+
+	for _, part := range parts {
+		id, err := ParseId(part)
+		if err != nil {
+			return nil, fmt.Errorf("无法解析 ID '%s'", part)
+		}
+		ids = append(ids, id)
+	}
+
+	return ids, nil
+}

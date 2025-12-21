@@ -91,13 +91,13 @@ func SendLsCmd(target, path string) (string, error) {
 	return string(out), err
 }
 func SendPullCmd(target, remoteFile, localFile string) (string, error) {
-	// adb -s 192.168.200.55:5555 push /data/local/bin/android_jlink ./androidjlink
+	// adb -s 192.168.200.55:5555 push /data/local/bin/android_jlink ./go_base_project
 	out, err := SendCmd(target, PULL, []string{remoteFile, localFile})
 	return string(out), err
 }
 
 func SendPushCmd(target, localFile, remoteFile string) (string, error) {
-	// adb -s 192.168.200.55:5555 push androidjlink /data/local/bin/android_jlink
+	// adb -s 192.168.200.55:5555 push go_base_project /data/local/bin/android_jlink
 	out, err := SendCmd(target, PUSH, []string{localFile, remoteFile})
 	return string(out), err
 }

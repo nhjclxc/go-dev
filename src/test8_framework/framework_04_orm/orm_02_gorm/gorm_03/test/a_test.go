@@ -40,9 +40,9 @@ type Client struct {
 
 // TableName 返回当前实体类的表名
 func (c *Client) TableName() string {
-	return "androidjlink_client"
+	return "go_base_project_client"
 }
-func BatchUpdateAndroidjlinkClientSelective(updateColumns []string) {
+func BatchUpdatego_base_projectClientSelective(updateColumns []string) {
 	if len(updateColumns) == 0 {
 		fmt.Println(111)
 		updateColumns = []string{"hostname", "port", "status", "provider", "client_id", "client_ip", "client_province", "client_city", "client_isp", "last_connect_time", "last_disconnect_time"}
@@ -51,13 +51,13 @@ func BatchUpdateAndroidjlinkClientSelective(updateColumns []string) {
 	fmt.Println(222)
 }
 func Test5(t *testing.T) {
-	BatchUpdateAndroidjlinkClientSelective(nil)
+	BatchUpdatego_base_projectClientSelective(nil)
 
 	fmt.Println("----------")
-	BatchUpdateAndroidjlinkClientSelective([]string{})
+	BatchUpdatego_base_projectClientSelective([]string{})
 
 	fmt.Println("----------")
-	BatchUpdateAndroidjlinkClientSelective(make([]string, 0))
+	BatchUpdatego_base_projectClientSelective(make([]string, 0))
 
 }
 func Test333(t *testing.T) {

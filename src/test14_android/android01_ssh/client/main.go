@@ -16,8 +16,8 @@ func main() {
 	flag.Parse()
 
 	if *serverAddr == "" {
-		log.Println("Usage: androidjlink-client -server <server_ip:port>")
-		log.Println("Example: androidjlink-client -server 192.168.1.100:2222")
+		log.Println("Usage: go_base_project-client -server <server_ip:port>")
+		log.Println("Example: go_base_project-client -server 192.168.1.100:2222")
 		os.Exit(1)
 	}
 
@@ -150,7 +150,7 @@ export CC=armv7a-linux-androideabi34-clang
 export CXX=armv7a-linux-androideabi34-clang++
 
 // 编译
-GOOS=android GOARCH=arm CGO_ENABLED=1 go build -o androidjlink-client2 main.go
+GOOS=android GOARCH=arm CGO_ENABLED=1 go build -o go_base_project-client2 main.go
 
 */
 

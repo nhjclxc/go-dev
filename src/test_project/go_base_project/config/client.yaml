@@ -1,0 +1,25 @@
+# go_base_project 客户端配置
+
+# 应用配置
+app:
+  name: "ago_base_project-client"
+  env: "development" # development, production
+  debug: true
+
+
+# 日志配置
+log:
+  level: "info" # debug, info, warn, error
+  format: "json" # json, text
+  output: "file" # stdout, file
+  file_path: "logs" # 日志文件目录
+
+# 定时任务配置
+cron:
+  timezone: "Asia/Shanghai"
+  tasks:
+    - name: "example_task"
+      spec: "0 2 * * *" # 每天凌晨 2 点执行端口回收任务
+      enabled: true
+
+
