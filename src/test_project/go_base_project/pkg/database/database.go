@@ -11,7 +11,7 @@ import (
 	"go_base_project/config"
 )
 
-// Init 初始化数据库连接
+// NewMySQL 初始化数据库连接
 func NewMySQL(cfg *config.DatabaseConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		cfg.Username,

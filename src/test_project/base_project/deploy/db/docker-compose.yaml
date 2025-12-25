@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3307:3306"          # 宿主机3307映射到容器3306
+#    network_mode: "host"          # 使用宿主机网络
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  redis:
+    image: docker.1ms.run/library/redis:8.0
+    container_name: redis8.0
+    network_mode: "host"          # 使用宿主机网络
+    command: >
+      redis-server
+      --appendonly yes
+      --requirepass 111111
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse-host
+    network_mode: "host"            # 使用宿主机网络
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: 111111   # ClickHouse 用户 default 的密码
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    ports:
+      - "9000:9000"
+      - "8123:8123"
+      - "9009:9009"
+    volumes:
+      - ./clickhouse/data:/var/lib/clickhouse
+      - ./clickhouse/logs:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    restart: unless-stopped
+volumes:
+  mysql-data:
+

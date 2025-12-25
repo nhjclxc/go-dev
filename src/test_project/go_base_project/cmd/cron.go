@@ -1,17 +1,13 @@
-//go:build server
-// +build server
-
 package cmd
 
 import (
 	"context"
 	"fmt"
-	"go_base_project/internal/server/scheduler"
-
 	"github.com/spf13/cobra"
+	"go_base_project/internal/server/scheduler"
+	"go_base_project/pkg/database"
 
 	"go_base_project/config"
-	"go_base_project/pkg/database"
 	"go_base_project/pkg/logger"
 )
 
@@ -33,12 +29,12 @@ var cronCmd = &cobra.Command{
 		}
 
 		// 初始化日志
-		if err := logger.Init(&cfg.Log); err != nil {
+		if err := logger.Init(cfg.Log); err != nil {
 			return fmt.Errorf("初始化日志失败: %w", err)
 		}
 
 		// 初始化数据库
-		if err := database.Init(&cfg.Database); err != nil {
+		if err := database.NewMySQL(&cfg.Database); err != nil {
 			return fmt.Errorf("初始化数据库失败: %w", err)
 		}
 

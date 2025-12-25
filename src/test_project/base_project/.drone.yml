@@ -1,0 +1,47 @@
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  branch:
+    - master
+    - test
+    - main
+
+image_pull_secrets:
+  - dockerconfig
+
+steps:
+  - name: tag
+    image: alpine
+    pull: if-not-exists
+    commands:
+      - echo -n "${DRONE_COMMIT_BRANCH}_${DRONE_COMMIT_AUTHOR}_${CI_COMMIT_SHA:0:7}, latest" > .tags
+
+  - name: build_amd64
+    pull: if-not-exists
+    image: golang:1.25.3
+    commands:
+      - go env -w GO111MODULE=on
+      - go env -w GOPROXY=https://goproxy.cn,direct
+      - go mod tidy
+
+      # 私有仓库配置
+      - go env -w GOPRIVATE=office.xxx.com
+      - echo "machine office.xxx.com login username password glpat-xxxxx" > ~/.netrcgit
+      - chmod 600 ~/.netrcgit
+
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/base_project main.go
+
+  - name: publish_amd64
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      username:
+        from_secret: harbor_user
+      repo: registry.xxx.net:9191/projectname/base_project
+      platform: linux/amd64
+      dockerfile: Dockerfile
+      password:
+        from_secret: harbor_password
+      registry: registry.xxx.net:9191

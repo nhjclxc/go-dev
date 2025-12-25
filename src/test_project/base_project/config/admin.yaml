@@ -1,0 +1,99 @@
+# 应用配置
+app:
+  name: "base_project"
+  env: "development" # development, production
+  debug: true
+
+# HTTP 服务配置
+http:
+  port: 8080
+  read_timeout: 30s
+  write_timeout: 30s
+  idle_timeout: 60s
+
+# gRPC 服务配置
+grpc:
+  port: 50051
+  network: "tcp"
+  auth:
+    enabled: true # 是否启用鉴权
+    token: "your-secure-token-here" # 预共享密钥，pcdn-agent 需要配置相同的 token
+
+login:
+  jwt:
+    secret_key: "wesdrftgyuiygtdfsdfghfgfwsdfv" # 替换为强随机密钥
+    expires_in: 240 # 令牌过期时间(小时)
+
+# 数据库配置
+database:
+  driver: "mysql"
+  host: "127.0.0.1"
+  port: 3306
+  username: "root"
+  password: "root123"
+  database: "test"
+  max_open_conns: 100
+  max_idle_conns: 10
+  conn_max_lifetime: 3600s
+
+# ClickHouse 配置
+clickhouse:
+  host: "127.0.0.1"
+  port: 9000
+  database: "default"
+  username: "default"
+  password: "111111"
+  max_open_conns: 10
+  max_idle_conns: 5
+  conn_max_lifetime: 1h
+  dial_timeout: 10s
+  read_timeout: 30s
+
+# Redis 配置
+redis:
+  addr: "127.0.0.1:6379"
+  password: "111111"
+  db: 0
+  pool_size: 10
+
+# 日志配置
+log:
+  level: "info" # debug, info, warn, error
+  format: "json" # json, text
+  output: "file" # stdout, file
+  file_path: "logs" # 日志文件路径
+  max_size: 100 # 单个文件最大大小（MB）
+  max_backups: 10 # 保留的旧文件数量
+  max_age: 30 # 保留的最大天数
+  compress: true # 是否压缩旧文件
+
+# 定时任务配置
+cron:
+  timezone: "Asia/Shanghai"
+  tasks:
+    - name: "example_task"
+      spec: "*/5 * * * *" # 每 5 分钟执行一次
+      enabled: false
+    - name: "base_project_task"
+      spec: "*/30 * * * * *" # 每 30 秒执行一次（包含秒级）
+      enabled: true
+
+# 遥测配置（Tracing + Metrics）
+telemetry:
+  enabled: false # 设置为 true 启用遥测
+  service_name: "base_project"
+
+  # 链路追踪配置
+  tracing:
+    enabled: true
+    sample_rate: 1.0 # 采样率，1.0 表示 100% 采样
+
+  # 指标监控配置
+  metrics:
+    enabled: true
+
+  # 导出器配置
+  exporter:
+    type: "otlp" # otlp, stdout
+    endpoint: "localhost:4318" # OTLP HTTP 端点
+    timeout: 10s

@@ -12,7 +12,7 @@ import (
 // Server 定时任务服务器
 type Server struct {
 	cron *cron.Cron
-	cfg  *config.AdminConfig
+	cfg  *config.ServerConfig
 }
 
 // NewServer 创建定时任务服务器实例
@@ -21,7 +21,7 @@ type Server struct {
 //
 // 返回值:
 //   - *Server: 服务器实例
-func NewServer(cfg *config.AdminConfig) *Server {
+func NewServer(cfg *config.ServerConfig) *Server {
 	// 创建 cron 实例
 	c := cron.New(
 		cron.WithSeconds(), // 支持秒级定时
