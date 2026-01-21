@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  scheduler:
+    build:
+      context: ./scheduler
+      dockerfile: Dockerfile
+    container_name: scheduler
+    ports:
+      - "9090:9090"
+    environment:
+      - PORT=9090
+    restart: unless-stopped
+
+  upstream:
+    build:
+      context: ./upstream
+      dockerfile: Dockerfile
+    container_name: upstream
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - NAME="upstream"
+    restart: unless-stopped
+  upstream1:
+    build:
+      context: ./upstream
+      dockerfile: Dockerfile
+    container_name: upstream1
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+      - NAME="upstream1"
+    restart: unless-stopped
+
+  openresty:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "80:80"
+    environment:
+      - BASE_URL=http://scheduler:9090
+      - NODE_NAME=node1
+    volumes:
+      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./lua:/usr/local/openresty/nginx/lua
+      - ./logs:/usr/local/openresty/nginx/logs
+    depends_on:
+      - scheduler
+    restart: unless-stopped

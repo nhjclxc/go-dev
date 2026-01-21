@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handleRequest)
+	http.HandleFunc("/test", handleRequest)
 	http.HandleFunc("/health", handleHealth)
 
 	port := ":8080"
@@ -20,17 +20,31 @@ func main() {
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 	// 获取 Trace ID
 	traceID := r.Header.Get("X-Trace-Id")
+	retryAfter := r.Header.Get("Retry-After")
+	requestID := r.Header.Get("X-Request-ID")
+	cacheControl := r.Header.Get("Cache-Control")
+	CacheRule := r.Header.Get("X-Cache-Rule")
+	CDNGateway := r.Header.Get("X-CDN-Gateway")
 
 	// 记录请求日志
-	log.Printf("[%s] %s %s from %s", traceID, r.Method, r.URL.Path, r.RemoteAddr)
+	log.Printf("[%s] Retry-After=[%s], X-Request-ID=[%s], "+
+		"Cache-Control=[%s], X-Cache-Rule=[%s], X-CDN-Gateway=[%s] "+
+		"%s %s from %s",
+		traceID, retryAfter, requestID,
+		cacheControl, CacheRule, CDNGateway,
+		r.Method, r.URL.Path, r.RemoteAddr)
 
 	// 返回响应
 	response := map[string]interface{}{
-		"message":   "Hello World from Backend Cache Service",
-		"trace_id":  traceID,
-		"path":      r.URL.Path,
-		"method":    r.Method,
-		"timestamp": time.Now().Format(time.RFC3339),
+		"trace_id":      traceID,
+		"Retry-After":   retryAfter,
+		"X-Request-ID":  requestID,
+		"Cache-Control": cacheControl,
+		"X-Cache-Rule":  CacheRule,
+		"X-CDN-Gateway": CDNGateway,
+		"path":          r.URL.Path,
+		"method":        r.Method,
+		"timestamp":     time.Now().Format(time.RFC3339),
 	}
 
 	w.Header().Set("Content-Type", "application/json")

@@ -1,0 +1,1996 @@
+[
+  {
+    "name": "1.ts",
+    "offset": 0,
+    "size": 208526
+  },
+  {
+    "name": "2.ts",
+    "offset": 208526,
+    "size": 1866686
+  },
+  {
+    "name": "3.ts",
+    "offset": 2075212,
+    "size": 1905790
+  },
+  {
+    "name": "4.ts",
+    "offset": 3981002,
+    "size": 1619654
+  },
+  {
+    "name": "5.ts",
+    "offset": 5600656,
+    "size": 3409038
+  },
+  {
+    "name": "7.ts",
+    "offset": 9009694,
+    "size": 1228614
+  },
+  {
+    "name": "6.ts",
+    "offset": 10238308,
+    "size": 3481982
+  },
+  {
+    "name": "8.ts",
+    "offset": 13720290,
+    "size": 811442
+  },
+  {
+    "name": "9.ts",
+    "offset": 14531732,
+    "size": 862202
+  },
+  {
+    "name": "11.ts",
+    "offset": 15393934,
+    "size": 673638
+  },
+  {
+    "name": "12.ts",
+    "offset": 16067572,
+    "size": 536774
+  },
+  {
+    "name": "10.ts",
+    "offset": 16604346,
+    "size": 758614
+  },
+  {
+    "name": "14.ts",
+    "offset": 17362960,
+    "size": 503122
+  },
+  {
+    "name": "13.ts",
+    "offset": 17866082,
+    "size": 663298
+  },
+  {
+    "name": "15.ts",
+    "offset": 18529380,
+    "size": 305910
+  },
+  {
+    "name": "16.ts",
+    "offset": 18835290,
+    "size": 247442
+  },
+  {
+    "name": "18.ts",
+    "offset": 19082732,
+    "size": 466086
+  },
+  {
+    "name": "17.ts",
+    "offset": 19548818,
+    "size": 404610
+  },
+  {
+    "name": "19.ts",
+    "offset": 19953428,
+    "size": 542790
+  },
+  {
+    "name": "21.ts",
+    "offset": 20496218,
+    "size": 316626
+  },
+  {
+    "name": "20.ts",
+    "offset": 20812844,
+    "size": 331102
+  },
+  {
+    "name": "23.ts",
+    "offset": 21143946,
+    "size": 314934
+  },
+  {
+    "name": "22.ts",
+    "offset": 21458880,
+    "size": 395962
+  },
+  {
+    "name": "24.ts",
+    "offset": 21854842,
+    "size": 404610
+  },
+  {
+    "name": "25.ts",
+    "offset": 22259452,
+    "size": 490338
+  },
+  {
+    "name": "26.ts",
+    "offset": 22749790,
+    "size": 423786
+  },
+  {
+    "name": "27.ts",
+    "offset": 23173576,
+    "size": 320574
+  },
+  {
+    "name": "28.ts",
+    "offset": 23494150,
+    "size": 667998
+  },
+  {
+    "name": "29.ts",
+    "offset": 24162148,
+    "size": 415326
+  },
+  {
+    "name": "30.ts",
+    "offset": 24577474,
+    "size": 303842
+  },
+  {
+    "name": "32.ts",
+    "offset": 24881316,
+    "size": 756922
+  },
+  {
+    "name": "33.ts",
+    "offset": 25638238,
+    "size": 942666
+  },
+  {
+    "name": "34.ts",
+    "offset": 26580904,
+    "size": 771398
+  },
+  {
+    "name": "31.ts",
+    "offset": 27352302,
+    "size": 481690
+  },
+  {
+    "name": "35.ts",
+    "offset": 27833992,
+    "size": 894162
+  },
+  {
+    "name": "36.ts",
+    "offset": 28728154,
+    "size": 954698
+  },
+  {
+    "name": "37.ts",
+    "offset": 29682852,
+    "size": 901118
+  },
+  {
+    "name": "38.ts",
+    "offset": 30583970,
+    "size": 807306
+  },
+  {
+    "name": "39.ts",
+    "offset": 31391276,
+    "size": 913338
+  },
+  {
+    "name": "40.ts",
+    "offset": 32304614,
+    "size": 1135742
+  },
+  {
+    "name": "41.ts",
+    "offset": 33440356,
+    "size": 1038358
+  },
+  {
+    "name": "42.ts",
+    "offset": 34478714,
+    "size": 1237826
+  },
+  {
+    "name": "43.ts",
+    "offset": 35716540,
+    "size": 1459478
+  },
+  {
+    "name": "44.ts",
+    "offset": 37176018,
+    "size": 1622286
+  },
+  {
+    "name": "45.ts",
+    "offset": 38798304,
+    "size": 1096450
+  },
+  {
+    "name": "46.ts",
+    "offset": 39894754,
+    "size": 914278
+  },
+  {
+    "name": "47.ts",
+    "offset": 40809032,
+    "size": 335050
+  },
+  {
+    "name": "48.ts",
+    "offset": 41144082,
+    "size": 745266
+  },
+  {
+    "name": "50.ts",
+    "offset": 41889348,
+    "size": 875926
+  },
+  {
+    "name": "49.ts",
+    "offset": 42765274,
+    "size": 568734
+  },
+  {
+    "name": "51.ts",
+    "offset": 43334008,
+    "size": 682850
+  },
+  {
+    "name": "52.ts",
+    "offset": 44016858,
+    "size": 762186
+  },
+  {
+    "name": "53.ts",
+    "offset": 44779044,
+    "size": 645814
+  },
+  {
+    "name": "54.ts",
+    "offset": 45424858,
+    "size": 618178
+  },
+  {
+    "name": "55.ts",
+    "offset": 46043036,
+    "size": 633782
+  },
+  {
+    "name": "56.ts",
+    "offset": 46676818,
+    "size": 610094
+  },
+  {
+    "name": "57.ts",
+    "offset": 47286912,
+    "size": 759366
+  },
+  {
+    "name": "58.ts",
+    "offset": 48046278,
+    "size": 804486
+  },
+  {
+    "name": "59.ts",
+    "offset": 48850764,
+    "size": 672510
+  },
+  {
+    "name": "60.ts",
+    "offset": 49523274,
+    "size": 592046
+  },
+  {
+    "name": "61.ts",
+    "offset": 50115320,
+    "size": 588098
+  },
+  {
+    "name": "63.ts",
+    "offset": 50703418,
+    "size": 488270
+  },
+  {
+    "name": "62.ts",
+    "offset": 51191688,
+    "size": 594866
+  },
+  {
+    "name": "64.ts",
+    "offset": 51786554,
+    "size": 754854
+  },
+  {
+    "name": "65.ts",
+    "offset": 52541408,
+    "size": 570050
+  },
+  {
+    "name": "66.ts",
+    "offset": 53111458,
+    "size": 537714
+  },
+  {
+    "name": "67.ts",
+    "offset": 53649172,
+    "size": 455934
+  },
+  {
+    "name": "68.ts",
+    "offset": 54105106,
+    "size": 492218
+  },
+  {
+    "name": "69.ts",
+    "offset": 54597324,
+    "size": 529442
+  },
+  {
+    "name": "70.ts",
+    "offset": 55126766,
+    "size": 404798
+  },
+  {
+    "name": "71.ts",
+    "offset": 55531564,
+    "size": 446158
+  },
+  {
+    "name": "72.ts",
+    "offset": 55977722,
+    "size": 208902
+  },
+  {
+    "name": "73.ts",
+    "offset": 56186624,
+    "size": 277146
+  },
+  {
+    "name": "74.ts",
+    "offset": 56463770,
+    "size": 248570
+  },
+  {
+    "name": "75.ts",
+    "offset": 56712340,
+    "size": 213038
+  },
+  {
+    "name": "76.ts",
+    "offset": 56925378,
+    "size": 364378
+  },
+  {
+    "name": "77.ts",
+    "offset": 57289756,
+    "size": 527562
+  },
+  {
+    "name": "79.ts",
+    "offset": 57817318,
+    "size": 331102
+  },
+  {
+    "name": "80.ts",
+    "offset": 58148420,
+    "size": 532074
+  },
+  {
+    "name": "78.ts",
+    "offset": 58680494,
+    "size": 329410
+  },
+  {
+    "name": "82.ts",
+    "offset": 59009904,
+    "size": 284478
+  },
+  {
+    "name": "83.ts",
+    "offset": 59294382,
+    "size": 455746
+  },
+  {
+    "name": "84.ts",
+    "offset": 59750128,
+    "size": 724210
+  },
+  {
+    "name": "85.ts",
+    "offset": 60474338,
+    "size": 688866
+  },
+  {
+    "name": "86.ts",
+    "offset": 61163204,
+    "size": 468342
+  },
+  {
+    "name": "81.ts",
+    "offset": 61631546,
+    "size": 355542
+  },
+  {
+    "name": "87.ts",
+    "offset": 61987088,
+    "size": 472478
+  },
+  {
+    "name": "88.ts",
+    "offset": 62459566,
+    "size": 354038
+  },
+  {
+    "name": "89.ts",
+    "offset": 62813604,
+    "size": 559146
+  },
+  {
+    "name": "90.ts",
+    "offset": 63372750,
+    "size": 511394
+  },
+  {
+    "name": "91.ts",
+    "offset": 63884144,
+    "size": 741882
+  },
+  {
+    "name": "93.ts",
+    "offset": 64626026,
+    "size": 532826
+  },
+  {
+    "name": "92.ts",
+    "offset": 65158852,
+    "size": 739062
+  },
+  {
+    "name": "95.ts",
+    "offset": 65897914,
+    "size": 803922
+  },
+  {
+    "name": "94.ts",
+    "offset": 66701836,
+    "size": 478118
+  },
+  {
+    "name": "97.ts",
+    "offset": 67179954,
+    "size": 821782
+  },
+  {
+    "name": "96.ts",
+    "offset": 68001736,
+    "size": 654086
+  },
+  {
+    "name": "98.ts",
+    "offset": 68655822,
+    "size": 684918
+  },
+  {
+    "name": "100.ts",
+    "offset": 69340740,
+    "size": 73918
+  },
+  {
+    "name": "99.ts",
+    "offset": 69414658,
+    "size": 815954
+  },
+  {
+    "name": "101.ts",
+    "offset": 70230612,
+    "size": 733986
+  },
+  {
+    "name": "103.ts",
+    "offset": 70964598,
+    "size": 559146
+  },
+  {
+    "name": "104.ts",
+    "offset": 71523744,
+    "size": 967670
+  },
+  {
+    "name": "102.ts",
+    "offset": 72491414,
+    "size": 1169582
+  },
+  {
+    "name": "106.ts",
+    "offset": 73660996,
+    "size": 734174
+  },
+  {
+    "name": "105.ts",
+    "offset": 74395170,
+    "size": 834942
+  },
+  {
+    "name": "108.ts",
+    "offset": 75230112,
+    "size": 443150
+  },
+  {
+    "name": "109.ts",
+    "offset": 75673262,
+    "size": 627014
+  },
+  {
+    "name": "110.ts",
+    "offset": 76300276,
+    "size": 610470
+  },
+  {
+    "name": "107.ts",
+    "offset": 76910746,
+    "size": 1065806
+  },
+  {
+    "name": "111.ts",
+    "offset": 77976552,
+    "size": 417018
+  },
+  {
+    "name": "113.ts",
+    "offset": 78393570,
+    "size": 599002
+  },
+  {
+    "name": "114.ts",
+    "offset": 78992572,
+    "size": 697326
+  },
+  {
+    "name": "112.ts",
+    "offset": 79689898,
+    "size": 692250
+  },
+  {
+    "name": "115.ts",
+    "offset": 80382148,
+    "size": 789070
+  },
+  {
+    "name": "116.ts",
+    "offset": 81171218,
+    "size": 845282
+  },
+  {
+    "name": "117.ts",
+    "offset": 82016500,
+    "size": 564222
+  },
+  {
+    "name": "118.ts",
+    "offset": 82580722,
+    "size": 724774
+  },
+  {
+    "name": "119.ts",
+    "offset": 83305496,
+    "size": 908826
+  },
+  {
+    "name": "121.ts",
+    "offset": 84214322,
+    "size": 660666
+  },
+  {
+    "name": "120.ts",
+    "offset": 84874988,
+    "size": 1270350
+  },
+  {
+    "name": "122.ts",
+    "offset": 86145338,
+    "size": 1031778
+  },
+  {
+    "name": "124.ts",
+    "offset": 87177116,
+    "size": 1020874
+  },
+  {
+    "name": "123.ts",
+    "offset": 88197990,
+    "size": 1422630
+  },
+  {
+    "name": "126.ts",
+    "offset": 89620620,
+    "size": 612914
+  },
+  {
+    "name": "125.ts",
+    "offset": 90233534,
+    "size": 389758
+  },
+  {
+    "name": "128.ts",
+    "offset": 90623292,
+    "size": 778730
+  },
+  {
+    "name": "127.ts",
+    "offset": 91402022,
+    "size": 1033846
+  },
+  {
+    "name": "129.ts",
+    "offset": 92435868,
+    "size": 1017490
+  },
+  {
+    "name": "130.ts",
+    "offset": 93453358,
+    "size": 611974
+  },
+  {
+    "name": "131.ts",
+    "offset": 94065332,
+    "size": 1043434
+  },
+  {
+    "name": "132.ts",
+    "offset": 95108766,
+    "size": 827610
+  },
+  {
+    "name": "133.ts",
+    "offset": 95936376,
+    "size": 1394430
+  },
+  {
+    "name": "135.ts",
+    "offset": 97330806,
+    "size": 639046
+  },
+  {
+    "name": "134.ts",
+    "offset": 97969852,
+    "size": 1027830
+  },
+  {
+    "name": "137.ts",
+    "offset": 98997682,
+    "size": 580390
+  },
+  {
+    "name": "136.ts",
+    "offset": 99578072,
+    "size": 812382
+  },
+  {
+    "name": "138.ts",
+    "offset": 100390454,
+    "size": 550310
+  },
+  {
+    "name": "139.ts",
+    "offset": 100940764,
+    "size": 925182
+  },
+  {
+    "name": "141.ts",
+    "offset": 101865946,
+    "size": 462702
+  },
+  {
+    "name": "140.ts",
+    "offset": 102328648,
+    "size": 522486
+  },
+  {
+    "name": "142.ts",
+    "offset": 102851134,
+    "size": 695258
+  },
+  {
+    "name": "143.ts",
+    "offset": 103546392,
+    "size": 532074
+  },
+  {
+    "name": "144.ts",
+    "offset": 104078466,
+    "size": 555386
+  },
+  {
+    "name": "145.ts",
+    "offset": 104633852,
+    "size": 605206
+  },
+  {
+    "name": "147.ts",
+    "offset": 105239058,
+    "size": 501806
+  },
+  {
+    "name": "146.ts",
+    "offset": 105740864,
+    "size": 466462
+  },
+  {
+    "name": "148.ts",
+    "offset": 106207326,
+    "size": 516470
+  },
+  {
+    "name": "150.ts",
+    "offset": 106723796,
+    "size": 763502
+  },
+  {
+    "name": "151.ts",
+    "offset": 107487298,
+    "size": 536398
+  },
+  {
+    "name": "152.ts",
+    "offset": 108023696,
+    "size": 509514
+  },
+  {
+    "name": "149.ts",
+    "offset": 108533210,
+    "size": 546174
+  },
+  {
+    "name": "153.ts",
+    "offset": 109079384,
+    "size": 478306
+  },
+  {
+    "name": "154.ts",
+    "offset": 109557690,
+    "size": 673450
+  },
+  {
+    "name": "155.ts",
+    "offset": 110231140,
+    "size": 478306
+  },
+  {
+    "name": "156.ts",
+    "offset": 110709446,
+    "size": 554070
+  },
+  {
+    "name": "157.ts",
+    "offset": 111263516,
+    "size": 619306
+  },
+  {
+    "name": "158.ts",
+    "offset": 111882822,
+    "size": 597310
+  },
+  {
+    "name": "160.ts",
+    "offset": 112480132,
+    "size": 726466
+  },
+  {
+    "name": "161.ts",
+    "offset": 113206598,
+    "size": 561026
+  },
+  {
+    "name": "162.ts",
+    "offset": 113767624,
+    "size": 636226
+  },
+  {
+    "name": "159.ts",
+    "offset": 114403850,
+    "size": 578510
+  },
+  {
+    "name": "163.ts",
+    "offset": 114982360,
+    "size": 622126
+  },
+  {
+    "name": "164.ts",
+    "offset": 115604486,
+    "size": 518538
+  },
+  {
+    "name": "165.ts",
+    "offset": 116123024,
+    "size": 449918
+  },
+  {
+    "name": "166.ts",
+    "offset": 116572942,
+    "size": 877994
+  },
+  {
+    "name": "167.ts",
+    "offset": 117450936,
+    "size": 722894
+  },
+  {
+    "name": "168.ts",
+    "offset": 118173830,
+    "size": 594490
+  },
+  {
+    "name": "169.ts",
+    "offset": 118768320,
+    "size": 907322
+  },
+  {
+    "name": "170.ts",
+    "offset": 119675642,
+    "size": 845282
+  },
+  {
+    "name": "171.ts",
+    "offset": 120520924,
+    "size": 591482
+  },
+  {
+    "name": "172.ts",
+    "offset": 121112406,
+    "size": 1201918
+  },
+  {
+    "name": "173.ts",
+    "offset": 122314324,
+    "size": 1240082
+  },
+  {
+    "name": "175.ts",
+    "offset": 123554406,
+    "size": 765194
+  },
+  {
+    "name": "174.ts",
+    "offset": 124319600,
+    "size": 1989450
+  },
+  {
+    "name": "176.ts",
+    "offset": 126309050,
+    "size": 696198
+  },
+  {
+    "name": "177.ts",
+    "offset": 127005248,
+    "size": 774782
+  },
+  {
+    "name": "178.ts",
+    "offset": 127780030,
+    "size": 723082
+  },
+  {
+    "name": "179.ts",
+    "offset": 128503112,
+    "size": 675330
+  },
+  {
+    "name": "180.ts",
+    "offset": 129178442,
+    "size": 728910
+  },
+  {
+    "name": "181.ts",
+    "offset": 129907352,
+    "size": 755042
+  },
+  {
+    "name": "182.ts",
+    "offset": 130662394,
+    "size": 670818
+  },
+  {
+    "name": "183.ts",
+    "offset": 131333212,
+    "size": 606334
+  },
+  {
+    "name": "184.ts",
+    "offset": 131939546,
+    "size": 691310
+  },
+  {
+    "name": "186.ts",
+    "offset": 132630856,
+    "size": 693378
+  },
+  {
+    "name": "185.ts",
+    "offset": 133324234,
+    "size": 651830
+  },
+  {
+    "name": "188.ts",
+    "offset": 133976064,
+    "size": 662170
+  },
+  {
+    "name": "187.ts",
+    "offset": 134638234,
+    "size": 1278998
+  },
+  {
+    "name": "189.ts",
+    "offset": 135917232,
+    "size": 708042
+  },
+  {
+    "name": "190.ts",
+    "offset": 136625274,
+    "size": 732858
+  },
+  {
+    "name": "191.ts",
+    "offset": 137358132,
+    "size": 1040614
+  },
+  {
+    "name": "192.ts",
+    "offset": 138398746,
+    "size": 1027266
+  },
+  {
+    "name": "193.ts",
+    "offset": 139426012,
+    "size": 1371682
+  },
+  {
+    "name": "194.ts",
+    "offset": 140797694,
+    "size": 572870
+  },
+  {
+    "name": "195.ts",
+    "offset": 141370564,
+    "size": 482254
+  },
+  {
+    "name": "196.ts",
+    "offset": 141852818,
+    "size": 460634
+  },
+  {
+    "name": "197.ts",
+    "offset": 142313452,
+    "size": 436570
+  },
+  {
+    "name": "198.ts",
+    "offset": 142750022,
+    "size": 432998
+  },
+  {
+    "name": "199.ts",
+    "offset": 143183020,
+    "size": 554446
+  },
+  {
+    "name": "200.ts",
+    "offset": 143737466,
+    "size": 819150
+  },
+  {
+    "name": "201.ts",
+    "offset": 144556616,
+    "size": 584150
+  },
+  {
+    "name": "202.ts",
+    "offset": 145140766,
+    "size": 787378
+  },
+  {
+    "name": "203.ts",
+    "offset": 145928144,
+    "size": 501242
+  },
+  {
+    "name": "204.ts",
+    "offset": 146429386,
+    "size": 505566
+  },
+  {
+    "name": "205.ts",
+    "offset": 146934952,
+    "size": 282222
+  },
+  {
+    "name": "206.ts",
+    "offset": 147217174,
+    "size": 862578
+  },
+  {
+    "name": "207.ts",
+    "offset": 148079752,
+    "size": 730226
+  },
+  {
+    "name": "208.ts",
+    "offset": 148809978,
+    "size": 982710
+  },
+  {
+    "name": "209.ts",
+    "offset": 149792688,
+    "size": 1226358
+  },
+  {
+    "name": "210.ts",
+    "offset": 151019046,
+    "size": 1490310
+  },
+  {
+    "name": "211.ts",
+    "offset": 152509356,
+    "size": 918226
+  },
+  {
+    "name": "212.ts",
+    "offset": 153427582,
+    "size": 681910
+  },
+  {
+    "name": "213.ts",
+    "offset": 154109492,
+    "size": 345202
+  },
+  {
+    "name": "214.ts",
+    "offset": 154454694,
+    "size": 1044938
+  },
+  {
+    "name": "216.ts",
+    "offset": 155499632,
+    "size": 1432406
+  },
+  {
+    "name": "215.ts",
+    "offset": 156932038,
+    "size": 1149466
+  },
+  {
+    "name": "218.ts",
+    "offset": 158081504,
+    "size": 1421314
+  },
+  {
+    "name": "217.ts",
+    "offset": 159502818,
+    "size": 1691282
+  },
+  {
+    "name": "219.ts",
+    "offset": 161194100,
+    "size": 2103566
+  },
+  {
+    "name": "220.ts",
+    "offset": 163297666,
+    "size": 1820438
+  },
+  {
+    "name": "221.ts",
+    "offset": 165118104,
+    "size": 1521518
+  },
+  {
+    "name": "222.ts",
+    "offset": 166639622,
+    "size": 1687334
+  },
+  {
+    "name": "223.ts",
+    "offset": 168326956,
+    "size": 1839426
+  },
+  {
+    "name": "224.ts",
+    "offset": 170166382,
+    "size": 1659134
+  },
+  {
+    "name": "225.ts",
+    "offset": 171825516,
+    "size": 1629994
+  },
+  {
+    "name": "226.ts",
+    "offset": 173455510,
+    "size": 1914062
+  },
+  {
+    "name": "228.ts",
+    "offset": 175369572,
+    "size": 1448574
+  },
+  {
+    "name": "227.ts",
+    "offset": 176818146,
+    "size": 1830778
+  },
+  {
+    "name": "229.ts",
+    "offset": 178648924,
+    "size": 1222222
+  },
+  {
+    "name": "230.ts",
+    "offset": 179871146,
+    "size": 1448198
+  },
+  {
+    "name": "231.ts",
+    "offset": 181319344,
+    "size": 1458726
+  },
+  {
+    "name": "233.ts",
+    "offset": 182778070,
+    "size": 1005834
+  },
+  {
+    "name": "232.ts",
+    "offset": 183783904,
+    "size": 3149786
+  },
+  {
+    "name": "youku.m3u8",
+    "offset": 186933690,
+    "size": 21773
+  },
+  {
+    "info": {
+      "configInfo": {
+        "R1Random": "7hheDdVlw00mw9FpBJ/aJg==",
+        "options": [
+          {
+            "lang": "",
+            "videoQuality": 4
+          }
+        ],
+        "password": "",
+        "showInfo": {
+          "showId": "bdfb0949ae4c4ac39168",
+          "showImg": "http://m.ykimg.com/050C00006840FA2E711E4F1099408227",
+          "showName": "七根心简",
+          "videoTitle": "七根心简 01"
+        },
+        "ups": {
+          "api": "mtop.youku.play.ups.appinfo.get",
+          "data": {
+            "cost": 0.030000001,
+            "data": {
+              "adDomain": {
+                "cellular": "m-vali.cp31.ott.cibntv.net",
+                "wifi": "vali-g1.cp31.ott.cibntv.net"
+              },
+              "clientAbility": {
+                "audio_51": 0,
+                "dolby": 0,
+                "dolby_around": 0,
+                "dolby_atmos": 0,
+                "dolby_vision": 0,
+                "dts": 0,
+                "dtsc": 0,
+                "dtsx": 0,
+                "fps120": 0,
+                "fps60": 0,
+                "h265": 1,
+                "h266": 0,
+                "hdr10": 0,
+                "hdr_vivid": 0,
+                "imax": 0,
+                "n10bit": 0,
+                "n4k": 0,
+                "z1080": 0,
+                "z10bit": 0,
+                "z2k": 0,
+                "z4k": 0,
+                "z8k": 0,
+                "zreal_imax": 0
+              },
+              "controller": {
+                "app_disable": false,
+                "audioEffectAutoSelect": false,
+                "baipai_source": "",
+                "buy_guide": true,
+                "cannot_quick_cache": false,
+                "circle": false,
+                "comment_disable": false,
+                "continuous": false,
+                "download_disable": false,
+                "download_disable_tudou": false,
+                "download_status": "[\"allowed\"]",
+                "dynamic_drm": false,
+                "has_rare_character": false,
+                "is_phone_stream": "0",
+                "like_disabled": false,
+                "new_core": true,
+                "pay_info_ext": "{\"stage\":\"1\",\"can_play\":true,\"is_vip\":false,\"idens\":[],\"seq\":\"1\",\"sub_stage\":0}",
+                "play_mode": 2,
+                "post_process": false,
+                "screen_projection_limited": false,
+                "share_disable": false,
+                "stream_config": true,
+                "stream_mode": 1,
+                "tipSwitch": false,
+                "video_capture": true,
+                "yi_plus": "false"
+              },
+              "dvd": {
+                "branding_header_video": "1592883837",
+                "branding_tail_video": "1592882396",
+                "cast_screen_forbid_flag": "0",
+                "is_display_hdr": false,
+                "is_ip_play": false,
+                "is_sp_pay": false,
+                "match_show_category": "电视剧",
+                "match_show_id": 614555,
+                "multi_shows_video_types": [
+                  "正片"
+                ],
+                "notsharing": "0",
+                "package_type": [
+                  "svip_ahead"
+                ],
+                "show_version_type": [
+                  "默认版"
+                ],
+                "show_video_ep": 1,
+                "show_videotype": "正片",
+                "tail": "2402480",
+                "vertical_style": false,
+                "video_features": [
+                  "hdr_10",
+                  "z_real"
+                ]
+              },
+              "network": {
+                "area_code": "350200",
+                "country_code": "CN",
+                "dma_code": "4134",
+                "isp": "电信",
+                "province": "福建省"
+              },
+              "playlog": {
+                "includeHistoryRecordAd": false,
+                "langName": "default",
+                "lastUpdate": "1766906704",
+                "lastpoint": "301"
+              },
+              "preview": {
+                "thumb": [
+                  "http://m.ykimg.com/0525000568787E4C51F98A1AC203F486?x-oss-process=image/resize,m_fill,limit_0,h_720,w_1280/format,jpg",
+                  "http://m.ykimg.com/0525010568787E4C51F98A1AC203F486?x-oss-process=image/resize,m_fill,limit_0,h_720,w_1280/format,jpg",
+                  "http://m.ykimg.com/0525020568787E4C51F98A1AC203F486?x-oss-process=image/resize,m_fill,limit_0,h_720,w_1280/format,jpg",
+                  "http://m.ykimg.com/0525030568787E4C51F98A1AC203F486?x-oss-process=image/resize,m_fill,limit_0,h_720,w_1280/format,jpg",
+                  "http://m.ykimg.com/0525040568787E4C51F98A1AC203F486?x-oss-process=image/resize,m_fill,limit_0,h_720,w_1280/format,jpg"
+                ],
+                "thumb_hd": [
+                  "http://m.ykimg.com/0525000568787E4C51F98A1AC203F486",
+                  "http://m.ykimg.com/0525010568787E4C51F98A1AC203F486",
+                  "http://m.ykimg.com/0525020568787E4C51F98A1AC203F486",
+                  "http://m.ykimg.com/0525030568787E4C51F98A1AC203F486",
+                  "http://m.ykimg.com/0525040568787E4C51F98A1AC203F486"
+                ],
+                "timespan": "6000"
+              },
+              "remoteDebug": [],
+              "show": {
+                "client_close_flags": [
+                  "rare_characters",
+                  "no_license_num",
+                  "display_story_point"
+                ],
+                "completed": 1,
+                "copyright": "1",
+                "encodeid": "bdfb0949ae4c4ac39168",
+                "episode_total": 32,
+                "exclusive": true,
+                "id": 614555,
+                "is_medium_show": false,
+                "package_type": [
+                  "svip_ahead"
+                ],
+                "pay": 0,
+                "pay_type": [],
+                "schedule_rating": "s+",
+                "show_thumburl": "http://m.ykimg.com/050B00006840FA2E711E4F1099408227",
+                "show_thumburl_big_jpg": "http://m.ykimg.com/050C00006840FA2E711E4F1099408227",
+                "show_thumburl_huge": "http://m.ykimg.com/053500006840FA2E711E4F1099408227",
+                "show_videotype": "正片",
+                "show_vthumburl": "http://m.ykimg.com/050D00006840FA27711E4F10999CE8A8",
+                "show_vthumburl_big_jpg": "http://m.ykimg.com/050E00006840FA27711E4F10999CE8A8",
+                "show_vthumburl_huge": "http://m.ykimg.com/053400006840FA27711E4F10999CE8A8",
+                "show_w3_h4_thumb_url": "http://m.ykimg.com/052600006840FA29466814106CADF0BD",
+                "showcategory": "电视剧",
+                "showkind": [
+                  "优酷出品",
+                  "篇章选集"
+                ],
+                "stage": 1,
+                "subtitle_features": [
+                  "st_open"
+                ],
+                "title": "七根心简",
+                "video_pay": 0,
+                "video_type": 1
+              },
+              "stream": [
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": false,
+                  "h266": false,
+                  "height": 338,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/697604207D23E71C8D6342D63/03000500006870AE40F8CB86CD91DF638EB4A7-FC6F-43E6-B093-00894936A45C.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=Bc6476e9df14173dcfebf97c9060c0172\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=5f8e2c3e3bffd92a\u0026tr=2581\u0026le=cb5bf207a124c77bcff3b6ca21025123\u0026ckt=5\u0026m_onoff=0\u0026rid=200000008BB5409A786361AA773A7641285A7A1102000000\u0026type=flvhdv3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/03000500006870AE40F8CB86CD91DF638EB4A7-FC6F-43E6-B093-00894936A45C.m3u8",
+                      "size": 93546920,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 93546920,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "03000500006870AE40F8CB86CD91DF638EB4A7-FC6F-43E6-B093-00894936A45C-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 119380,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 93546920,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "flvhd",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 640
+                },
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": true,
+                  "h266": false,
+                  "height": 338,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/6572F18455436718CEC792424/05000700006870AE40EA8016902400F01E097B-D520-49FB-AC70-8FDFA2968342.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=Bcf3802c1c58036bd5f66e46b12dc493b\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=5ebc0210839e2427\u0026tr=2581\u0026le=3d4bb3a83e842d6616af66bc18dce0f7\u0026ckt=5\u0026m_onoff=0\u0026rid=200000007BA08E32D1FDEF336EEDE0B347284EE902000000\u0026type=mp5sdv3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/05000700006870AE40EA8016902400F01E097B-D520-49FB-AC70-8FDFA2968342.m3u8",
+                      "size": 69443252,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 69443252,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "05000700006870AE40EA8016902400F01E097B-D520-49FB-AC70-8FDFA2968342-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 104904,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 69443252,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "mp5sd",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 640
+                },
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": false,
+                  "h266": false,
+                  "height": 458,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/6773C426CC2467204BFF03E0B/03000600006870AE94750CDC1F5A26338C80D8-978F-4A8D-90C1-605EF146FDF0.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=Bad815530542b942e7f29eb7d682511c5\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=f8b8b667c4c753a5\u0026tr=2581\u0026le=c0bd26796920034ec78d6182ebb7832d\u0026ckt=5\u0026m_onoff=0\u0026rid=200000007BE913C3E43A7ECC4D2F289B68451FFE02000000\u0026type=mp4hdv3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/03000600006870AE94750CDC1F5A26338C80D8-978F-4A8D-90C1-605EF146FDF0.m3u8",
+                      "size": 145580056,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 145580056,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "03000600006870AE94750CDC1F5A26338C80D8-978F-4A8D-90C1-605EF146FDF0-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 152092,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 145580056,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "mp4hd",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 864
+                },
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": true,
+                  "h266": false,
+                  "height": 458,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/65728700D373B71B25E8E57D0/05000900006870AEAD733B3BC961F187A25FD8-7C4C-417B-91D0-40657538B386.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=B19a2e79cd5872f1fd2984d5b871c84c5\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=c031bb1d4f65668d\u0026tr=2581\u0026le=ca19110b63fc9c81aa249d4af4bde018\u0026ckt=5\u0026m_onoff=0\u0026rid=20000000AA1B954000B719C6D55E66B366D5DA9502000000\u0026type=mp5hdv3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/05000900006870AEAD733B3BC961F187A25FD8-7C4C-417B-91D0-40657538B386.m3u8",
+                      "size": 103561868,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 103561868,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "05000900006870AEAD733B3BC961F187A25FD8-7C4C-417B-91D0-40657538B386-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 131412,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 103561868,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "mp5hd",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 864
+                },
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": true,
+                  "h266": false,
+                  "height": 678,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/67746F6257D47720C3D27206F/05000A00006870AE955ECFB841792CF3E8CBC9-83ED-4EF2-AD4B-FB58691BC8EC.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=B1c1481fff2314d2f92a3f84d273f77dc\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=6392a94991d74eac\u0026tr=2581\u0026le=e77eff3db8ae1c0b2fc9681ed3f3eb4a\u0026ckt=5\u0026m_onoff=0\u0026rid=20000000ABDA9529D4A53C627F84768BB5C4439202000000\u0026type=mp5hd2v3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/05000A00006870AE955ECFB841792CF3E8CBC9-83ED-4EF2-AD4B-FB58691BC8EC.m3u8",
+                      "size": 186925768,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 186925768,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "05000A00006870AE955ECFB841792CF3E8CBC9-83ED-4EF2-AD4B-FB58691BC8EC-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 208492,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 186925768,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "mp5hd2",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 1280
+                },
+                {
+                  "audio_lang": "default",
+                  "dof": false,
+                  "dolbyEffect": false,
+                  "drm_type": "copyrightDRM",
+                  "encryptR_server": "jWzqcy5Bo2t75qqYvmsr1Q==",
+                  "h265": false,
+                  "h266": false,
+                  "height": 678,
+                  "logo": "none",
+                  "m3u8_url": "http://valipl.cp31.ott.cibntv.net/657259B06543A71AAE1572283/03000700006870AE8D1FB0015EFA90287A5520-DAFA-434E-867C-47856AADD892.m3u8?ccode=03010203\u0026duration=2581\u0026expire=18000\u0026psid=e439b1ae87b38ba0e060f7707d90dd8c41346\u0026ups_client_netip=751e7dee\u0026ups_ts=1766906733\u0026ups_userid=727633071\u0026utid=aHL%2BFAAAACkDAGqpwyCbEjYk\u0026vid=XNjQ4MzU2NDAzMg%3D%3D\u0026vkey=B868e8fc4668d6636c765beb34b1a6b08\u0026s=bdfb0949ae4c4ac39168\u0026eo=0\u0026t=24c1515a038bb52\u0026cug=1\u0026fms=f04910f4ec73c5a0\u0026tr=2581\u0026le=34d979b7ea73ae1b8f45e41d47ee8924\u0026ckt=5\u0026m_onoff=0\u0026rid=20000000E1A9C400B6C72A4B241FF31E60A9C81702000000\u0026type=mp4hd2v3\u0026bc=2\u0026dre=u37\u0026si=73\u0026dst=1\u0026sm=1\u0026operate_type=1\u0026hotvt=1\u0026app_key=24679788\u0026app_ver=9.2.69.1001",
+                  "media_type": "standard",
+                  "milliseconds_audio": 2581200,
+                  "milliseconds_video": 2581200,
+                  "offlineImax": false,
+                  "segs": [
+                    {
+                      "fileid": "oss://yk-flv-sh/03000700006870AE8D1FB0015EFA90287A5520-DAFA-434E-867C-47856AADD892.m3u8",
+                      "size": 268488252,
+                      "total_milliseconds_audio": 2581200,
+                      "total_milliseconds_video": 2581200
+                    }
+                  ],
+                  "size": 268488252,
+                  "sourceAuidoEffect": false,
+                  "streamLang": "default",
+                  "stream_ext": {
+                    "copyright_key": "wWtmHNPJ9uiyNnVWcshM/08SvyzjwFVQXlnfNHSJk4Q=",
+                    "firstSlice": "03000700006870AE8D1FB0015EFA90287A5520-DAFA-434E-867C-47856AADD892-00001.ts",
+                    "firstSliceDur": 6000,
+                    "firstSlicePos": 0,
+                    "firstSliceSequenceNum": 0,
+                    "firstSliceSize": 244400,
+                    "fps": 25,
+                    "frameAlign": 2,
+                    "hlsTags": "EXT-X-PRIVINF",
+                    "hls_duration": 2581200,
+                    "hls_logo": "none",
+                    "hls_oss_bucket": 2,
+                    "hls_size": 268488252,
+                    "hls_subtitle": "default",
+                    "oss_bucket": 2,
+                    "startTime": "2.800000",
+                    "subtitle_lang": "default"
+                  },
+                  "stream_type": "mp4hd2",
+                  "subtitle_lang": "default",
+                  "transfer_mode_org": "http",
+                  "width": 1280
+                }
+              ],
+              "uploader": {
+                "avatar": {
+                  "big": "https://image.9xsecndns.cn/image/uicon/206e20d118ead5e51dae6f550d427a84b8bf6f2a6087f7.jpg",
+                  "large": "https://image.9xsecndns.cn/image/uicon/206e20d118ead5e51dae6f550d427a84b8bf6f2a6087f7.jpg",
+                  "middle": "https://image.9xsecndns.cn/image/uicon/206e20d118ead5e51dae6f550d427a84b8bf6f2a6087f7.jpg",
+                  "small": "https://image.9xsecndns.cn/image/uicon/206e20d118ead5e51dae6f550d427a84b8bf6f2a6087f7.jpg",
+                  "xlarge": "https://image.9xsecndns.cn/image/uicon/206e20d118ead5e51dae6f550d427a84b8bf6f2a6087f7.jpg"
+                },
+                "certification": true,
+                "crm_level": 0,
+                "fan_count": 652025,
+                "homepage": "https://www.youku.com/profile/index/?uid=UODI2MTIzMjI1Mg==",
+                "reason": "官方",
+                "show_brand": 0,
+                "uid": "UODI2MTIzMjI1Mg==",
+                "username": "电视剧七根心简"
+              },
+              "ups": {
+                "psid": "e439b1ae87b38ba0e060f7707d90dd8c41346",
+                "refVer": 1,
+                "strf": true,
+                "ups_client_netip": "117.30.125.238",
+                "ups_ts": "1766906733"
+              },
+              "user": {
+                "depths": 0,
+                "disabledPerson": false,
+                "hearDisabledPerson": false,
+                "ip": "117.30.125.238",
+                "partnerVip": false,
+                "resultCode": 0,
+                "uid": "727633071",
+                "vip": false,
+                "ytid": "727633071"
+              },
+              "video": {
+                "audioOnly": 0,
+                "category_id": 97,
+                "category_letter_id": "d",
+                "close_ceremony_video": false,
+                "ctype": "媒资",
+                "drm_type": "copyrightDRM",
+                "encodeid": "XNjQ4MzU2NDAzMg==",
+                "id": 1620891008,
+                "limited": 0,
+                "logo": "https://m.ykimg.com/054101016842BC6E2BC44315D3DE66D7",
+                "privacy": "anybody",
+                "seconds": 2581.2,
+                "smart_tile": 0,
+                "source": 234,
+                "st_sorted": 1,
+                "stream_ext": {
+                  "default": {
+                    "flvhd": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H264",
+                      "colorspace": "",
+                      "dnmt": "ca5f8473548ab71eae617e330d2dfc68_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 2,
+                      "resolu": 360,
+                      "size": 93546920,
+                      "vip": 0,
+                      "vr": ""
+                    },
+                    "mp4hd": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H264",
+                      "colorspace": "",
+                      "dnmt": "a0219b0b283dbb74e18d70ddce4f33f8_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 3,
+                      "resolu": 540,
+                      "size": 145580056,
+                      "vip": 0,
+                      "vr": ""
+                    },
+                    "mp4hd2": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H264",
+                      "colorspace": "",
+                      "dnmt": "513aad0d56ea32141a1c9784e3a16732_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 4,
+                      "resolu": 720,
+                      "size": 268488252,
+                      "vip": 0,
+                      "vr": ""
+                    },
+                    "mp4hd3": {
+                      "bitdepth": 8,
+                      "can_play_status": 2,
+                      "codec": "H264",
+                      "colorspace": "",
+                      "corner_mark": "2|登录限免",
+                      "corner_mark_url": "",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 5,
+                      "resolu": 1080,
+                      "size": 564899580,
+                      "vip": 1,
+                      "vr": ""
+                    },
+                    "mp5hd": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H265",
+                      "colorspace": "",
+                      "dnmt": "728d01e9f8f87e065832420e558d16ad_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 3,
+                      "resolu": 540,
+                      "size": 103561868,
+                      "vip": 0,
+                      "vr": ""
+                    },
+                    "mp5hd2": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H265",
+                      "colorspace": "",
+                      "dnmt": "e86630d87581b8f11802327bcaa90fc5_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 4,
+                      "resolu": 720,
+                      "size": 186925768,
+                      "vip": 0,
+                      "vr": ""
+                    },
+                    "mp5hd3": {
+                      "bitdepth": 8,
+                      "can_play_status": 2,
+                      "codec": "H265",
+                      "colorspace": "",
+                      "corner_mark": "2|登录限免",
+                      "corner_mark_url": "",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 5,
+                      "resolu": 1080,
+                      "size": 399847800,
+                      "vip": 1,
+                      "vr": ""
+                    },
+                    "mp5hd4": {
+                      "bitdepth": 8,
+                      "can_play_status": 1,
+                      "codec": "H265",
+                      "colorspace": "",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 6,
+                      "resolu": 2160,
+                      "size": 880161104,
+                      "vip": 1,
+                      "vr": ""
+                    },
+                    "mp5sd": {
+                      "bitdepth": 8,
+                      "can_play_status": 0,
+                      "codec": "H265",
+                      "colorspace": "",
+                      "dnmt": "fc177dee5e06e84ecd09c0d7666ea9de_2_m3u8_default",
+                      "fps": 25,
+                      "mediatype": "hls",
+                      "quality": 2,
+                      "resolu": 360,
+                      "size": 69443252,
+                      "vip": 0,
+                      "vr": ""
+                    }
+                  }
+                },
+                "stream_types": {
+                  "default": [
+                    "mp5hd4",
+                    "mp4hd3",
+                    "mp5hd3",
+                    "mp5hd2",
+                    "mp4hd2",
+                    "mp4hd",
+                    "mp5hd",
+                    "flvhd",
+                    "mp5sd"
+                  ]
+                },
+                "subcategories": [],
+                "svip_ahead": false,
+                "svip_free": false,
+                "tags": [],
+                "title": "七根心简 01",
+                "type": [
+                  "show",
+                  "dvd",
+                  "bullet"
+                ],
+                "uid": 2065308063,
+                "userid": 2065308063,
+                "username": "电视剧七根心简",
+                "videoid_play": 1620891008,
+                "weburl": "http://v.youku.com/v_show/id_XNjQ4MzU2NDAzMg==.html"
+              },
+              "vip": {
+                "ad": false,
+                "adExperience": false,
+                "audioEffect": false,
+                "clarity1080Experience": false,
+                "contentExperience": false,
+                "dolby": false,
+                "frane_4k": false,
+                "hbr": false,
+                "hd3": false,
+                "hdr_super_defi": false,
+                "imax": false,
+                "original": false,
+                "shda": false,
+                "subtitle": false,
+                "super_defi": false,
+                "super_defi_ordinary": false,
+                "super_member_set": false,
+                "svipAudioEffect": false,
+                "vipDownload": false,
+                "vipInfo": "100000:0000-00-00 00:00:00;100009:0000-00-00 00:00:00;100010:0000-00-00 00:00:00;100024:0000-00-00 00:00:00;100051:0000-00-00 00:00:00;100025:0000-00-00 00:00:00;100026:0000-00-00 00:00:00;100012:0000-00-00 00:00:00;100027:0000-00-00 00:00:00;100061:0000-00-00 00:00:00;100028:0000-00-00 00:00:00;100029:0000-00-00 00:00:00;100031:0000-00-00 00:00:00;100016:0000-00-00 00:00:00;100032:0000-00-00 00:00:00;100033:0000-00-00 00:00:00;100034:0000-00-00 00:00:00;",
+                "vod_cache": false
+              },
+              "watermark": [
+                {
+                  "alpha": 1,
+                  "autoScale": 0,
+                  "displayDTOS": [
+                    {
+                      "duration": 0,
+                      "height": 20,
+                      "posX": 15,
+                      "posY": 32,
+                      "start": 0,
+                      "width": 92
+                    }
+                  ],
+                  "displayMode": 1,
+                  "refCoord": 1,
+                  "refWnd": 1,
+                  "rsType": 0,
+                  "rsUrl": "https://ykimg.alicdn.com/product/image/2024-01-29/a9ceddce3ae63cb073261796cb90dcb0.png",
+                  "type": 1,
+                  "watermarkImgListDTOS": []
+                },
+                {
+                  "alpha": 1,
+                  "autoScale": 0,
+                  "displayDTOS": [
+                    {
+                      "duration": 0,
+                      "height": 15,
+                      "posX": 9,
+                      "posY": 14,
+                      "start": 0,
+                      "width": 69
+                    }
+                  ],
+                  "displayMode": 3,
+                  "refCoord": 1,
+                  "refWnd": 1,
+                  "rsType": 0,
+                  "rsUrl": "https://ykimg.alicdn.com/product/image/2024-01-29/a9ceddce3ae63cb073261796cb90dcb0.png",
+                  "type": 1,
+                  "watermarkImgListDTOS": []
+                },
+                {
+                  "alpha": 1,
+                  "autoScale": 0,
+                  "displayDTOS": [
+                    {
+                      "duration": 0,
+                      "height": 20,
+                      "posX": 15,
+                      "posY": 32,
+                      "start": 0,
+                      "width": 92
+                    }
+                  ],
+                  "displayMode": 2,
+                  "refCoord": 1,
+                  "refWnd": 1,
+                  "rsType": 0,
+                  "rsUrl": "https://ykimg.alicdn.com/product/image/2024-01-29/a9ceddce3ae63cb073261796cb90dcb0.png",
+                  "type": 1,
+                  "watermarkImgListDTOS": []
+                }
+              ]
+            },
+            "e": {
+              "code": 0,
+              "desc": "",
+              "provider": "hsfprovider"
+            }
+          },
+          "responseHeaders": "cache-control: no-cache\r\nconnection: keep-alive\r\ncontent-encoding: gzip\r\ncontent-type: application/json;charset=UTF-8\r\ndate: Sun, 28 Dec 2025 07:25:33 GMT\r\neagleeye-traceid: 212beaad17669067331963094e2787\r\nmtop-x-provider: 36772dba0b3091d2cae0b54ad75abd332a6ac6ed109c38b653c4dda014fca9de\r\npragma: no-cache\r\ns-rt: 40\r\nserver: Tengine/Aserver\r\ntransfer-encoding: chunked\r\nvary: Accept-Encoding\r\nx-aserver-env: prod\r\nx-eagleeye-id: 212beaad17669067331963094e2787\r\nx-node: c482aba33bf3fe408ddcd39c8dc2a8ee\r\nx-powered-by: m.taobao.com\r\n",
+          "ret": [
+            "SUCCESS::调用成功"
+          ],
+          "retType": 0,
+          "traceId": "212beaad17669067331963094e2787",
+          "v": "1.1"
+        },
+        "vid": "XNjQ4MzU2NDAzMg==",
+        "videoName": "七根心简 01"
+      },
+      "taskInfo": {
+        "clarity": "准高清",
+        "coverImg": "http://m.ykimg.com/050C00006840FA2E711E4F1099408227",
+        "errorInfo": "",
+        "filePath": "D:/Youku Files/download七根心简//七根心简 01.ykv",
+        "id": "XNjQ4MzU2NDAzMg==",
+        "isLinkToDownloader": false,
+        "kuxPath": "",
+        "lang": "",
+        "name": "七根心简 01",
+        "parentId": "bdfb0949ae4c4ac39168",
+        "parentName": "七根心简",
+        "password": "",
+        "progress": 0,
+        "restTime": "",
+        "size": 186925956,
+        "speed": "0B/s",
+        "stage": 1,
+        "status": "DOWNLOADING",
+        "vid": "XNjQ4MzU2NDAzMg==",
+        "videoName": "七根心简 01",
+        "vipSpeed": "0B/s",
+        "watchHistory": null
+      }
+    },
+    "name": "dbInfo"
+  }
+]

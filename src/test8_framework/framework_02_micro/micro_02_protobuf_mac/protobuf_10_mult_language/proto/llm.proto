@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package llm;
+
+service LLM {
+  rpc Infer (InferRequest) returns (InferReply);
+}
+
+message InferRequest {
+  string prompt = 1;
+}
+
+message InferReply {
+  string text = 1;
+}
+
+// 用py做grpc服务端，用go/java做grpc客户端。实现py实现推理功能，go/java实现服务
+
+
+/*
+//1️⃣ Python
+pip install grpcio grpcio-tools
+
+python -m grpc_tools.protoc \
+  -I . \
+  --python_out=. \
+  --grpc_python_out=. \
+  llm.proto
+
+
+2️⃣ Go
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+protoc \
+  --go_out=. \
+  --go-grpc_out=. \
+  llm.proto
+
+
+
+3️⃣ Java
+brew install grpc
+which protoc-gen-grpc-java
+protoc \
+  --java_out=. \
+  --grpc-java_out=. \
+  llm.proto
+
+
+ */
