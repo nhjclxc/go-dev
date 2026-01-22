@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -40,13 +41,16 @@ func main() {
 		c.JSON(http.StatusOK, lists)
 	})
 
-	// http://127.0.0.1:9090/api/set?node=node1&name=u&host=upstream&port=8080&weight=50
+	// http://127.0.0.1:9090/api/set?node=node1&name=u&host=upstream&port=8080&weight=10
 	// http://127.0.0.1:9090/api/set?node=node1&name=u1&host=upstream1&port=8081&weight=20
 	// http://127.0.0.1:9090/api/set?node=node1&name=u2&host=upstream2&port=8082&weight=30
 	// http://127.0.0.1:9090/api/set?node=node1&name=u3&host=upstream3&port=8083&weight=50
 
-	// http://127.0.0.1:9090/api/set?node=node1&name=u&host=127.0.0.1&port=8080&weight=50
+	// http://127.0.0.1:9090/api/set?node=node1&name=u&host=127.0.0.1&port=8080&weight=10
 	// http://127.0.0.1:9090/api/set?node=node1&name=u1&host=127.0.0.1&port=8081&weight=20
+
+	// http://127.0.0.1:9090/api/set?node=node1&name=u&host=192.168.201.74&port=8080&weight=10
+	// http://127.0.0.1:9090/api/set?node=node1&name=u1&host=192.168.201.74&port=8081&weight=20
 	api.GET("/set", func(c *gin.Context) {
 		var req UpStream
 		err := c.ShouldBindQuery(&req)
@@ -60,7 +64,7 @@ func main() {
 		data[req.Node] = append(data[req.Node], req)
 
 		c.JSON(http.StatusOK, gin.H{
-			"msg": "操作成功",
+			"msg": fmt.Sprintf("操作成功: %s:%d", req.Host, req.Port),
 		})
 
 	})

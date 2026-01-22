@@ -2,8 +2,8 @@ FROM docker.1ms.run/library/golang:latest
 
 WORKDIR /app
 
-COPY server.go .
+COPY upstream.go .
 
 RUN go mod init upstream && go mod tidy
 
-CMD ["go", "run", "server.go"]
+CMD ["go", "run", "upstream.go"]

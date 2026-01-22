@@ -9,6 +9,7 @@ RUN apk add --no-cache wget unzip && \
     unzip v0.17.1.zip && \
     cp -r lua-resty-http-0.17.1/lib/resty/* /usr/local/openresty/lualib/resty/ && \
     rm -rf v0.17.1.zip lua-resty-http-0.17.1 && \
+    # remove temp
     rm -rf /tmp/* && \
     apk del wget unzip
 

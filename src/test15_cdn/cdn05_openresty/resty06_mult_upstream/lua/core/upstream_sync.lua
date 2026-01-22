@@ -1,8 +1,8 @@
 -- 实现向调度中心 scheduler 每隔5秒动态拉取 openresty 上游的所有后端服务
--- 实现源站的加权轮询和主备切换
 
 local http = require "resty.http"
 local cjson = require "cjson.safe"
+local resolver = require "resty.dns.resolver"
 local upstream_dict = ngx.shared.upstreams -- 导入共享字典
 local upstream_dict_key = "upstream"
 
@@ -13,8 +13,52 @@ local node_name = os.getenv("NODE_NAME") or "node1"
 
 -- 默认 upstream（只在第一次没有数据时设置）
 local DEFAULT = {
-    { host = "upstream", port = 8080, weight = 50 }
+    { host = "upstream", ip = "127.0.0.1", port = 8080, weight = 50 }
 }
+
+-- is_ip 判断 host 是不是一个ip地址
+local function is_ip(host)
+    if not host then
+        return false
+    end
+
+    -- IPv4
+    if ngx.re.find(host, [[^\d{1,3}(\.\d{1,3}){3}$]], "jo") then
+        return true
+    end
+
+    -- IPv6（简单版）
+    if ngx.re.find(host, [[^[0-9a-fA-F:]+$]], "jo") then
+        return true
+    end
+
+    return false
+end
+
+
+-- resolve 做 DNS 解析，解析容器名称为其对应的ip地址
+local function resolve(host)
+    -- 如果host已经是一个ip地址了，那么直接返回
+    if is_ip(host) then
+        return host
+    end
+
+    local r, err = resolver:new{
+        nameservers = {"127.0.0.11"}, -- Docker DNS
+        timeout = 2000,
+        retrans = 2,
+    }
+    if not r then
+        return nil, err
+    end
+
+    local answers, err = r:query(host, { qtype = r.TYPE_A })
+    if not answers or answers.errcode then
+        return nil, err
+    end
+
+    return answers[1].address
+end
 
 -- 调用调度中心接口拉取上游, 这个方法用于给定时任务调度
 -- @param: node 当前节点名称
@@ -45,9 +89,17 @@ local function fetch_upstreams(node)
         return false, "scheduler response data is null"
     end
 
+    -- 解析接口返回的数据，将容器名称解析为ip地址
+    for _, value in pairs(data) do
+        value.ip = resolve(value.host)
+    end
+
+    -- 转成字符串存 dict
+    local data_str = cjson.encode(data)
+
     -- 有数据那么覆盖贡献字典的数据
-    upstream_dict:set(upstream_dict_key, res.body)
-    ngx.log(ngx.INFO, "fetch_upstreams success, len(data) = ", #data)
+    upstream_dict:set(upstream_dict_key, data_str)
+    ngx.log(ngx.INFO, "fetch_upstreams success, len(data) = ", #data, ", data_str: ", data_str)
 
     return true
 end
@@ -75,13 +127,15 @@ local function fetch_upstreams_sync(premature)
 end
 
 -- 只让 worker_id = 0 的进程去执行调度
-if ngx.worker.id() == 0 then
-    -- 一启动的时候把默认的地址给上
-    upstream_dict:set(upstream_dict_key, cjson.encode(DEFAULT))
+if ngx.worker.id() > 0 then
+    return
+end
 
-    -- 立即执行一个定时任务
-    local ok, err = ngx.timer.at(0, fetch_upstreams_sync)
-    if not ok then
-        ngx.log(ngx.ERR, "failed to create timer: ", err)
-    end
+-- 一启动的时候把默认的地址给上
+upstream_dict:set(upstream_dict_key, cjson.encode(DEFAULT))
+
+-- 立即执行一个定时任务
+local ok, err = ngx.timer.at(0, fetch_upstreams_sync)
+if not ok then
+    ngx.log(ngx.ERR, "failed to create timer: ", err)
 end

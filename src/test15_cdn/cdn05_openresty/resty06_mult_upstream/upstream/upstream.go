@@ -8,8 +8,18 @@ import (
 )
 
 func main() {
+
+	// HOST=192.168.201.74 PORT=8080 NAME=upstream go run upstream.go
+	// HOST=192.168.201.74 PORT=8081 NAME=upstream1 go run upstream.go
+
+	hosttmp := os.Getenv("HOST")
 	port := os.Getenv("PORT")
 	serviceName := os.Getenv("NAME")
+
+	host := "0.0.0.0"
+	if hosttmp != "" {
+		host = hosttmp
+	}
 	if port == "" {
 		port = "8080"
 	}
@@ -20,8 +30,8 @@ func main() {
 		json.NewEncoder(w).Encode(map[string]string{"status": "ok", "serviceName": serviceName})
 	})
 
-	log.Printf("🚀 Mock Server on http://0.0.0.0:%s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+	log.Printf("🚀 Mock Server on http://%s:%s", host, port)
+	if err := http.ListenAndServe(host+":"+port, nil); err != nil {
 		log.Fatal(err)
 	}
 }
