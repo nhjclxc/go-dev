@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  openresty80:
+    image: openresty/openresty:alpine
+    container_name: openresty80
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf/nginx80.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./logs:/usr/local/openresty/nginx/logs
+    restart: unless-stopped
+
+  openresty81:
+    image: openresty/openresty:alpine
+    container_name: openresty81
+    ports:
+      - "81:81"
+    volumes:
+      - ./conf/nginx81.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./logs:/usr/local/openresty/nginx/logs
+    restart: unless-stopped
