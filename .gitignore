@@ -70,3 +70,12 @@ pkg/mod/
 .vscode
 **/lua/resty/openssl/*
 src/test15_cdn/cdn05_openresty/resty01_test/openresty/lua/aa.lua
+# ClickHouse data dir
+#src/test7_db/test75_clickhouse/clickhouse/data/
+# ignore all clickhouse data dirs
+**/clickhouse/data/
+#src/test7_db/test75_clickhouse/clickhouse/data/**
+#src/test7_db/test75_clickhouse/clickhouse/data/store/**
+#**/*.cmrk2
+#**/*.bin
+

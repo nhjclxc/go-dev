@@ -32,4 +32,7 @@
 
 ## 5、Elasticsearch（全文搜索引擎）
 ## 6、TiDB / CockroachDB（分布式关系数据库）
-## ETCD
+## 7、ETCD
+## 8、clickhouse
+
+[clickhouse](https://clickhouse.com/docs/zh/introduction-clickhouse)
