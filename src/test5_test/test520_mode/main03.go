@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // 17.4 运算符模式和接口
 // https://denganliang.github.io/the-way-to-go_ZH_CN/17.4.html
 func main() {
@@ -14,7 +16,103 @@ func main() {
 
 }
 
+type ArrayInterface interface {
+	Add(a ArrayInterface) ArrayInterface
+	//Min(b FooArray) FooArray
+	//Mult(b FooArray) FooArray
+	Elements()
+	Len() int
+}
+
+type FooArray struct {
+	items []int
+}
+
+func NewFooArray(vals []int) *FooArray {
+	return &FooArray{
+		items: vals,
+	}
+}
+
+func (a *FooArray) Add(item ArrayInterface) ArrayInterface {
+	val, ok := item.(*FooArray)
+	if !ok {
+		panic("not a FooArray")
+	}
+	if item.Len() <= 0 {
+		return a
+	}
+	for i := range a.items {
+		if i > len(val.items)-1 {
+			break
+		}
+		a.items[i] += val.items[i]
+	}
+	return a
+}
+func (a *FooArray) Elements() {
+	for i, item := range a.items {
+		fmt.Printf("index=%d\tvalue=%d\n", i, item)
+	}
+	fmt.Println()
+}
+func (a *FooArray) Len() int {
+	return len(a.items)
+}
+
+type Addable interface {
+	~int | ~int8 | ~int16 | ~int32 | ~int64 |
+		~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 |
+		~float32 | ~float64 |
+		~string
+}
+
+type GenericsArray[T Addable] struct {
+	items []T
+}
+
+func NewGenericsArray[T Addable](vals []T) *GenericsArray[T] {
+	return &GenericsArray[T]{
+		items: vals,
+	}
+}
+
+func (a *GenericsArray[T]) Add(item ArrayInterface) ArrayInterface {
+	val, ok := item.(*GenericsArray[T])
+	if !ok {
+		panic("not a FooArray")
+	}
+	if item.Len() <= 0 {
+		return a
+	}
+	for i := range a.items {
+		if i > len(val.items)-1 {
+			break
+		}
+		a.items[i] = a.items[i] + val.items[i]
+	}
+	return a
+}
+func (a *GenericsArray[T]) Elements() {
+	for i, item := range a.items {
+		fmt.Printf("index=%d\tvalue=%d\n", i, item)
+	}
+	fmt.Println()
+}
+func (a *GenericsArray[T]) Len() int {
+	return len(a.items)
+}
+
 func mode_03() {
+
+	mainArr := NewFooArray([]int{1, 2, 3, 4, 5})
+	fooArr := NewFooArray([]int{1, 2, 3})
+	barArr := NewFooArray([]int{1, 1, 1})
+	mainArr.Elements()
+	fooArr.Elements()
+	mainArr.Add(fooArr).Add(barArr)
+	mainArr.Elements()
+
 	// 17.4.3 使用接口
 	//当在不同类型上执行相同的方法时，创建一个通用化的接口以实现多态的想法，就会自然产生。
 	//

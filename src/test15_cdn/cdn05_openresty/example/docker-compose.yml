@@ -1,0 +1,39 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/logs:/app/logs
+    environment:
+      - CACHE_ID=backend
+
+  gateway-client:  #客户端请求
+    image: openresty/openresty:alpine
+#    build: ./openresty
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - LOG_LEVEL=info
+      - HOSTNAME=gw-test-client
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./openresty/lua:/usr/local/openresty/nginx/lua:ro
+      - ./openresty/conf/servers:/usr/local/openresty/nginx/conf/servers:ro
+      - ./openresty/conf/locations:/usr/local/openresty/nginx/conf/locations:ro
+      - ./openresty/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./openresty/certs:/usr/local/openresty/nginx/conf/certs:ro
+      - ./openresty/logs:/usr/local/openresty/nginx/logs
+
+#  logrotate:
+#    build: ./logrotate
+#    container_name: logrotate
+#    volumes:
+#      - ./logs/client:/var/log/openresty
+#      - ./logrotate/openresty_logrotate:/etc/logrotate.d/openresty_logrotate
+##    entrypoint: [ "sh", "-c", "logrotate /etc/logrotate.d/openresty && sleep 86400" ]
+#    entrypoint: ["sh", "-c", "while true; do logrotate -f /etc/logrotate.d/openresty_logrotate; sleep 60; done"]
+#    restart: unless-stopped

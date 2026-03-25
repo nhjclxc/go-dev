@@ -48,6 +48,7 @@ target/
 *.log
 *.nar
 #*.zip
+*.tar
 *.tar.gz
 *.rar
 # 过滤掉项目下载的包文件
